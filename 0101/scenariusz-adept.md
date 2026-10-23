@@ -1,13 +1,13 @@
-# Z1 (ADEPT) · Dlaczego web? Wstęp, przeglądarki i DevTools
+# 0101 (ADEPT) · Dlaczego web? Wstęp, przeglądarki i DevTools
 
-> Alternatywna wersja scenariusza [z01-wstep-przegladarki-devtools.md](z01-wstep-przegladarki-devtools.md) wzięta pod kątem metody ADEPT (analogia → diagram → przykład → definicja prosta → definicja techniczna). Struktura czasowa i zakres merytoryczny identyczne z wersją bazową; różnica: kluczowe pojęcia mają rozpisaną pełną ścieżkę ADEPT.
+> Alternatywna wersja scenariusza [scenariusz.md](scenariusz.md) wzięta pod kątem metody ADEPT (analogia → diagram → przykład → definicja prosta → definicja techniczna). Struktura czasowa i zakres merytoryczny identyczne z wersją bazową; różnica: kluczowe pojęcia mają rozpisaną pełną ścieżkę ADEPT.
 
 | | |
 |---|---|
 | **Semestr** | zimowy — spotkanie 1 z 9 (grupy A/B) |
-| **Czas** | 135 min = blok 60 + przerwa 15 + blok 60 (**bez kartkówki** — spotkanie otwierające kurs) |
+| **Czas** | 135 min = **ankieta zapoznawcza 10 (nieoceniana)** + sekcja 50 + przerwa 15 + sekcja 35 + sekcja 25 |
 | **Wariant** | ADEPT (wg [AGENTS-adept.md](../AGENTS-adept.md)) |
-| **Następne spotkanie** | [Z2 · HTML5 — fundamenty i semantyka](z02-html5-fundamenty.md) (zaczyna się kartkówką z tego spotkania) |
+| **Następne spotkanie** | [0102 · HTML5 — fundamenty i semantyka](../0102/scenariusz.md) (zaczyna się kartkówką z tego spotkania) |
 
 ## Pojęcia-bramy tego spotkania (pełna ścieżka ADEPT)
 
@@ -20,17 +20,21 @@ Pozostałe elementy (historia WWW, statystyki, PWA, przeglądarki i silniki, VS 
 
 ---
 
-## Blok 1 (60 min) — wstęp, liczby, kontekst
+## Ankieta zapoznawcza (10 min) — na starcie, przed Sekcją 1
+
+Pisemna, **nieoceniana** ankieta diagnostyczna o AI (arkusz: [ankieta-zapoznawcza.md](ankieta-zapoznawcza.md)); trzy pytania: „czym dla Ciebie jest AI?", „jakie znasz sposoby na korzystanie z AI?", „wymień pojęcia, które kojarzą Ci się z AI". Cel: diagnoza poziomu grupy przed blokiem „AI jako tutor".
+
+## Sekcja 1 (50 min) — wstęp, liczby, kontekst
 
 | Czas | Temat | Uwagi |
 |---|---|---|
-| 10' | **Przedstawienie się i zasady** — kim jestem (ścieżka: studia → praca w IT → Akademia Tarnowska), jak wyglądają zajęcia: 135 min, od Z2 kartkówka na start, przerwa w środku, pytania w każdej chwili | budujemy relację, nie wykład |
+| 5' | **Przedstawienie się i zasady** — kim jestem (ścieżka: studia → praca w IT → Akademia Tarnowska), jak wyglądają zajęcia: 135 min, od 0102 kartkówka na start (oceny cząstkowe → ocena na koniec roku), przerwa w środku, pytania w każdej chwili | budujemy relację, nie wykład |
 | 5' | **Mikro-historia WWW** — 1989: Tim Berners-Lee propozycja w CERN; 1991: pierwsza strona; 1995: JavaScript; dziś: ponad 1,2 mld stron | krótko! to ciekawostka, nie program zajęć |
 | 10' | **Dlaczego warto: web w liczbach** — JS nr 1 po raz 13. (Stack Overflow 2025, ~66% respondentów), 98,9% stron (W3Techs 2026), 1,2 mld stron (Internet Live Stats), Chrome ~70–72% (StatCounter 2025), 84% programistów używa AI (Stack Overflow 2025) | każdy numer ze źródłem na slajdzie |
-| 5' | **PWA — strona „natywna"** — instalacja z przeglądarki, działanie offline, powiadomienia; przykłady (Starbucks, Twitter/X Lite); demo: instalacja PWA z paska adresu | „wow", 3 zdania teorii max |
+| 5' | **PWA — strona „natywna"** — instalacja z przeglądarki, działanie offline, powiadomienia; przykład: Photopea („Photoshop w przeglądarce"), ponadto Starbucks, Twitter/X Lite; demo: instalacja PWA z paska adresu | „wow", 3 zdania teorii max |
 | 15' | **Jak działa internet w pigułce — ADEPT: klient–serwer + DNS** | rozpisanie poniżej |
-| 10' | **Przeglądarki** — co robi przeglądarka; udziały: Chrome ~70–72%, Safari, Edge, Firefox (StatCounter 2025); silniki: Blink, WebKit, Gecko; dlaczego testujemy na kilku | nawiązanie: „dlaczego strona u klienta działa inaczej" |
-| 10' | **Mapa semestru + INF.03 + AT** — Z2 HTML5, Z3 CSS3, Z4 CSS w praktyce + publikacja + pierwszy JS; semestr letni: JS → DOM → dane → projekt zespołowy → trening INF.03; egzamin w skrócie | slajd „mapa semestru"; akcent AT: jak te technologie wykorzystujemy ze studentami |
+| 5' | **Przeglądarki** — co robi przeglądarka; udziały: Chrome ~70–72%, Safari, Edge, Firefox (StatCounter 2025); silniki: Blink, WebKit, Gecko; dlaczego testujemy na kilku | nawiązanie: „dlaczego strona u klienta działa inaczej" |
+| 5' | **Mapa semestru + INF.03 + AT** — 0102 HTML5, 0103 CSS3, 0104 CSS w praktyce + publikacja + pierwszy JS; semestr letni: JS → DOM → dane → projekt zespołowy → trening INF.03; egzamin w skrócie | slajd „mapa semestru"; akcent AT: jak te technologie wykorzystujemy ze studentami |
 
 ### Rozpiska ADEPT: klient–serwer + DNS (15')
 
@@ -54,7 +58,7 @@ Ty (przeglądarka)                        Serwer (np. Wikipedia)
 ```
 
 **E — Przykład (5'):**
-- Prowadzący otwazuje stronę szkoły i pokazuje w DevTools (Network, po wcześniejszym 20-sekundowym teaserze — pełny warsztat DevTools jest w bloku 2): request do serwera, status 200, rozmiar pobranych plików. Uczniowie widzą, że „strona" to w rzeczywistości zestaw plików pobranych z serwera.
+- Prowadzący otwazuje stronę szkoły i pokazuje w DevTools (Network, po wcześniejszym 20-sekundowym teaserze — pełny warsztat DevTools jest w Sekcji 2): request do serwera, status 200, rozmiar pobranych plików. Uczniowie widzą, że „strona" to w rzeczywistości zestaw plików pobranych z serwera.
 
 **P — definicja prosta (2'):**
 - **Klient–serwer:** klient prosi, serwer daje. W sieci klientem jest przeglądarka, serwerem komputer, na którym leży strona.
@@ -67,15 +71,13 @@ Ty (przeglądarka)                        Serwer (np. Wikipedia)
 
 ## Przerwa (15 min)
 
-## Blok 2 (60 min) — warsztat: DevTools, narzędzia, AI, pierwsza strona
+## Sekcja 2 (35 min) — warsztat: DevTools, narzędzia, AI jako tutor
 
 | Czas | Temat | Uwagi |
 |---|---|---|
 | 20' | **Chrome DevTools — ADEPT: inspekcja strony** | rozpiska poniżej; każdy uczeń sam modyfikuje wybraną stronę |
-| 5' | **Warsztat** — VS Code + rozszerzenie Live Server; struktura projektu: katalog + `index.html` | jeśli sala gotowa, skrócić do 2' |
+| 5' | **Warsztat** — VS Code + rozszerzenie Live Server (alternatywnie edytor online: StackBlitz / CodeSandbox); struktura projektu: katalog + `index.html` | jeśli sala gotowa, skrócić do 2' |
 | 10' | **AI jako Twój tutor** — porównanie promptów („utwórz stronę i daj linka" vs „zaprojektuj wizytówkę z a11y, SEO, Git, Netlify, Astro"); jak się uczyć z AI (ELI5, pytania kontrolne, „znajdź błąd"); zasady: AI się myli, kartkówki bez AI, używaj do zrozumienia | mini-ściąga z promptami = element zadania domowego |
-| 15' | **Live coding: pierwsza strona — ADEPT: szkielet dokumentu HTML** | rozpiska poniżej; uczniowie piszą razem z prowadzącym |
-| 10' | **Ćwiczenie samodzielne** — mini-strona „Kim jestem" (3 sekcje); zapowiedź Z2 + **zakres kartkówki**: historia WWW, klient–serwer/DNS, DevTools, szkielet HTML | obsłuż szybkich wariantem C |
 
 ### Rozpiska ADEPT: DevTools (20')
 
@@ -111,6 +113,13 @@ Ty (przeglądarka)                        Serwer (np. Wikipedia)
 
 **T — definicja techniczna (2'):**
 - **Narzędzia deweloperskie (DevTools)** — zintegrowane z przeglądarką środowisko diagnostyczne umożliwiające inspekcję modelu dokumentu (DOM), edycję arkuszy stylów w czasie rzeczywistym, wykonywanie kodu JavaScript w konsoli oraz symulację urządzeń mobilnych. Zmiany wprowadzone lokalnie nie modyfikują plików na serwerze.
+
+## Sekcja 3 (25 min) — pierwsza strona: live coding i praca samodzielna
+
+| Czas | Temat | Uwagi |
+|---|---|---|
+| 15' | **Live coding: pierwsza strona — ADEPT: szkielet dokumentu HTML** | rozpiska poniżej; uczniowie piszą razem z prowadzącym |
+| 10' | **Ćwiczenie samodzielne** — mini-strona „Kim jestem" (3 sekcje), warianty B/C dla szybkich; zapowiedź 0102 + **zakres kartkówki**: historia WWW, klient–serwer/DNS, DevTools, szkielet HTML | obsłuż szybkich wariantem C |
 
 ### Rozpiska ADEPT: szkielet dokumentu HTML (15' live coding)
 
@@ -160,8 +169,8 @@ Ty (przeglądarka)                        Serwer (np. Wikipedia)
 
 ## Powiązanie z INF.03
 
-- Zapowiedź struktury egzaminu (test 40 zadań + praca praktyczna: witryna + baza danych) — szczegóły i trening na L5, na razie budujemy kontekst.
-- Definicje techniczne z kroków **T** sformułowane tak, by dało się z nich budować pytania zamknięte INF.03 — na Z2 kartkówka korzysta z nich wprost.
+- Zapowiedź struktury egzaminu (test 40 zadań + praca praktyczna: witryna + baza danych) — szczegóły i trening na 0205, na razie budujemy kontekst.
+- Definicje techniczne z kroków **T** sformułowane tak, by dało się z nich budować pytania zamknięte INF.03 — na 0102 kartkówka korzysta z nich wprost.
 
 ## Akcent Akademia Tarnowska
 

@@ -1,11 +1,11 @@
-# Z2 · HTML5 — fundamenty i semantyka
+# 0102 · HTML5 — fundamenty i semantyka
 
 | | |
 |---|---|
 | **Semestr** | zimowy — spotkanie 2 z 9 (grupy A/B) |
-| **Czas** | 135 min = **kartkówka 10** + blok 50 + przerwa 15 + blok 60 |
-| **Poprzednie** | [Z1 · Dlaczego web?](z01-wstep-przegladarki-devtools.md) |
-| **Następne** | [Z3 · CSS3 — stylowanie i responsywność](z03-css3-stylowanie.md) |
+| **Czas** | 135 min = **kartkówka 10** + sekcja 50 + przerwa 15 + sekcja 35 + sekcja 25 |
+| **Poprzednie** | [0101 · Dlaczego web?](../0101/scenariusz.md) |
+| **Następne** | [0103 · CSS3 — stylowanie i responsywność](../0103/scenariusz.md) |
 
 ## Overview
 
@@ -16,12 +16,12 @@
 - Tworzy **formularz z walidacją HTML5** (ulubiony temat zadań egzaminacyjnych).
 - Rozumie **dostępność (a11y)**: `alt`, kolejność nagłówków, `label`, nawigacja klawiaturą, ARIA i WCAG w pigułce.
 
-### Kartkówka (10 min) — zakres: Z1
+### Kartkówka (10 min) — zakres: 0101
 
-- Mikro-historia WWW (kiedy, kto, gdzie); klient–serwer i DNS w pigułce; do czego służą DevTools (Elements/Console); szkielet dokumentu HTML z Z1.
+- Mikro-historia WWW (kiedy, kto, gdzie); klient–serwer i DNS w pigułce; do czego służą DevTools (Elements/Console); szkielet dokumentu HTML z 0101.
 - Format: 4–5 pytań, w tym min. 2 zamknięte (A–D) w stylu INF.03; klucz + punktacja (0–5 pkt → oceny).
 
-### Blok 1 (50 min) — szkielet strony i treść
+### Sekcja 1 (50 min) — szkielet strony i treść
 
 | Czas | Temat | Uwagi |
 |---|---|---|
@@ -33,15 +33,21 @@
 
 ### Przerwa (15 min)
 
-### Blok 2 (60 min) — tabele, multimedia, formularze, fanpage
+### Sekcja 2 (35 min) — tabele, multimedia, formularze, start fanpage'a
 
 | Czas | Temat | Uwagi |
 |---|---|---|
 | 10' | **Tabele** — `table`, `tr`, `th`, `td`, `thead`/`tbody`, `caption`; tabela danych ≠ layout | INF.03 lubi zestawienia danych |
 | 5' | **Multimedia** — `audio`, `video` (controls), `iframe` (mapa, film) | krótko, demo |
 | 15' | **Formularze + walidacja HTML5** — `form`, `input` i jego typy (text, email, number, date, password, radio, checkbox, file, color, range), `label`, `textarea`, `select`, `button`; walidacja: `required`, `pattern`, `min`/`max`, komunikaty przeglądarki | niemal każda praca praktyczna INF.03 ma formularz |
-| 25' | **Ćwiczenie główne: fanpage** — strona ulubionego zespołu/gracza/gry: semantyczny szkielet, galeria 3+ obrazków z `alt`, tabela (np. dyskografia/wyniki), formularz zapisu z walidacją; **checklista a11y**: alt, nagłówki po kolei, label przy każdym polu, przejście Tabem | warianty A/B/C poniżej |
-| 5' | **Podsumowanie + zapowiedź Z3** (stylowanie fanpage'a) i zakresu kartkówki | |
+| 5' | **Start ćwiczenia głównego: fanpage** — semantyczny szkielet + galeria z `alt`; uczniowie pracują samodzielnie, prowadzący pomaga indywidualnie | warianty A/B/C poniżej |
+
+### Sekcja 3 (25 min) — domknięcie: fanpage, INF.03, podsumowanie
+
+| Czas | Temat | Uwagi |
+|---|---|---|
+| 20' | **Ćwiczenie główne: fanpage (cd.)** — strona ulubionego zespołu/gracza/gry: dokończenie szkieletu, galeria 3+ obrazków z `alt`, tabela (np. dyskografia/wyniki), formularz zapisu z walidacją; **checklista a11y**: alt, nagłówki po kolei, label przy każdym polu, przejście Tabem; warianty B/C dla szybkich | warianty A/B/C poniżej |
+| 5' | **Podsumowanie + 5 pytań INF.03 + zadanie domowe + zapowiedź 0103** (stylowanie fanpage'a) i zakresu kartkówki | |
 
 ### Ćwiczenia (fanpage)
 
@@ -52,7 +58,7 @@
 ### Zadanie domowe (30–45 min)
 
 1. Dokończ fanpage zgodnie z checklistą a11y.
-2. Znajdź w internecie stronę z oczywistym błędem dostępności (brak `alt`, „ściana divów”) — zapisz link, omówimy na Z3.
+2. Znajdź w internecie stronę z oczywistym błędem dostępności (brak `alt`, „ściana divów”) — zapisz link, omówimy na 0103.
 3. **Przygotuj się do kartkówki**: semantyka, formularze i typy `input`, tabele, podstawy a11y.
 
 ### Powiązanie z INF.03
@@ -73,10 +79,10 @@ Jesteś doświadczonym metodykiem nauczania oraz praktykującym programistą web
 
 ### Kontekst
 - Kurs: „Technologie webowe — HTML5, CSS3, JavaScript” dla uczniów czwartej klasy technikum ZST w Tarnowie (klasa patronacka Akademii Tarnowskiej, 18–19 lat).
-- Uczniowie znają już (Z1): mikro-historię WWW, klient–serwer/DNS/HTTP, przeglądarki i silniki, Chrome DevTools (Elements/Console/device toolbar), VS Code + Live Server, szkielet pierwszej strony HTML, zasady nauki z AI (ELI5 itd.).
+- Uczniowie znają już (0101): mikro-historię WWW, klient–serwer/DNS/HTTP, przeglądarki i silniki, Chrome DevTools (Elements/Console/device toolbar), VS Code + Live Server, szkielet pierwszej strony HTML, zasady nauki z AI (ELI5 itd.).
 - Temat TEGO spotkania: HTML5 — fundamenty i semantyka + dostępność (a11y).
-- Następne spotkanie (Z3): CSS3 — stylowanie i responsywność (fanpage zostanie ostylowany). Zapowiedz je i zaplanuj pomost.
-- Czas: 135 minut = kartkówka (10 min) + blok 1 (50 min) + przerwa (15 min) + blok 2 (60 min).
+- Następne spotkanie (0103): CSS3 — stylowanie i responsywność (fanpage zostanie ostylowany). Zapowiedz je i zaplanuj pomost.
+- Czas: 135 minut = kartkówka (10 min) + sekcja 1 (50 min) + przerwa (15 min) + sekcja 2 (35 min) + sekcja 3 (25 min).
 
 ### Zasady metodyczne (niezmiennie)
 - Język polski; ton konkretny, bez lania wody; odbiorca: technikum.
@@ -97,12 +103,12 @@ Jesteś doświadczonym metodykiem nauczania oraz praktykującym programistą web
 9. Ćwiczenie główne: fanpage (ulubiony zespół/gracz/gra) — szkielet semantyczny, galeria z alt, tabela, formularz z walidacją, checklista a11y.
 
 ### Do przygotowania (kolejność, format: Markdown, kod w blokach z językiem)
-1. Kartkówka (10 min) z zakresu Z1 (historia WWW, klient–serwer/DNS, DevTools, szkielet HTML): 4–5 pytań, w tym min. 2 zamknięte jednokrotnego wyboru A–D w formacie INF.03 i 1–2 krótkie otwarte; klucz odpowiedzi, punktacja 0–5, propozycja skali ocen.
-2. Konspekt z rozpiską czasową (10 + 50 + 15 + 60) co najmniej co 5–10 minut, z oznaczeniem live coding i pracy samodzielnej.
+1. Kartkówka (10 min) z zakresu 0101 (historia WWW, klient–serwer/DNS, DevTools, szkielet HTML): 4–5 pytań, w tym min. 2 zamknięte jednokrotnego wyboru A–D w formacie INF.03 i 1–2 krótkie otwarte; klucz odpowiedzi, punktacja 0–5, propozycja skali ocen.
+2. Konspekt z rozpiską czasową (10 + 50 + 15 + 35 + 25) co najmniej co 5–10 minut, z oznaczeniem live coding i pracy samodzielnej.
 3. Prezentacja (12–18 slajdów): tytuł + 3–5 punktów + wskazówka [NA ŻYWO] tam, gdzie demo; obowiązkowy slajd o a11y (z liczbami o osobach z niepełnosprawnościami korzystających z sieci — podaj źródło i rok, jeśli nie masz pewnej liczby, zamiast wymyślać zaproponuj ujęcie bez liczby).
 4. Materiały live coding: „ściana divów” → przekształcenie w semantyczny szkielet; formularz krok po kroku.
 5. Ćwiczenia A/B/C (fanpage — poziomy opisane wyżej w zakresie pkt 9) z pełnymi rozwiązaniami w osobnej sekcji.
-6. Zadanie domowe (30–45 min): dokończenie fanpage z checklistą a11y, znalezienie strony z błędem dostępności + zakres kartkówki na Z3 (semantyka, formularze i typy input, tabele, podstawy a11y).
+6. Zadanie domowe (30–45 min): dokończenie fanpage z checklistą a11y, znalezienie strony z błędem dostępności + zakres kartkówki na 0103 (semantyka, formularze i typy input, tabele, podstawy a11y).
 7. 5 pytań w stylu INF.03 z zakresu TEGO spotkania (zamknięte A–D) z kluczem i jednozdaniowym uzasadnieniem.
 
 ### Jakość

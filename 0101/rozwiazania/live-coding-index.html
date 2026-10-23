@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- lang="pl" mówi przeglądarce i czytnikom ekranu, w jakim języku jest strona -->
+<html lang="pl">
+<head>
+  <!-- kodowanie znaków — bez tego polskie znaki mogą się wykrzaczyć -->
+  <meta charset="UTF-8">
+  <!-- viewport: strona dobrze wygląda też na telefonie -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- tytuł karty w przeglądarce (to nie jest nagłówek na stronie!) -->
+  <title>Dlaczego web? — moja pierwsza strona</title>
+</head>
+<body>
+
+  <!-- nagłówek główny — jeden na stronę -->
+  <h1>Dlaczego web?</h1>
+
+  <p>
+    Cześć! To pierwsza strona, którą napisałem samodzielnie na zajęciach
+    „Zagadnienia programowania”. Powstaje w VS Code, a przeglądarkę mam
+    obok dzięki rozszerzeniu Live Server.
+  </p>
+
+  <p>
+    Dziś sprawdziliśmy, że JavaScript jest najczęściej używanym językiem
+    programistycznym — po raz trzynasty z rzędu (Stack Overflow 2025).
+    A strona internetowa to w sumie zwykły plik tekstowy.
+  </p>
+
+  <!-- h2 = nagłówek sekcji podrzędnej względem h1 -->
+  <h2>Czego nauczyłem się na 0101</h2>
+
+  <!-- lista nieuporządkowana: ul = kontener, li = element -->
+  <ul>
+    <li>jak działa internet: klient, serwer, DNS, HTTP(S)</li>
+    <li>jak podejrzeć i pozmieniać każdą stronę w Chrome DevTools</li>
+    <li>jak napisać szkielet strony w HTML5</li>
+  </ul>
+
+  <h2>Link dnia</h2>
+
+  <p>
+    <!-- href = dokąd prowadzi; target="_blank" otwiera w nowej karcie -->
+    <a href="http://info.cern.ch/hypertext/WWW/TheProject.html" target="_blank" rel="noopener">
+      Pierwsza strona w historii WWW (1991)
+    </a>
+    — nadal działa.
+  </p>
+
+  <h2>Obrazek</h2>
+
+  <!-- src = skąd pobrać obrazek; alt = opis dla osób niewidomych i gdy obrazek się nie wczyta;
+       width/height zapobiegają „skakaniu” strony przy wczytywaniu -->
+  <img
+    src="https://picsum.photos/600/400"
+    alt="Przykładowe zdjęcie wczytywane z zewnętrznego serwisu picsum.photos"
+    width="600"
+    height="400"
+  >
+
+</body>
+</html>

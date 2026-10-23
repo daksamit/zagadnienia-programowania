@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0101 · Dlaczego web? — prezentacja (wersja czytana)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    /* Kolory akcentowe kursu */
+    :root {
+      --akcent-zolty: #F8B913;
+      --akcent-niebieski: #0d6efd;
+    }
+    .bg-zolty { background-color: var(--akcent-zolty); }
+    .text-zolty { color: var(--akcent-zolty); }
+    .border-zolty { border-color: var(--akcent-zolty); }
+    .bg-niebieski { background-color: var(--akcent-niebieski); }
+    .text-niebieski { color: var(--akcent-niebieski); }
+    .border-niebieski { border-color: var(--akcent-niebieski); }
+    /* Czcionka prezentacji */
+    body { font-family: 'Roboto', ui-sans-serif, system-ui, sans-serif; }
+    /* Slajd widoczny tylko po dodaniu klasy .aktywny */
+    .slajd { display: none; }
+    .slajd.aktywny { display: flex; width: 100%; height: 100vh; overflow-y: auto; }
+    /* Układ dwukolumnowy (od 768px): lewa kolumna = treść slajdu, prawa = tekst czytany;
+       każda kolumna przewija się niezależnie. Poniżej 768px kolumny układają się jedna pod drugą. */
+    @media (min-width: 768px) {
+      .slajd.aktywny { overflow: hidden; }
+      .kolumna { height: 100%; overflow-y: auto; }
+    }
+    kbd {
+      font-family: 'Roboto', ui-monospace, monospace;
+      background: #1e293b; color: #f8fafc;
+      border: 1px solid #475569; border-bottom-width: 3px;
+      border-radius: 0.375rem; padding: 0.1em 0.45em; font-size: 0.85em;
+    }
+    /* Ramka z tekstem do przeczytania na głos */
+    .czytane {
+      background: rgba(13, 111, 253, 0.10);
+      border: 1px solid var(--akcent-niebieski);
+      border-left: 6px solid var(--akcent-niebieski);
+      border-radius: 0.75rem;
+    }
+    /* Dwie wersje tekstu czytanego — przełączane klasą na body (klawisz W lub przycisk w stopce) */
+    body.wersja-podstawowa .w-rozsz { display: none; }
+    body.wersja-rozszerzona .w-podst { display: none; }
+  </style>
+</head>
+<body class="wersja-podstawowa bg-slate-950 text-slate-100 antialiased overflow-hidden">
+
+  <!-- Kontener prezentacji — wersja czytana, układ pionowo dzielony:
+       LEWA kolumna = treść slajdu dla uczniów, PRAWA kolumna = tekst do wygłoszenia
+       w dwóch wariantach: PODSTAWOWA i ROZSZERZONA (klawisz W przełącza). -->
+    <!-- Spis treści — pasek boczny z zaznaczeniem, gdzie jesteśmy -->
+  <aside class="hidden md:flex fixed left-0 top-0 bottom-0 w-60 flex-col justify-center gap-1 px-5 border-r border-slate-800 bg-slate-950 z-10 select-none" aria-label="Spis treści prezentacji">
+    <div class="mb-6 pb-5 border-b border-slate-800">
+      <p id="zegar-czas" class="font-mono text-3xl font-bold text-zolty leading-none mb-2">--:--</p>
+      <p id="zegar-info" class="text-xs text-slate-400 leading-snug">godzina lekcyjna i sekcja zajęć</p>
+    </div>
+    <p class="text-xs font-bold tracking-widest uppercase text-slate-600">Plan zajęć</p>
+    <p class="text-[10px] text-slate-600 mb-3">≈ godzina prezentowania grupy</p>
+    <nav id="agenda" class="flex flex-col gap-2 text-sm"></nav>
+  </aside>
+
+  <main id="prezentacja" class="w-screen h-screen relative md:pl-60">
+
+    <!-- SLAJD 1 · Tytułowy -->
+    <section class="slajd aktywny">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <p class="text-niebieski font-semibold tracking-widest uppercase text-lg mb-4">Zajęcia 0101 · semestr zimowy 2026</p>
+            <h1 class="text-4xl md:text-5xl font-black leading-tight mb-6">
+              Technologie webowe<br>
+              <span class="text-zolty">HTML5 · CSS3 · JavaScript</span>
+            </h1>
+            <p class="text-2xl text-slate-300 mb-10">Dlaczego web? Wstęp, przeglądarki i DevTools</p>
+            <div class="border-t border-slate-700 pt-6 text-slate-400">
+              <p class="text-lg">mgr inż. Dominik Aksamit</p>
+              <p class="text-lg">Akademia Tarnowska × ZST w Tarnowie</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dzień dobry. Jestem inżynier Dominik Aksamit i przez cały rok szkolny będę Was uczyć technologii webowych: HTML5, CSS3 i JavaScripta. Dziś pierwsze spotkanie — zanim otworzymy pierwszy edytor kodu, zobaczycie, jak działa internet od środka, poznacie narzędzia, których używa każdy webdeveloper, i napiszecie swoją pierwszą stronę internetową. Naprawdę swoją — będzie działać w przeglądarce na Waszych komputerach.</p>
+              <p>Jedno wyjaśnienie od razu: skąd Akademia Tarnowska na tym slajdzie? Jesteście klasą patronacką — te zajęcia prowadzę w ramach współpracy Waszej szkoły z Akademią. I skoro już przy niej jesteśmy: to uczelnia praktyczna, tu w Tarnowie, z aktywnymi kołami naukowymi i laboratoriami, na których studenci pracują nad prawdziwymi projektami. Więcej na stronie uczelni, anstar.edu.pl — a na ostatnim spotkaniu semestru pokażę Wam, jak te projekty wyglądają od kuchni.</p>
+              <p>Zanim ruszymy, jeszcze o formie. W połowie zajęć będzie przerwa — będzie, obiecuję. I od razu zdjęcie presji: nie trzeba nic umieć. Nie trzeba znać żadnego języka programowania ani mieć doświadczenia — wszystko pokażę od zera, krok po kroku. Jedyne, czego potrzebujecie, to komputer przed Wami i pytania — zadawajcie je w każdej chwili, nawet w pół zdania. Zaczynamy.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dzień dobry, witam serdecznie. Nazywam się inżynier Dominik Aksamit i to ja przez cały rok szkolny będę Was prowadził po technologiach webowych: HTML5, CSS3 i JavaScripcie. Zanim zaczniemy, kilka słów o tym, jak będzie wyglądało dzisiejsze spotkanie, żeby nic nikogo nie zaskoczyło.</p>
+              <p>Najpierw wyjaśnienie, które pewnie część z Was już teraz ma w głowie: skąd ta Akademia Tarnowska na slajdzie? Jesteście klasą patronacką — Wasza szkoła współpracuje z Akademią, a te zajęcia prowadzę właśnie w ramach tej współpracy. I skoro już tu jesteśmy, parę konkretów dla tych, którzy myślą o studiach. Po pierwsze: AT to uczelnia praktyczna w Tarnowie — zamiast dojeżdżać do Krakowa czy Rzeszowa, można studiować tutaj i pracować na prawdziwych projektach, także tych we współpracy z lokalnymi firmami. Po drugie: koła naukowe — studenckie grupy, które robią rzeczy ponad program zajęć; na przykład koło 360J brało udział w Małopolskiej Nocy Naukowców, a koło MANAGER organizuje ogólnopolską studencką konferencję naukową. Po trzecie: laboratoria i pracownie — na studiach nie tylko słucha się wykładów, ale pracuje na sprzęcie; studenci katedry chemii zwiedzają na przykład laboratoria Grupy Azoty w Tarnowie. Wszystko znajdziecie na stronie uczelni — anstar.edu.pl. A na ostatnim spotkaniu semestru pokażę Wam, jak wyglądają studenckie projekty od kuchni.</p>
+              <p>Najpierw krótka ankieta na kartce — za chwilę powiem, o co w niej chodzi. Potem opowiem Wam, jak internet faktycznie działa — od kliknięcia w link do obrazka na ekranie — bo to fundament, na którym stoimy przez cały kurs. Zobaczycie pokazy: między innymi Photoshopa działającego w samej przeglądarce. Poznacie DevTools, czyli narzędzia, którymi webdeveloperzy podglądają i testują każdą stronę w internecie. W połowie będzie przerwa — będzie, obiecuję. A na koniec najważniejsze: w warsztacie z edytorem kodu napiszecie swoją pierwszą stronę internetową. Naprawdę swoją — pod koniec zajęć będzie działać w przeglądarce, na Waszym komputerze.</p>
+              <p>I od razu jedna rzecz, żeby zdjąć z Was presję: nie trzeba nic umieć. Nie trzeba znać żadnego języka programowania, nie trzeba mieć doświadczenia. Wszystko pokażę od zera, krok po kroku. Jedyne, czego potrzebujecie, to komputer przed Wami i otwarta głowa. Jeśli coś w trakcie będzie niejasne — pytajcie od razu, w każdej chwili. Zaczynamy?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 2 · Ankieta na start -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8"><span class="text-zolty">Ankieta na start</span> — weź kartkę i długopis</h2>
+            <ol class="space-y-5 text-2xl text-slate-200 list-decimal list-inside mb-10">
+              <li>Czym dla Ciebie jest AI?</li>
+              <li>Jakie znasz sposoby na korzystanie z AI?</li>
+              <li>Wymień pojęcia, które kojarzą Ci się z AI.</li>
+            </ol>
+            <div class="bg-niebieski/15 border border-niebieski rounded-xl p-5 text-xl text-slate-200 max-w-2xl">
+              To <strong class="text-niebieski">nie test</strong> — nie ma złych odpowiedzi, ankieta <strong class="text-niebieski">nie jest oceniana</strong>.
+              Chcę tylko wiedzieć, od czego zaczynamy — wrócimy do tego w bloku o AI.
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Zanim zaczniemy, proszę każdego o jedną rzecz: weźcie kartkę i długopis. Czeka Was krótka ankieta — dokładnie trzy pytania, widzicie je na slajdzie: czym dla Was jest AI, jak z niego korzystacie i jakie pojęcia Wam się z nim kojarzą. Po co mi to? Chcę wiedzieć, od jakiego poziomu zaczynamy — grupa po grupie jest inna, a ja dopasowuję do niej tempo zajęć. Temat AI wybrałem celowo: w tej pracy to codzienne narzędzie i pod koniec zajęć wrócimy do Waszych odpowiedzi.</p>
+              <p>Jak odpowiadać? Własnymi słowami i bez długiego zastanawiania — piszcie pierwsze skojarzenia. Przy pierwszym pytaniu wystarczy jedno zdanie. Przy drugim — cokolwiek kojarzycie: rozmowy z chatbotem, generowanie obrazków, podpowiedzi w edytorze. Przy trzecim mogą być pojedyncze słowa: prompt, chatbot, uczenie maszynowe, sieci neuronowe — cokolwiek Wam przyjdzie do głowy.</p>
+              <p>I bardzo ważne: to nie jest test. Nie ma złych odpowiedzi, nie ma klucza i nic tu nie jest oceniane — ankieta w żaden sposób nie wpływa na Wasze oceny. Piszecie wyłącznie dla mnie. Nie zostawiajcie pustej kartki — nawet „nie wiem, słyszałem coś o ChatGPT" mówi mi więcej niż cisza. Dziesięć minut, czas startuje.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Zaczynamy od ankiety — weźcie proszę kartkę i długopis. Za chwilę napiszecie odpowiedzi na trzy pytania, które widzicie na slajdzie. Po co mi to? Chcę wiedzieć, od jakiego poziomu zaczynamy — grupa po grupie jest inna i tempo zajęć dopasowuję do ludzi w sali. A temat sztucznej inteligencji wybrałem celowo: to już codzienne narzędzie w tej pracy — zobaczycie za chwilę na slajdzie z liczbami, że według badania Stack Overflow z 2025 roku osiemdziesiąt cztery procent programistów używa lub planuje używać narzędzi AI. Pod koniec zajęć wrócimy do Waszych odpowiedzi i pokażę Wam, jak z AI robić korepetytora z programowania.</p>
+              <p>Tak więc trzy pytania. Pierwsze: czym dla Ciebie jest AI? — napiszcie własnymi słowami, choćby jedno zdanie. Drugie: jakie znasz sposoby na korzystanie z AI? — na przykład rozmowy z chatbotem, generowanie obrazków, podpowiedzi w edytorze, cokolwiek kojarzycie. Trzecie: wymień pojęcia, które kojarzą Ci się z AI — mogą być pojedyncze słowa: prompt, chatbot, uczenie maszynowe, sieci neuronowe, Copilot — cokolwiek Wam przyjdzie do głowy.</p>
+              <p>I podkreślam to, co na slajdzie: to nie jest test. Nie ma złych odpowiedzi, nie ma klucza, nic z tego nie jest oceniane i ankieta w żaden sposób nie wpływa na Wasze oceny. Piszecie wyłącznie dla mnie, żebym wiedział, od czego zacząć. Nie zostawiajcie pustej kartki — nawet „nie wiem, słyszałem coś o ChatGPT" mówi mi więcej niż cisza. Dziesięć minut, czas startuje.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 3 · Zasady gry -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Zasady <span class="text-zolty">gry</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 text-left">
+              <li class="flex gap-4"><span class="text-zolty font-bold shrink-0 w-36 text-right">135 minut</span> ankieta na start 10&prime; + sekcja 50&prime; + przerwa 15&prime; + sekcja 35&prime; + sekcja 25&prime;</li>
+              <li class="flex gap-4"><span class="text-zolty font-bold shrink-0 w-36 text-right">Kartkówki</span> od 0102 każde spotkanie zaczyna kartkówką (10 min, zakres: poprzednie spotkanie) — <strong class="text-niebieski">zbierasz oceny cząstkowe, z nich powstaje ocena na koniec roku</strong></li>
+              <li class="flex gap-4"><span class="text-zolty font-bold shrink-0 w-36 text-right">0104</span> sprawdzian semestralny <strong>zamiast kartkówki</strong> — pisemny, zakres 0101–0104, kartka i długopis</li>
+              <li class="flex gap-4"><span class="text-zolty font-bold shrink-0 w-36 text-right">Pytania</span> zadawaj w każdej chwili — im wcześniej, tym lepiej dla Ciebie</li>
+              <li class="flex gap-4"><span class="text-zolty font-bold shrink-0 w-36 text-right">Dziś</span> pokazy, DevTools i Twoja pierwsza strona</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Teraz zasady gry, żebyśmy się dobrze rozumieli. Mamy razem sto trzydzieści pięć minut i każdy nasz dzień będzie wyglądał podobnie: na start kartkówka albo — jak dziś — ankieta, potem pięćdziesiąt minut nowego materiału, przerwa, kwadrans — przerwa będzie zawsze, obiecuję — potem trzydzieści pięć minut praktyki i ostatnie dwadzieścia pięć minut na domknięcie: ćwiczenia, pytania egzaminacyjne, zadanie domowe.</p>
+              <p>Od następnego spotkania, czyli od 0102, każdy taki dzień zaczniemy kartkówką: dziesięć minut, zakres zawsze z poprzedniego spotkania — dokładnie to, co robiliśmy, bez zaskoczeń. Format stały: cztery, pięć pytań, w tym zamknięte w stylu egzaminu zawodowego — jednokrotny wybór A–D — i krótkie otwarte. I najważniejsze dla Was: z tych kartkówek zbieracie oceny cząstkowe i z nich powstaje ocena na koniec roku. Czyli nie jeden sprawdzian rozstrzyga wszystko — systematyczna praca co dwa tygodnie opłaca się najbardziej.</p>
+              <p>Czwarte spotkanie, 0104, to wyjątek: zamiast kartkówki sprawdzian semestralny — pisemny, na zakres wszystkich spotkań od 0101 do 0104: około trzydziestu pytań zamkniętych A–D plus pytania otwarte, kartka i długopis, bez komputerów. Informację macie już teraz, w październiku — nic nie zaskoczy.</p>
+              <p>Ostatnia zasada: pytania zadawajcie w każdej chwili, przerwijcie mnie w pół zdania, jeśli trzeba. To nie przeszkadzanie — po to tu jestem. Im wcześniej wyjaśnimy wątpliwość, tym mniejsza dziura potem. A dziś w programie: pokazy, narzędzia deweloperskie i Wasza pierwsza strona.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dobra, ankiety zebrane — czas na zasady gry, żebyśmy się dobrze rozumieli do końca roku. Po pierwsze, rytm spotkań. Mamy razem sto trzydzieści pięć minut i zawsze będzie wyglądać podobnie: na start dziesięć minut kartkówki, potem pięćdziesiąt minut nowego materiału, przerwa — kwadrans, przerwa będzie zawsze, obiecuję — potem trzydzieści pięć minut praktyki i ostatnie dwadzieścia pięć minut na domknięcie: ćwiczenia, pytania egzaminacyjne, zadanie domowe. Dzisiaj zamiast kartkówki była ankieta, bo pierwszego dnia nie ma jeszcze czego pytać.</p>
+              <p>Po drugie — i to jest najważniejsza rzecz na tym slajdzie — system oceniania. Od następnego spotkania, od 0102, każde zajęcia zaczynamy kartkówką: dziesięć minut, zakres zawsze i wyłącznie z poprzedniego spotkania. Bez zaskoczeń: piszemy dokładnie o tym, co robiliśmy dwa tygodnie wcześniej. Format będzie zawsze podobny: cztery, pięć pytań, w tym minimum dwa zamknięte w stylu egzaminu zawodowego — jednokrotny wybór A, B, C, D — i jedno, dwa krótkie otwarte. I najważniejsze: z tych kartkówek zbieracie oceny cząstkowe i z nich wystawiam ocenę na koniec roku szkolnego. Co to dla Was oznacza? Nie ma jednego sprawdzianu, który wszystko rozstrzyga. Opłaca się pracować systematycznie co spotkanie — kartkówka napisana solidnie co dwa tygodnie da na koniec roku więcej niż jedna wybitna praca i reszta zaległości.</p>
+              <p>Po trzecie: ostatnie spotkanie przed zimą, 0104, jest wyjątkowe. Zamiast kartkówki piszecie sprawdzian semestralny — pisemny, na zakres całego semestru, od 0101 do 0104: około trzydziestu pytań zamkniętych A–D plus pytania otwarte. Kartka i długopis, bez komputerów. Będziecie na niego przygotowani krok po kroku — informacja jest już teraz, w październiku, nic nie zaskoczy.</p>
+              <p>I ostatnia zasada, moja ulubiona: pytania zadawajcie w każdej chwili. Przerwijcie mnie w pół zdania, jeśli coś jest niejasne — to nie jest przeszkadzanie, to jest dokładnie to, po co tu jesteśmy. Im wcześniej wyjaśnimy wątpliwość, tym mniejsza dziura potem. A dziś w programie: pokazy, DevTools i Wasza pierwsza strona. Idziemy dalej.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 4 · Mikro-historia WWW -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3">Mikro-historia WWW</h2>
+            <p class="text-slate-400 mb-8 text-xl">(5 minut, nie dłużej!)</p>
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-4xl font-black text-zolty mb-2">1989</p>
+                <p class="text-slate-300 text-lg">Tim Berners-Lee proponuje WWW w CERN</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-4xl font-black text-zolty mb-2">1991</p>
+                <p class="text-slate-300 text-lg">pierwsza strona internetowa</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-4xl font-black text-zolty mb-2">1995</p>
+                <p class="text-slate-300 text-lg">powstaje JavaScript</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-4xl font-black text-zolty mb-2">dziś</p>
+                <p class="text-slate-300 text-lg">ponad 1,2 mld stron <span class="text-slate-500 text-sm">(Internet Live Stats, stan 2026)</span></p>
+              </div>
+            </div>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Otwórz <span class="text-niebieski underline">http://info.cern.ch/hypertext/WWW/TheProject.html</span> — pierwsza strona w historii nadal działa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Kilka minut historii, obiecuję, że krótko — ale te cztery daty naprawdę warto znać, bo wracają na kartkówce i na egzaminie. Rok 1989: brytyjski fizyk Tim Berners-Lee pracuje w CERN, w Szwajcarii, i proponuje pomysł nazwany World Wide Web — system łączenia dokumentów linkami, żeby naukowcy mogli się wymieniać pracami. W jednym pomyśle mieszczą się trzy wynalazki, które znacie do dziś: HTML do pisania dokumentów, URL jako adres i HTTP do wymiany. Rok 1991: powstaje pierwsza strona internetowa w historii — chwilę ją zobaczycie, bo nadal działa. Rok 1995: rodzi się JavaScript. I dziś: według Internet Live Stats, stan na 2026 rok, ponad miliard dwieście milionów stron.</p>
+              <p>Z czego zbudowana była ta pierwsza strona? Z czystego HTML-u: sam tekst, nagłówki i linki — zero CSS, zero obrazków, zero JavaScriptu. Kilkanaście prostych znaczników, a strona działa po ponad trzydziestu latach. To siła otwartych standardów: to, co napiszecie dziś, też będzie działać za dekadę. I zauważcie podobieństwo: dokładnie ten sam fundament — nagłówki, akapity, linki — użyjecie dziś przy własnej stronie.</p>
+              <p>Jak HTML dorastał? 1991: pierwsza wersja, kilkanaście znaczników. 1995: HTML 2.0 — pierwszy wspólny standard, żeby wszystkie przeglądarki rozumiały to samo. 1997: HTML 4.01, standard na całe lata — większość jego znaczników poznacie w tym kursie. 2014: HTML5 jako oficjalna rekomendacja, nad którą prace szły od 2004 roku w grupie WHATWG. Piątka wnosi znaczniki semantyczne — header, nav, footer — audio i wideo bez wtyczek, lepsze formularze i canvas. „5" to wersja języka, jak poziom w grze: fundamenty bez zmian, nowe możliwości na górze.</p>
+              <p>A CSS? W 1994 roku Håkon Wium Lie, współpracownik Berners-Leego, proponuje kaskadowe arkusze stylów z jednym genialnym pomysłem: oddzielić treść od wyglądu. HTML mówi, co jest na stronie, CSS — jak to wygląda. CSS 1 w 1996 roku, CSS 2 w 1998, a CSS3 to zestaw niezależnych modułów dodawanych przeglądarkom na bieżąco od około 1999 roku — stąd cienie, flexbox, grid, animacje i responsywność. Zanim powstał CSS, wygląd wklejano prosto w HTML — dziś nikt tak nie robi.</p>
+              <p>I jeszcze jedno narzędzie: Wayback Machine, web.archive.org — darmowe archiwum internetu prowadzone przez Internet Archive od 1996 roku, ponad osiemset miliardów zapisanych zrzutów stron, stan na 2024 rok. Wpisujecie adres i oglądacie, jak strona wyglądała lata temu. A rok 1995 to także narodziny JavaScriptu — stworzył go Brendan Eich w Netscape, według branżowych legend w dziesięć dni; dziś to najczęściej używany język programistów świata. Od jednego pomysłu jednego człowieka do miliarda stron — tyle historii wystarczy.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Teraz kilka minut historii — obiecuję, że naprawdę krótko, ale te cztery daty z tego slajdu wracają na kartkówkach i na egzaminie zawodowym, więc warto je zapamiętać od razu.</p>
+              <p>Rok 1989. Miejsce: CERN koło Genewy, największe laboratorium fizyczne świata. Pracuje tam brytyjski fizyk i programista Tim Berners-Lee. Problem, który widział codziennie: tysiące naukowców z całego świata, dziesiątki niekompatybilnych komputerów, a wyniki badań gubią się w labiryncie formatów i papierów. Berners-Lee proponuje rozwiązanie, które nazywa World Wide Web — światową pajęczynę. W swoim pomyśle łączy trzy wynalazki, które znacie do dziś: HTML — język do pisania dokumentów, URL — adres, po którym dokument można znaleźć, i HTTP — sposób, w jaki komputery wymieniają się dokumentami. Cała trójka po ponad trzydziestu latach wciąż robi dokładnie to samo — tylko na większą skalę.</p>
+              <p>Rok 1991, sierpień: powstaje pierwsza strona internetowa w historii. Za chwilę ją otworzymy — niesamowite, że wciąż działa. W 1993 roku CERN podejmuje decyzję, która zmieniła świat: oddaje World Wide Web do domeny publicznej, bez opłat licencyjnych. Gdyby tego nie zrobiono, internet, jaki znamy, mógłby być zamkniętym, płatnym systemem jednej firmy.</p>
+              <p>Zanim ją otworzymy — z czego ta pierwsza strona była zbudowana? Z czystego HTML-u: sam tekst, nagłówki i linki. Zero CSS, zero obrazków, zero JavaScriptu. Kilkanaście prostych znaczników — a strona działa po ponad trzydziestu latach. To jest siła otwartych standardów: to, co napiszecie dziś na zajęciach, też będzie działać za dekadę. I zauważcie: dokładnie ten sam fundament — nagłówki, akapity, linki — użyjecie dziś przy własnej pierwszej stronie. Zobaczmy ją.</p>
+              <p>Przy okazji dwa słowa o tym, jak HTML dorastał, bo to ładna historia. 1991: pierwsza wersja — kilkanaście znaczników. 1995: HTML 2.0, pierwszy wspólny standard, żeby wszystkie przeglądarki rozumiały to samo. 1997: HTML 4.01 — standard na całe lata i, co ciekawe, większość jego znaczników poznacie w tym kursie, bo wciąż są w użyciu. 2014: HTML5 jako oficjalna rekomendacja, a prace nad nim toczyły się od 2004 roku w grupie WHATWG. HTML5 dodał znaczniki semantyczne — na przykład header, nav, footer, które mówią przeglądarce, co jest nagłówkiem strony, co menu, co stopką — a także audio i wideo bez wtyczek, lepsze formularze i canvas, płótno do rysowania. Jeśli się zastanawiacie, co znaczy „piątka": to wersja języka, jak poziom w grze — fundamenty bez zmian, nowe możliwości na górze.</p>
+              <p>A skoro przy wyglądzie jesteśmy: CSS. W 1994 roku Håkon Wium Lie — współpracownik samego Berners-Leego — proponuje CSS, kaskadowe arkusze stylów, z jednym genialnym pomysłem: oddzielić treść od wyglądu. HTML mówi, co jest na stronie, CSS — jak to wygląda. W 1996 pierwsza wersja CSS: kolory, czcionki, marginesy. W 1998 druga: pozycjonowanie. A CSS3 to już nie jedna wersja, tylko zestaw niezależnych modułów dodawanych do przeglądarek na bieżąco od około 1999 roku — stąd cienie, zaokrąglenia, flexbox i grid, animacje i media queries, czyli responsywność. Zanim powstał CSS, wygląd wklejano prosto w HTML — dziś nikt tak nie robi, a zobaczycie na trzecim spotkaniu, jak sama zmiana CSS potrafi przemienić całą stronę.</p>
+              <p>I jedno narzędzie historyka świata webu, które musicie znać: Wayback Machine, strony web.archive.org. To darmowe archiwum prowadzone przez organizację Internet Archive od 1996 roku — ponad osiemset miliardów zapisanych zrzutów stron, stan na 2024 rok. Wpisujecie adres i oglądacie, jak strona wyglądała pięć, dziesięć, dwadzieścia lat temu. Za chwilę może wpiszemy tam stronę naszej szkoły.</p>
+              <p>Ostatnia data: 1995, rok JavaScriptu. Tworzy go Brendan Eich w firmie Netscape — i robi to, według branżowych legend, w dziesięć dni. Język miał być prostą nakładką na strony, a dziś jest najczęściej używanym językiem programistów na świecie — trzynasty rok z rzędu według Stack Overflow z 2025 roku. I puenta na dziś: według Internet Live Stats, stan na 2026 rok, ponad miliard dwieście milionów stron. Od jednego pomysłu jednego człowieka w CERN. Tyle historii — wystarczy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 5 · Web w liczbach -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Web w <span class="text-zolty">liczbach</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 text-left">
+              <li class="border-l-4 border-zolty pl-5">JavaScript: najczęściej używany język <strong class="text-zolty">13. rok z rzędu</strong> — ~66% respondentów, 49 000+ odpowiedzi <span class="text-slate-500 text-base">(Stack Overflow Developer Survey 2025)</span></li>
+              <li class="border-l-4 border-zolty pl-5">JavaScript działa po stronie klienta na <strong class="text-zolty">98,9%</strong> stron internetowych <span class="text-slate-500 text-base">(W3Techs, 2026)</span></li>
+              <li class="border-l-4 border-zolty pl-5">ponad <strong class="text-zolty">1,2 mld stron</strong> na świecie — w 2000 r. tylko 17 mln <span class="text-slate-500 text-base">(Internet Live Stats, stan 2026)</span></li>
+              <li class="border-l-4 border-niebieski pl-5">Chrome <strong class="text-niebieski">~70–72%</strong> udziału w rynku przeglądarek <span class="text-slate-500 text-base">(StatCounter, 2025)</span></li>
+              <li class="border-l-4 border-niebieski pl-5"><strong class="text-niebieski">84% programistów</strong> używa lub planuje używać narzędzi AI <span class="text-slate-500 text-base">(Stack Overflow 2025)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Teraz konkrety — dlaczego akurat te trzy technologie, a nie inne? Bo liczby mówią same za siebie, a każda z nich ma podane źródło i rok — bez źródła liczba jest niczym niewarta. JavaScript jest najczęściej używanym językiem programistów od trzynastu lat z rzędu — wynik badania Stack Overflow Developer Survey z 2025 roku: prawie sześćdziesiąt sześć procent respondentów przy ponad czterdziestu dziewięciu tysiącach odpowiedzi. Pomyślcie o tym: gdy zaczynaliście podstawówkę, JavaScript już był numerem jeden — i do dziś nic go nie zepchnęło.</p>
+              <p>Druga liczba: według W3Techs, w 2026 roku JavaScript działa po stronie klienta — czyli w Waszej przeglądarce — na dziewięćdziesięciu ośmiu i dziewięciu dziesiątych procenta stron. Praktycznie każda strona, którą lubicie: YouTube, Instagram, cokolwiek — używa JavaScriptu. Nie ma drugiej, równoległej technologii: to jest ten język, którego nauczycie się u mnie w drugim semestrze.</p>
+              <p>Skala całości: według Internet Live Stats, stan na 2026 rok, ponad miliard dwieście milionów stron — w roku 2000 było ich tylko siedemnaście milionów, siedemdziesiąt razy mniej. Te strony ktoś musi budować i utrzymywać — i to jest rynek pracy, do którego Was przygotowuję.</p>
+              <p>Przeglądarki: Chrome ma według StatCounter, w 2025 roku, około siedemdziesięciu do siedemdziesięciu dwóch procent rynku — dlatego na zajęciach pracujemy właśnie na Chrome, ale o pozostałych nie zapominamy.</p>
+              <p>I ostatnia liczba, która łączy się z Waszą ankietą: osiemdziesiąt cztery procent programistów używa lub planuje używać narzędzi AI — znów Stack Overflow, 2025. Nie „zabawia się", tylko „używa w pracy": AI to standardowe narzędzie tego zawodu. Wrócimy do tego pod koniec zajęć.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dobra, a teraz odpowiedź na pytanie, które powinno Wam się nasuwać: po co akurat HTML, CSS i JavaScript, skoro jest tyle technologii? Bo liczby — a nie moje subiektywne zdanie — mówią same za siebie. Każda z nich ma podane źródło i rok, tak jak na egzaminie zawodowym: bez źródła liczba jest niczym niewarta.</p>
+              <p>Pierwsza liczba: JavaScript jest najczęściej używanym językiem wśród programistów trzynasty rok z rzędu. To wynik Stack Overflow Developer Survey z 2025 roku — corocznego, ogromnego badania środowiska: ponad czterdzieści dziewięć tysięcy odpowiedzi od programistów z całego świata. Blisko sześćdziesiąt sześć procent z nich pracuje w JavaScripcie. Trzynasty rok z rzędu — pomyślcie o tym: gdy zaczynaliście podstawówkę, JavaScript już był numerem jeden i do dziś nic go nie zepchnęło. To język, którego nauczycie się u mnie w drugim semestrze.</p>
+              <p>Druga liczba, z serwisu W3Techs, stan na 2026 rok: JavaScript działa po stronie klienta — czyli w Waszej przeglądarce — na dziewięćdziesięciu ośmiu i dziewięciu dziesiątych procenta wszystkich stron internetowych. Rozumiecie, co to znaczy? Praktycznie każda strona, którą lubicie — YouTube, Instagram, cokolwiek — używa JavaScriptu. Nie ma jakiejś drugiej, równoległej technologii: to jest ten język.</p>
+              <p>Trzecia: sam internet. Według Internet Live Stats, stan na 2026 rok, ponad miliard dwieście milionów stron. Dla porównania: w roku 2000 — gdy rodzice niektórych z Was zaczynali szkołę — było ich siedemnaście milionów. To siedemdziesiąt razy mniej niż dziś. Te strony ktoś musi budować i utrzymywać — i to jest rynek pracy, do którego Was przygotowuję.</p>
+              <p>Czwarta, niebieska: przeglądarki. Chrome ma według StatCounter, w 2025 roku, około siedemdziesięciu do siedemdziesięciu dwóch procent rynku; dalej Safari, Edge i Firefox. Konsekwencja jest prosta: na zajęciach pracujemy na Chrome, bo to narzędzie, z którym najpewniej spotkacie się w pracy — ale o innych nie zapominamy, o tym za chwilę.</p>
+              <p>I piąta, która łączy się z ankietą, którą pisaliście na początku: osiemdziesiąt cztery procent programistów używa lub planuje używać narzędzi AI — znów Stack Overflow, 2025. Zwróćcie uwagę: nie „zabawia się", tylko „używa w pracy". AI to standardowe narzędzie tego zawodu, jak młotek dla stolarza. Dlatego pod koniec zajęć poświęcimy mu cały blok — nauczcie się go używać mądrze.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 6 · Co z tego wynika dla Ciebie -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Co z tego wynika <span class="text-zolty">dla Ciebie</span></h2>
+            <ul class="space-y-6 text-2xl text-slate-200">
+              <li>➡️ HTML + CSS + JavaScript = <strong class="text-zolty">trzon pracy frontend developera</strong></li>
+              <li>➡️ fullstack developer = frontend + backend</li>
+              <li>➡️ te trzy języki poznasz tu od zera: od pierwszej strony do interaktywnej aplikacji</li>
+              <li>➡️ skupiamy się na <strong class="text-zolty">fundamentach</strong> — zaawansowane aspekty frontendu (frameworki, build-tooly) pomijamy</li>
+              <li>➡️ każde zajęcie trenuje Cię do egzaminu zawodowego <strong class="text-niebieski">INF.03</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Co z tego wynika dla Was konkretnie? Osoba, która pisze tę widoczną część stron — to, co widzicie w przeglądarce — to frontend developer, a frontend to właśnie HTML, CSS i JavaScript. Dochodzi do tego backend: to, co dzieje się po drugiej stronie, na serwerze — logowanie, bazy danych, przetwarzanie — i to poznacie u drugiego prowadzącego. Kto zna oba światy, jest fullstack developerem — bardzo poszukiwany zawód i realny kierunek dla Was za kilka lat.</p>
+              <p>Żeby łatwo zapamiętać role trzech języków, trzy pytania: HTML — co jest na stronie; CSS — jak strona wygląda; JavaScript — co strona robi po kliknięciu. Co jest, jak wygląda, co robi. Te trzy pytania będą Wam towarzyszyć przez cały rok i porządkują każdą nową rzecz, której się nauczycie.</p>
+              <p>W tym kursie poznacie te trzy języki od zera: dziś napiszecie pierwszą stronę, a w drugim semestrze zbudujecie interaktywną aplikację. I jedno ważne zastrzeżenie: to kurs fundamentów — skupiamy się na solidnych podstawach, a zaawansowane aspekty frontendu, jak frameworki i narzędzia budowania, pomijamy. Fundamenty nie starzeją się z modą: framework przychodzi i odchodzi, a HTML, CSS i JavaScript są od trzydziestu lat.</p>
+              <p>I jeszcze jedno: każde nasze zajęcie trenuje Was do egzaminu zawodowego INF.03, który zdajecie w tym profilu — pisemny test i praktyczne zbudowanie witryny. Dlatego na koniec każdego spotkania robimy pięć pytań w stylu INF.03: do formatu przyzwyczajamy się od pierwszego dnia.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>No dobrze, to co te liczby oznaczają dla Was — konkretnie, osobiście? Rozłóżmy to na części. Frontend developer to osoba, która buduje tę część strony, którą widzicie: przyciski, teksty, animacje, formularze. Frontend to dokładnie te trzy języki ze slajdu: HTML, CSS i JavaScript — trzon tej pracy. W tle jest jeszcze backend: to, co dzieje się po drugiej stronie — na serwerze: logowanie, bazy danych, przetwarzanie. Backend poznacie na zajęciach drugiego prowadzącego. A osoba, która zna oba światy — i potrafi zbudować stronę od przycisku po bazę danych — to fullstack developer. To jeden z najbardziej poszukiwanych zawodów w branży i realny kierunek dla Was za kilka lat.</p>
+              <p>Żeby zapamiętać role tych trzech języków, użyjcie analogii z domem. HTML to konstrukcja i ściany — co jest w domu: pokoje, drzwi, okna. CSS to wykończenie — kolory ścian, meble, styl. JavaScript to prąd i urządzenia — co się dzieje po włączeniu światła, jak działa dzwonek. Strona bez CSS to mieszkanie z gołymi ścianami: działa, ale nikt nie chce w nim mieszkać. Strona bez JavaScriptu to mieszkanie bez prądu: ładne, ale nic się w nim nie dzieje.</p>
+              <p>I usłyszcie to wyraźnie: w tym kursie poznajecie te trzy języki od zera. Dziś napiszecie swoją pierwszą stronę — dosłownie każdy z Was. W drugim semestrze dojdzie interaktywność, dane, projekt zespołowy. I jedno ważne zastrzeżenie: to kurs fundamentów. Świadomie pomijamy zaawansowane aspekty frontendu — frameworki, build-tooly i najnowsze nowinki — bo najpierw fundamenty, a fundamenty nie starzeją się z modą. Framework przychodzi i odchodzi, a HTML, CSS i JavaScript są od trzydziestu lat. A gdy fundamenty raz siedzą, każdy nowy tool nauczycie się w tydzień, nie w rok.</p>
+              <p>I ostatnia strzałka: INF.03, Wasz egzamin zawodowy. Składa się z części pisemnej — testu zadań zamkniętych — i części praktycznej, w której buduje się witrynę internetową. Dokładnym treningom egzaminacyjnym poświęcimy osobne spotkania, ale przyzwyczajamy się do formatu od dziś: na każdym spotkaniu na koniec robimy pięć pytań w stylu INF.03. Czyli każde zajęcia to jednocześnie krok do zawodu i krok do egzaminu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 7 · PWA -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">PWA — strona może być <span class="text-zolty">„natywna"</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 mb-10">
+              <li>PWA (Progressive Web App) = strona internetowa z <strong class="text-zolty">supermocami aplikacji</strong></li>
+              <li>instalujesz ją <strong class="text-niebieski">z paska adresu przeglądarki</strong> — bez sklepu z aplikacjami</li>
+              <li>działa <strong class="text-niebieski">offline</strong> i potrafi wysyłać <strong class="text-niebieski">powiadomienia</strong></li>
+              <li>przykład: <strong>Photopea</strong> — „Photoshop" działający w całości w przeglądarce</li>
+              <li>inne znane PWA: <strong>Starbucks</strong>, <strong>Twitter/X Lite</strong> (zaprojektowane też pod słabe łącza)</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Otwórz <span class="text-niebieski underline">https://www.photopea.com</span>, kliknij ikonę instalacji w pasku adresu i uruchom PWA z systemu.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Żebyście wiedzieli, dokąd zmierzamy, pokażę Wam coś, co wygląda jak magia, a jest zrobione dokładnie w tych trzech technologiach, których się będziecie uczyć. PWA, Progressive Web App, to zwykła strona internetowa z supermocami aplikacji. Trzy supermoce, warto je zapamiętać: instalacja prosto z paska adresu przeglądarki — bez żadnego sklepu z aplikacjami; praca offline, bez internetu; i powiadomienia, jak ze zwykłej aplikacji w telefonie.</p>
+              <p>Jak to możliwe, że strona działa offline? Świadomościowo, bez szczegółów: przeglądarka pozwala stronie zapisać mały skrypt działający w tle — nazywa się service worker — który trzyma kopię strony na Waszym dysku i odpowiada za nią nawet bez sieci. Nie musicie dziś rozumieć mechaniki. Ważne, że to wciąż zwykła strona: HTML, CSS i JavaScript, a nie jakaś „prawdziwa" aplikacja systemowa.</p>
+              <p>Najsłynniejszy przykład: Photopea. To jest Photoshop — z prawie pełnym interfejsem, warstwami, filtrami, obsługą plików PSD — działający w całości w przeglądarce. Podobne podejście wybrały też firmy jak Starbucks czy Twitter ze swoją wersją Lite, zaprojektowaną między innymi pod słabe łącza i słabsze telefony.</p>
+              <p>Zainstalujmy Photopeę razem — patrzcie na ikonę instalacji po prawej stronie paska adresu. Klik, zgoda, gotowe: mam ikonę w systemie jak przy zwykłej aplikacji, choć przed chwilą „była tylko stroną". Uruchamiam z pulpitu. Zero sklepu, zero instalatora, zero pobierania setek megabajtów.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Zanim pójdziemy dalej, chcę Wam pokazać, dokąd zmierza web — i to nie w teorii, tylko na żywu. PWA, Progressive Web App, czyli progresywna aplikacja webowa, to zwykła strona internetowa, która dostaje supermoce aplikacji. Zapamiętajcie te trzy supermoce, bo o nie może pójść pytanie na kartkówce: można ją zainstalować prosto z paska adresu przeglądarki — bez App Store'a, bez Google Play, bez instalatorów — potrafi działać offline, bez internetu, i potrafi wysyłać powiadomienia, tak jak zwykła aplikacja w telefonie.</p>
+              <p>Jak to możliwe? W skrócie, świadomościowo: przeglądarka pozwala stronie zarejestrować mały skrypt pracujący w tle — nazywa się service worker — który zapisuje część strony na Waszym dysku i potem odpowiada za nią nawet bez sieci. Nie musicie dziś rozumieć mechaniki — ważne, że to wciąż jest strona: HTML, CSS i JavaScript. Żadna „prawdziwa" aplikacja systemowa.</p>
+              <p>Najbardziej spektakularny przykład: Photopea. Otwieramy adres photopea.com i patrzcie: to jest Photoshop. Nie „coś podobnego do Photoshopa" — prawie pełny interfejs, warstwy, zaznaczanie, filtry, obsługa plików PSD. A wszystko działa w karcie przeglądarki, napisane w technologiach, których będę Was uczyć przez rok. Starbucks i Twitter ze swoją wersją Lite zrobili to samo z powodów bardziej przyziemnych: ich klienci często mają słabe łącza albo słabe telefony, a lekka strona do zainstalowania działa tam, gdzie ciężka aplikacja by nie ruszyła.</p>
+              <p>No to zróbmy to razem. Patrzcie na mój ekran: po prawej stronie paska adresu jest ikonka instalacji — klik. Zgadzamy się. Gotowe — Photopea jest zainstalowana w systemie, mam jej ikonę jak przy zwykłej aplikacji, a przecież przed chwilą „była tylko stroną". Uruchamiam z pulpitu, bez sklepu, bez instalatora, bez pobierania setek megabajtów. Przeglądarka stała się platformą na wszystko — i właśnie na tej platformie będziecie pracować przez cały rok.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 8 · Klient i serwer -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Jak działa internet: <span class="text-zolty">klient i serwer</span></h2>
+            <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">💻</p>
+                <p class="text-xl font-bold text-zolty mb-1">klient</p>
+                <p class="text-slate-300 text-lg">Twoja przeglądarka zamawia</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">🧾</p>
+                <p class="text-xl font-bold text-zolty mb-1">HTTP</p>
+                <p class="text-slate-300 text-lg">kelner nosi zamówienia</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">🍽️</p>
+                <p class="text-xl font-bold text-zolty mb-1">serwer</p>
+                <p class="text-slate-300 text-lg">kuchnia gotuje — trzyma stronę</p>
+              </div>
+            </div>
+            <ul class="space-y-4 text-2xl text-slate-200 mb-8">
+              <li>przeglądarka wysyła żądanie → serwer odsyła pliki: HTML, CSS, JS, obrazki</li>
+              <li>strona nie „jest" w Twoim komputerze — przeglądarka ją pobiera i <strong class="text-niebieski">renderuje</strong> na ekranie</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Wejdź na <span class="text-niebieski underline">https://www.zst.tarnow.pl</span> i pokaż na pasku adresu: nazwę hosta i kłódkę HTTPS.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dobra, to teraz fundamentalna rzecz, którą musicie zrozumieć raz, a będzie Wam towarzyszyć do końca kursu: jak właściwie działa internet. Najlepiej wyjaśnić to na restauracji. Wy siedzicie przy stole i zamawiacie — Wy jesteście klientem, a dokładniej Wasza przeglądarka. Kelner nosi zamówienia między Wami a kuchnią — kelner to protokół HTTP, język, którym przeglądarka i serwer się dogadują. A kuchnia, która przygotowuje danie — to serwer, komputer gdzieś na świecie, który trzyma stronę.</p>
+              <p>Prześledźmy podróż jednego kliknięcia. Wpisujecie adres szkoły i naciskacie Enter. Przeglądarka odnajduje serwer, wysyła żądanie HTTP — „poproszę stronę główną" — serwer odsyła pliki: HTML, CSS, JavaScript, obrazki. Przeglądarka składa je i renderuje na ekranie. Całość dzieje się w ułamku sekundy.</p>
+              <p>I wniosek, który proszę zapamiętać: strona nie siedzi w Waszym komputerze — jest pobierana i wyświetlana od nowa przy każdym otwarciu. Łatwy dowód: bez internetu strona się nie otworzy, bo nie ma skąd jej pobrać. Wyjątkiem są PWA z poprzedniego slajdu — one właśnie po to trzymają kopię u siebie.</p>
+              <p>Otwórzmy stronę naszej szkoły. Na pasku adresu widzicie nazwę hosta — zst.tarnow.pl — i kłódkę przy HTTPS. Co ta kłódka znaczy, powiem za chwilę.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Przechodzimy do rzeczy fundamentalnej — tej, którą musicie zrozumieć raz i dobrze, bo będzie Wam towarzyszyć do końca kursu i do egzaminu: jak właściwie działa internet. Najlepiej tłumaczy to analogia restauracji, więc ją sobie przeprowadźmy.</p>
+              <p>Siedzicie przy stole i zaglądacie do menu. To Wy — a dokładniej Wasza przeglądarka — jesteście klientem: zamawiacie. Zamówienie nie leci do kuchni samo: nosi je kelner. Ten kelner to protokół HTTP — ustalony język żądań i odpowiedzi, którym przeglądarka i serwer dogadują się między sobą. A kuchnia, która przygotowuje danie, to serwer: komputer gdzieś na świecie — może koło Genewy, może w Ameryce — który trzyma stronę i jej pliki. Gdy danie gotowe, kelner wraca z talerzem: przeglądarka dostaje pliki HTML, CSS, JavaScript i obrazki.</p>
+              <p>A teraz prześledźmy całą podróż jednego kliknięcia, krok po kroku. Wpisujecie adres szkoły i naciskacie Enter. Po pierwsze: przeglądarka musi dowiedzieć się, gdzie ten serwer jest — bo, jak zaraz zobaczycie, komputery rozmawiają przez numery, nie przez nazwy. Po drugie: łączy się z nim i wysyła żądanie HTTP — „poproszę stronę główną". Po trzecie: serwer odpowiada plikami. I po czwarte: przeglądarka składa te pliki i renderuje — maluje stronę na ekranie. Wszystko to dzieje się w ułamku sekundy.</p>
+              <p>I najważniejszy wniosek z tego slajdu, proszę, zapamiętajcie: strona nie jest w Waszym komputerze. Każde otwarcie to pobranie i wyświetlenie od nowa. Łatwy dowód: odłączcie internet — strona się nie otworzy, bo nie ma skąd pobrać. (Wyjątkiem są PWA z poprzedniego slajdu — one właśnie po to trzymają kopię u siebie.) Świadomość, że strona żyje na serwerze, a u Was jest tylko jej obraz, to podstawa do zrozumienia wszystkiego, co będziemy robić.</p>
+              <p>Otwórzmy stronę naszej szkoły. Widzicie pasek adresu? Zwróćcie uwagę na dwie rzeczy: zst.tarnow.pl — to nazwa hosta, adres serwera. I kłódkę przy napisie https. Co ta kłódka dokładnie znaczy — wyjaśniam na następnym slajdzie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 9 · DNS, HTTP(S), URL -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">DNS, HTTP(S) i URL — <span class="text-zolty">słowniczek</span></h2>
+            <ul class="space-y-6 text-2xl text-slate-200 mb-8">
+              <li><strong class="text-niebieski">DNS</strong> — „książka telefoniczna internetu": <code class="text-zolty">zst.tarnow.pl</code> → adres IP serwera</li>
+              <li><strong class="text-niebieski">HTTP</strong> — język żądań i odpowiedzi; <strong class="text-niebieski">HTTPS</strong> = szyfrowana wersja (stąd kłódka)</li>
+              <li><strong class="text-niebieski">URL</strong> = adres złożony ze schematu, hosta i ścieżki</li>
+              <li><strong class="text-niebieski">CDN</strong> — sieć serwerów z kopiami plików strony po całym świecie; pliki lecą z najbliższego węzła — strona ładuje się szybciej</li>
+            </ul>
+            <p class="font-mono text-2xl mb-8">
+              <span class="bg-niebieski text-white px-3 py-1 rounded-l-lg">https://</span><span class="bg-slate-800 px-3 py-1 text-zolty">www.przyklad.pl</span><span class="bg-slate-700 px-3 py-1 rounded-r-lg">/oferta/cennik.html</span>
+            </p>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Rozbierz na części URL strony szkoły na forum klasy (schemat / host / ścieżka).</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Trzy skróty, które musisz znać na kartkówkę — i które realnie przydadzą się Wam w pracy. Pierwszy: DNS. To książka telefoniczna internetu. Komputery nie znają nazw, znają tylko numery — adresy IP. Więc kiedy wpisujecie zst.tarnow.pl, to właśnie DNS tłumaczy tę nazwę na adres IP serwera, na którym leży strona szkoły. Cała operacja trwa milisekundy.</p>
+              <p>Drugi: HTTP — wspomniany przed chwilą kelner, język żądań i odpowiedzi. Przeglądarka mówi „poproszę ten plik", serwer odpowiada „proszę bardzo" — a odpowiedź „nie mam tego" znacie jako błąd 404. HTTPS to ta sama rozmowa, ale szyfrowana: literka S na końcu znaczy Secure. Nasza kłódka z poprzedniego slajdu oznacza dokładnie to, że nikt po drodze nie może podsłuchać, co przeglądarka i serwer do siebie mówią.</p>
+              <p>Dlaczego to ważne? Bo przez sieć latają hasła, numery kart, dane osobowe — bez szyfrowania każdy, kto złapie Wasz ruch, mógłby to wszystko przeczytać. Dlatego dziś praktycznie każdy serwis używa HTTPS.</p>
+              <p>Trzeci: URL, czyli po prostu adres. I tu zróbcie to ze mną: rozbierzmy adres strony szkoły na części. Najpierw schemat — https, dwukropek i dwa ukośniki. Potem host — www.zst.tarnow.pl. I na końcu ścieżka — to, co po ukośniku, na przykład /aktualnosci.html. Schemat, host, ścieżka. Każdy adres w internecie tak się składa — sprawdźcie sami na dowolnej ulubionej stronie.</p>
+              <p>I jeszcze jedno pojęcie, bonus: CDN, Content Delivery Network — sieć serwerów z kopiami plików strony, rozsianych po całym świecie. Gdy otwieracie dużą stronę, pliki nie lecą z jednego serwera, który może stać za oceanem — lecą z najbliższego Wam węzła, dlatego strona ładuje się szybciej. Netflix, YouTube, duże sklepy działają właśnie dzięki CDN. Na razie wystarczy, że wiecie, że to istnieje — przy publikacji własnej strony na 0104 do tego wrócimy.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Słowniczek trzech skrótów — to jest materiał na kartkówkę i zarazem codzienne narzędzia pracy, więc będziemy je powtarzać, aż staną się odruchem.</p>
+              <p>Pierwszy: DNS, Domain Name System. Wróćmy do restauracji: chcecie zamówić, ale nie znacie numeru telefonu do kuchni. Sięgacie po książkę telefoniczną i szukacie nazwy — dostajecie numer. DNS jest dokładnie tą książką telefoniczną internetu. Ludzie zapamiętują nazwy — zst.tarnow.pl — ale komputery rozmawiają wyłącznie przez numery, adresy IP. Gdy wciskacie Enter, Wasz komputer pyta serwery DNS: „jaki numer ma zst.tarnow.pl?", dostaje adres IP serwera i dopiero wtedy się z nim łączy. Cała ta operacja trwa milisekundy.</p>
+              <p>Drugi: HTTP — nasz kelner. To protokół, czyli umowa o tym, jak mają wyglądać żądania i odpowiedzi: przeglądarka mówi „poproszę ten plik", serwer odpowiada „proszę bardzo, oto plik" albo „przepraszam, nie mam tego" — ten drugi przypadek znacie jako błąd 404, „strony nie znaleziono". A HTTPS? To ten sam kelner, ale rozmowa jest szyfrowana — literka S na końcu znaczy Secure, bezpiecznie. Kłódka z poprzedniego slajdu oznacza dokładnie to: między Wami a serwerem nikt po drodze nie może podsłuchać, co sobie piszecie. Dlaczego to ważne? Bo przez sieć latają hasła, numery kart, dane osobowe. Bez szyfrowania każdy, kto złapie Wasz ruch w kawiarni, mógłby to wszystko przeczytać. Dlatego dziś praktycznie każdy porządny serwis jest na HTTPS.</p>
+              <p>Trzeci: URL — po ludzku: adres. I tu zrobimy razem ćwiczenie. Patrzę na pasek adresu strony szkoły i rozbieram go na części pierwsze. Część pierwsza, na niebiesko: https, dwukropek, dwa ukośniki — to schemat, czyli sposób, w jaki przeglądarka ma rozmawiać z serwerem: szyfrowanym HTTP. Część druga, na ciemno: www.zst.tarnow.pl — to host, nazwa serwera, którą DNS zamieni na numer. Część trzecia: wszystko po ukośniku — to ścieżka, konkretny plik lub podstrona na serwerze, jak numer pokoju w dużym budynku. Schemat, host, ścieżka — i tak składa się każdy adres w internecie, od Wikipedii po Waszą przyszłą stronę. Sprawdźcie sami: otwórzcie dowolną stronę i spróbujcie nazwać jej trzy części.</p>
+              <p>I bonus, czwarte pojęcie: CDN, Content Delivery Network — dosłownie sieć doręczania treści. Wyobraźcie sobie, że strona leży na jednym serwerze, na przykład w Ameryce, a użytkownik siedzi w Tarnowie — każdy plik musiałby przebyć tysiące kilometrów podwodnych kabli. CDN to rozwiązanie: firma stawia setki serwerów-pośredników po całym świecie i trzyma na nich kopie plików strony. Użytkownik dostaje pliki z najbliższego węzła — jak dostawa pizzy z najbliższej filii zamiast z centrali we Włoszech. Dlatego globalne serwisy, od Netflixa po duże sklepy, ładują się szybko także u nas. Na naszym poziomie wystarczy świadomość, że to istnieje — zrozumienie klient–serwer z tego slajdu wystarcza, by pojąć CDN: to po prostu wiele kuchni rozstawionych po świecie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 10 · Jak przeglądarka renderuje stronę -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Jak przeglądarka <span class="text-zolty">renderuje</span> stronę</h2>
+            <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">🦴</p>
+                <p class="text-xl font-bold text-zolty mb-1">HTML</p>
+                <p class="text-slate-300 text-lg">szkielet i treść:<br>co jest na stronie</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">🎨</p>
+                <p class="text-xl font-bold text-zolty mb-1">CSS</p>
+                <p class="text-slate-300 text-lg">wygląd:<br>jak strona wygląda</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-3xl mb-2">⚡</p>
+                <p class="text-xl font-bold text-zolty mb-1">JavaScript</p>
+                <p class="text-slate-300 text-lg">zachowanie:<br>co strona robi</p>
+              </div>
+            </div>
+            <ul class="space-y-4 text-2xl text-slate-200">
+              <li>przeglądarka czyta pliki i maluje stronę piksel po pikselu</li>
+              <li>różne przeglądarki mogą renderować ten sam kod odrobinę inaczej</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Skoro wiemy już, skąd biorą się pliki, to co przeglądarka z nimi robi? Każda strona, którą oglądacie, to trzy warstwy. HTML to szkielet i treść — odpowiada na pytanie, co jest na stronie: nagłówki, akapity, zdjęcia, przyciski. CSS to wygląd — jak strona wygląda: kolory, czcionki, układ. JavaScript to zachowanie — co strona robi: co się dzieje po kliknięciu, co się pokazuje i chowa. Co jest, jak wygląda, co robi — trzy pytania, które porządkują wszystko, co poznacie w tym kursie.</p>
+              <p>Jak dokładnie działa renderowanie? Przeglądarka czyta HTML i buduje z niego drzewo — znaczniki zagnieżdżone w znacznikach; to drzewo nazywa się DOM i wrócimy do niego w drugim semestrze, gdy będziecie nim ruszać własnym JavaScriptem. Potem przeglądarka dokleja style CSS, oblicza rozmiary i kolory, a na końcu maluje stronę piksel po pikselu. Wszystko w ułamku sekundy, przy każdym otwarciu.</p>
+              <p>I jedna uwaga, która wyjaśnia dużo kłopotów w tej pracy: różne przeglądarki mogą renderować ten sam kod odrobinę inaczej — ten sam plik, a gdzieś przycisk dwa piksele dalej. Dlaczego tak się dzieje i co z tym robią zawodowcy — zaraz wytłumaczę.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Wiemy już, że serwer przysyła pliki. Pytanie: co przeglądarka robi z nimi dalej? Bo plik HTML sam z siebie jest tylko tekstem — ktoś musi zamienić go w to kolorowe, klikalne coś na ekranie. Każda strona składa się z trzech warstw i proszę, zapamiętajcie to rozróżnienie raz na zawsze — ono będzie wracać na każdym spotkaniu.</p>
+              <p>HTML to szkielet i treść: odpowiada na pytanie „co jest na stronie?". Nagłówki, akapity, zdjęcia, przyciski, formularze. Bez HTML nie ma strony, jest tylko pusta karta. CSS to wygląd: odpowiada na pytanie „jak strona wygląda?". Kolory, czcionki, odstępy, układ — gdzie jest menu, gdzie stopka. I JavaScript, czyli zachowanie: „co strona robi?". Co się dzieje po kliknięciu przycisku, co się pojawia, co znika, co się przewija. Trzy warstwy, trzy pytania: co jest, jak wygląda, co robi. Jeśli kiedykolwiek zgubicie się w kursie, wróćcie do tych trzech pytań — one porządkują wszystko.</p>
+              <p>A teraz, świadomościowo, co znaczy „renderowanie". Przeglądarka bierze plik HTML i buduje z niego drzewo — tak, drzewo: html ma w środku head i body, body ma w środku nagłówki i akapity, lista ma w środku elementy. To drzewo nazywa się DOM — jeszcze do niego wrócimy w drugim semestrze, wtedy będziecie je przechodzić własnym JavaScriptem. Do drzewa przeglądarka przyłącza style CSS, oblicza, co ma być duże, małe, po lewej, po prawej, jakim kolorem — i na końcu maluje piksel po pikselu. A to wszystko zdarza się w ułamku sekundy, przy każdym otwarciu strony.</p>
+              <p>I ostatnia, praktyczna uwaga, która wyjaśnia wiele kłopotów w tej robocie: różne przeglądarki mogą renderować ten sam kod odrobinę inaczej. Ten sam plik, ta sama strona — a w jednej przeglądarce przycisk dwa piksele dalej, w innej lekko inny cień. Dlaczego tak się dzieje i co z tym robią zawodowcy — o tym jest następny slajd.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 11 · Przeglądarki i silniki -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Przeglądarki i <span class="text-zolty">silniki</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 text-left">
+              <li>Chrome <strong class="text-zolty">~70–72%</strong> rynku <span class="text-slate-500 text-base">(StatCounter, 2025)</span>; dalej Safari, Edge, Firefox</li>
+              <li>silniki renderujące: <strong class="text-niebieski">Blink</strong> (Chrome, Edge) · <strong class="text-niebieski">WebKit</strong> (Safari) · <strong class="text-niebieski">Gecko</strong> (Firefox)</li>
+              <li>różny silnik = ta sama strona może wyglądać lub działać trochę inaczej</li>
+              <li>dlatego w branży testuje się na kilku przeglądarkach — <em>„u mnie działa"</em> to za mało</li>
+              <li>DevTools masz w każdej z nich; my pracujemy na Chrome</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Oto odpowiedź na pytanie z poprzedniego slajdu. Jest kilka wielkich przeglądarek: Chrome, które według StatCounter ma w 2025 roku około siedemdziesięciu do siedemdziesięciu dwóch procent rynku — czyli siedem na dziesięć osób — potem Safari, Edge i Firefox.</p>
+              <p>W każdej z nich siedzi tak zwany silnik renderujący — program, który bierze Wasz kod i rysuje z niego stronę. Są trzy główne rody: Blink w Chrome i Edge, WebKit w Safari i Gecko w Firefoksie. I właśnie dlatego ta sama strona może wyglądać odrobinę różnie: to nie kod jest inny — to trzy różne programy interpretują ten sam kod, każdy z drobnymi odmiennościami. Jak trzej malarze malujący ten sam pejzaż: podobnie, ale nie identycznie.</p>
+              <p>Stąd praktyka zawodowa: w branży testuje się na kilku przeglądarkach — oddając stronę klientowi, sprawdza się ją przynajmniej w Chrome, Safari i Firefox. Powiedzenie „u mnie działa" żartobliwie uznaje się za niewystarczające: u Ciebie działa, u klienta nie — a liczy się klient.</p>
+              <p>I dobra wiadomość: narzędzia deweloperskie, które zaraz poznacie, macie wbudowane w każdą z tych przeglądarek. Na zajęciach pracujemy na Chrome — właśnie ze względu na jego popularność.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Odpowiedź na zagadkę z poprzedniego slajdu zaczyna się od mapy przeglądarek. Jest ich kilka wielkich: Chrome — według StatCounter, w 2025 roku, około siedemdziesięciu do siedemdziesięciu dwóch procent rynku — a za nim Safari, Edge i Firefox. Znaczy to tyle, że jeśli zbudujecie stronę, to siedem dziesiątych Waszych użytkowników zobaczy ją w Chrome — ale te pozostałe trzy dziesiąte to miliony ludzi, o których też trzeba pamiętać.</p>
+              <p>W każdej przeglądarce siedzi silnik renderujący — program, który bierze Wasz kod i rysuje z niego stronę. Trzy główne rody: Blink — w Chrome i Edge; WebKit — w Safari; i Gecko — w Firefoksie. I właśnie dlatego ta sama strona może wyglądać odrobinę różnie: to nie kod jest inny — to trzy różne programy interpretują ten sam kod, każdy z drobnymi odmiennościami. Jak trzej malarze malujący ten sam pejzaż z tej samej fotografii: podobnie, ale nie identycznie.</p>
+              <p>Z tego wynika praktyka zawodowa, którą musicie znać już teraz: w branży testuje się na kilku przeglądarkach. Oddając stronę klientowi, sprawdzacie ją minimum w Chrome, Safari i Firefox — bo różnice bywają właśnie tam, gdzie się ich nie spodziewacie: odstęp, cień, zachowanie w jednym silniku odmienne od drugiego. Stąd najsłynniejsze zawodowe powiedzenie: „u mnie działa" — w branży żartobliwie uznawane za niewystarczające. U Ciebie działa, u klienta nie — a liczy się klient.</p>
+              <p>I na koniec dobra wiadomość: narzędzia deweloperskie, które za chwilę poznacie, są wbudowane w każdą z tych przeglądarek — w Chrome, w Safari, w Firefoksie. Uczymy się na Chrome, bo jest najpopularniejszy, ale żadna z tych umiejętności nie jest „tylko do Chrome" — wszędzie wygląda to niemal identycznie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 12 · Mapa semestru — zimowy -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Mapa semestru — <span class="text-zolty">zimowy</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 text-left">
+              <li><strong class="text-niebieski">0102 — HTML5</strong>: semantyka, formularze, dostępność (a11y) · start kartkówką z 0101</li>
+              <li><strong class="text-niebieski">0103 — CSS3</strong>: stylowanie, flexbox, responsywność</li>
+              <li><strong class="text-niebieski">0104 — Frontend w praktyce</strong>: publikacja strony w internecie + dodatek o Tailwind CSS + <strong>pierwszy JavaScript</strong> — wstęp do interaktywnych stron</li>
+              <li class="bg-zolty/10 border border-zolty rounded-xl p-5">🎓 0104 zamyka semestr: <strong class="text-zolty">sprawdzian semestralny zamiast kartkówki</strong> — zakres 0101–0104 (30 pytań zamkniętych A–D + pytania otwarte, kartka i długopis)</li>
+            </ul>
+            <p class="mt-8 text-xl text-slate-400">Te same technologie nasi studenci na Akademii Tarnowskiej wykorzystują na projektach — na końcu semestru pokażę, jak to wygląda od kuchni.</p>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Zobaczcie, dokąd zmierzamy w tym semestrze — żebyście wiedzieli, za co dokładnie zbieracie oceny. Drugie spotkanie: HTML na poważnie, czyli semantyka — znaczniki, które mówią przeglądarce, co jest nagłówkiem, co menu, co stopką — formularze i dostępność, a11y. Trzecie: CSS — stylowanie, flexbox, responsywność, czyli strony, które same przestawiają się na telefon. Czwarte, ostatnie przed zimą: frontend w praktyce — publikacja strony w internecie, świadomościowy dodatek o Tailwindzie i Wasz pierwszy JavaScript, czyli wstęp do interaktywnych stron.</p>
+              <p>I przypominam: 0104 zamyka semestr sprawdzianem semestralnym zamiast kartkówki — pisemnym, na cały materiał od 0101 do 0104: około trzydziestu pytań zamkniętych A–D plus pytania otwarte, kartka i długopis. Wszystko, co na nim będzie, przerobimy wcześniej na zajęciach — nic nie zaskoczy.</p>
+              <p>I mała ciekawostka: dokładnie te same technologie nasi studenci na Akademii Tarnowskiej wykorzystują na projektach — na końcu semestru pokażę Wam, jak to wygląda od kuchni.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Rozłóżmy teraz mapę semestru, żebyście wiedzieli dokładnie, co Was czeka i za co zbieracie oceny. Do zimy mamy jeszcze trzy spotkania po dzisiejszym.</p>
+              <p>Spotkanie 0102 — HTML na poważnie. Trzy rzeczy: semantyka, czyli znaczniki, które mówią przeglądarce, co pełni jaką rolę — co jest nagłówkiem strony, co menu, co stopką; formularze — pola, przyciski, walidacja, to, co znacie z logowań i zapisów; i dostępność, po angielsku a11y — sztuka budowania stron tak, żeby korzystali z nich też ludzie z niepełnosprawnościami, na przykład niewidomi, którzy słuchają stron przez czytniki. To temat, który na egzaminie i w pracy zawodowej jest coraz ważniejszy. I pamiętajcie: 0102 zaczyna się kartkówką z dzisiejszego materiału.</p>
+              <p>Spotkanie 0103 — CSS. Tu strona zaczyna ładnieć: stylowanie, flexbox — system układania elementów w rzędy i kolumny, który raz poznany zmienia wszystko — i responsywność, czyli strony, które same przestawiają się na telefon i tablet. Tego dnia zobaczycie, jak sama zmiana CSS potrafi przemienić stronę w coś, co można pokazywać.</p>
+              <p>Spotkanie 0104, ostatnie przed zimą — frontend w praktyce, czyli domknięcie spraw wyglądu i wstęp do stron interaktywnych. Po pierwsze: publikacja strony w internecie — dosłownie wystawiacie swoją stronę pod prawdziwym adresem, tak że można ją otworzyć z telefonu i pokazać rodzinie. Po drugie: świadomościowy dodatek o Tailwind CSS — usłyszycie, czym jest atomic CSS i czemu pół świata przy nim szaleje; nie uczymy się go, po prostu będziecie wiedzieć, o co chodzi. I wisienka: Wasz pierwszy JavaScript — pierwsze skrypty i pierwsze reakcje strony na Wasze kliknięcia; od tego momentu zaczyna się cały drugi semestr. A na koniec, zamiast kartkówki — sprawdzian semestralny: około trzydziestu pytań zamkniętych A–D plus pytania otwarte, zakres od dziś do 0104, kartka i długopis. Będziecie gotowi, bo wszystko, co na nim będzie, przerobimy wcześniej.</p>
+              <p>I jedna gwiazdka na koniec, nie z lekcji, tylko z życia: dokładnie te technologie, których się uczycie — HTML, CSS, JavaScript — nasi studenci na Akademii Tarnowskiej używają na projektach, na prawdziwych zleceniach. Na ostatnim spotkaniu semestru pokażę Wam, jak taki studencki projekt wygląda od kuchni — żebyście widzieli, dokąd ta droga prowadzi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 13 · Chrome DevTools -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Chrome DevTools — <span class="text-zolty">supermoce w przeglądarce</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 mb-10">
+              <li>wbudowany, darmowy zestaw narzędzi webdevelopera</li>
+              <li>otwarcie: <kbd>F12</kbd> lub <kbd>Ctrl+Shift+I</kbd> (macOS: <kbd>Cmd+Option+I</kbd>) albo menu → Więcej narzędzi</li>
+              <li>działa na każdej stronie — także na cudzej</li>
+              <li>nic nie instalujesz, nic nie psujesz — zmiany są tylko lokalne</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Otwórz DevTools na stronie szkoły i pokaż panel Elements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Przechodzimy do części, w której zaczynacie dostawać supermoce. Chrome DevTools — narzędzia deweloperskie wbudowane w przeglądarkę. Kiedyś, żeby podejrzeć i przerobić stronę, trzeba było instalować osobne programy i wtyczki; dziś wszystko jest już w środku — i nie tylko w Chrome, w każdej przeglądarce. Darmowe, bez instalacji, bez konta. Każdy z Was ma je teraz, na komputerze przed sobą.</p>
+              <p>Otwórzcie je razem ze mną, na trzy sposoby: klawisz F12; albo trzy klawisze naraz — Control, Shift i I, na komputerach Apple Command, Option i I; albo z menu: Więcej narzędzi, Narzędzia deweloperskie. Kliknijcie — powinna rozwinąć się kurtyna z kodem, z boku albo na dole. Jeśli ktoś utknął, ręka w górę, podejdę.</p>
+              <p>I od razu uspokajam, najważniejsza informacja tej części zajęć: nic tu nie zepsujecie. Wszystkie zmiany, które zrobicie w DevTools, żyją tylko w Waszej przeglądarce, w pamięci Waszego komputera — serwer pozostaje nietknięty, inni użytkownicy nic nie widzą, a F5 przywraca oryginał. Możecie więc klikać we wszystko — i zachęcam, właśnie tak uczą się zawodowcy: eksperymentując.</p>
+              <p>Wróćmy na stronę szkoły i otwórzmy tam DevTools. To panel Elements — drzewo z kodem strony. Wygląda groźnie? Za dwie minuty będziecie w nim pływać.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Czas na część, w której dostajecie supermoce. Chrome DevTools — zestaw narzędzi deweloperskich wbudowanych w przeglądarkę. Kiedyś, żeby podejrzeć i przerobić stronę, trzeba było instalować osobne programy i wtyczki; dziś wszystko jest już w środku — w każdej przeglądarce, nie tylko w Chrome. Darmowe, bez instalacji, bez konta. Każdy z Was ma je teraz, na komputerze przed sobą.</p>
+              <p>Otwórzmy je razem, na trzy sposoby — wybierzcie sobie ten najwygodniejszy. Sposób pierwszy: klawisz F12. Sposób drugi: trzy klawisze naraz — Control, Shift i I; na komputerach Apple Command, Option i I. Sposób trzeci, dla myszkowych: menu przeglądarki, Więcej narzędzi, Narzędzia deweloperskie. Kliknijcie cokolwiek — powinna Wam się rozwinąć kurtyna z kodem, z boku albo na dole strony. Jeśli ktoś utknął — podnieście rękę, podejdę.</p>
+              <p>I zanim zaczniemy się bawić, najważniejsza informacja tej części zajęć: nic tu nie zepsujecie. Serio. Wszystko, co zmienicie w DevTools, żyje wyłącznie w Waszej przeglądarce, w pamięci Waszego komputera. Serwer — ten w kuchni, pamiętacie — pozostaje całkiem nietknięty. Inni użytkownicy nic nie widzą. Wystarczy odświeżyć stronę i wszystko wraca do oryginału. Możecie więc śmiało klikać we wszystko — i zachęcam, właśnie tak się uczy: eksperymentując.</p>
+              <p>Wróćmy na stronę szkoły i otwórzmy DevTools tam. To panel Elements — drzewo z kodem strony. Wygląda groźnie? Za dwie minuty będziecie w nim pływać.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 14 · Elements -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Elements — <span class="text-zolty">podejrzyj i edytuj każdą stronę</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 mb-10">
+              <li>widzisz dokładny kod HTML i CSS strony, którą oglądasz</li>
+              <li>klikasz element na stronie → podświetla się w drzewie HTML</li>
+              <li>edytujesz tekst i style <strong class="text-niebieski">na żywo</strong> — efekt widać natychmiast</li>
+              <li><kbd>F5</kbd> przywraca oryginał — zmiany żyją tylko w Twojej przeglądarce</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Zmień tekst nagłówka i kolor tekstu na zst.tarnow.pl, potem odśwież stronę.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Panel Elements — serce DevTools. Po lewej widzicie drzewo: dokładnie ten HTML, który serwer przysłał do Waszej przeglądarki — każda linijka z wcięciem to element wewnątrz innego elementu, to samo drzewo, o którym mówiłem przy renderowaniu. Po prawej style CSS przypisane do zaznaczonego elementu. Czyli cała strona, rozebrana na części pierwsze, na Waszym ekranie.</p>
+              <p>Ruch pierwszy: podejrzyj. Klikam ikonkę ze strzałką w kwadracie — to skrót do wybierania elementów — i klikam w nagłówek strony. Element podświetla się w drzewie, a gdy najadę kursorem na linię w drzewie, podświetla się na stronie. Rentgen strony: od razu widać, który kawałek kodu za co odpowiada.</p>
+              <p>Ruch drugi: edytuj. Klikam dwukrotnie w tekst nagłówka i przepisuję go — zmiana jest natychmiast, na żywo, bez odświeżania. Teraz style: po prawej odszukuję właściwość color i wpisuję tomato — tekst robi się pomidorowy. Ciekawostka: wartości w CSS można zmieniać też strzałkami góra-dół, zobaczycie sami.</p>
+              <p>I znów — nikt tego nie widzi poza Wami. F5, strona się odświeża i wszystko wraca do oryginału, bo serwer nigdy nie przestał trzymać prawdziwej wersji. Teraz Wy: wejdźcie na stronę szkoły, otwórzcie DevTools, zmieńcie dowolny tekst i kolor, pokażcie sąsiadowi — a potem odświeżcie.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Panel Elements — serce DevTools. Po lewej widzicie drzewo: to jest dokładnie ten HTML, który serwer przysłał do Waszej przeglądarki. Każda linijka z wcięciem to element wewnątrz innego elementu — dokładnie to drzewo, o którym mówiłem przy renderowaniu. Po prawej style CSS przypisane do zaznaczonego elementu. Czyli: cała strona, rozebrana na części pierwsze, na Waszym ekranie.</p>
+              <p>Nauczymy się dwóch ruchów. Ruch pierwszy: podejrzyj. W lewym górnym rogu panelu jest ikonka — prostokącik ze strzałką; klikam ją, a potem klikam w dowolny element na stronie, na przykład w nagłówek. Widzicie? Element podświetla się w drzewie — i odwrotnie: gdy najadę kursorem na linię w drzewie, podświetla się na stronie. To jest jak rentgen strony: patrzysz na ekran i od razu wiesz, który kawałek kodu za to odpowiada.</p>
+              <p>Ruch drugi: edytuj. Klikam dwukrotnie w tekst nagłówka w drzewie — mogę go teraz po prostu przepisać. Wpisuję cokolwiek... i proszę: zmiana jest natychmiast, na żywo, bez odświeżania. Teraz style: po prawej odszukuję właściwość color i wpisuję tomato — Enter. Tekst robi się pomidorowy. Mała ciekawostka na potem: wartości w CSS można zmieniać strzałkami góra-dół i przeciągać myszką — zobaczycie sami przy okazji.</p>
+              <p>I znów, bo się nie znudzi: wszystko to żyje tylko u Was. F5 — odświeżam — i strona szkoły wraca do oryginału, bo serwer nigdy nie przestał trzymać prawdziwej wersji. Teraz Wy: wejdźcie na stronę szkoły, otwórzcie DevTools, zmieńcie dowolny tekst i kolor, pokażcie sąsiadowi, a potem odświeżcie. Dwie minuty, działa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 15 · Console i device toolbar -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Console i <span class="text-zolty">device toolbar</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 mb-10">
+              <li><strong class="text-niebieski">Console</strong> — miejsce, gdzie strona „mówi"; Ty też możesz w niej pisać (spróbuj: <code class="text-zolty">2 + 2</code>)</li>
+              <li><strong class="text-niebieski">device toolbar</strong> — podgląd strony na telefonie lub tablecie bez telefonu</li>
+              <li>przeciągnij szerokość i patrz, jak strona się przestawia</li>
+              <li>idealne narzędzie do szybkiego testowania</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200">Wpisz w Console <code class="text-zolty">document.title</code> → potem <code class="text-zolty">document.title = "Zajęcia 0101"</code>; włącz device toolbar (<kbd>Ctrl+Shift+M</kbd>).</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Kolejny panel: Console, konsola. To miejsce, w którym strona „mówi" — wypisuje swoje komunikaty i błędy. Gdy coś na stronie nie działa, pierwsze, co robi webdeveloper, to zagląda właśnie tu: konsola zwykle mówi, co się posypało i w której linijce. Będziecie z tego korzystać od pierwszej lekcji z JavaScriptem.</p>
+              <p>Ale konsola działa też w drugą stronę: Wy możecie w niej pisać. Klikam w panel Console, wpisuję dwa plus dwa, Enter — cztery. Brawo, właśnie wykonaliście swój pierwszy kod w JavaScriptie, pół roku przed tym, jak zaczniemy go uczyć na poważnie. Bo Console to pełnoprawne środowisko JavaScriptu, kalkulator na sterydach — w domu wpisujcie śmiało, na przykład 2**8, dwie gwiazdki to potęga.</p>
+              <p>Zrobimy teraz coś odrobinę szalonego. Wpisuję: document.title — i Enter. Pokazał się tytuł naszej karty. A teraz to samo ze znakiem równości: document.title, równa się, cudzysłów, Zajęcia 0101, cudzysłów, Enter — spójrzcie na kartę przeglądarki u góry. Tytuł właśnie się zmienił: jedną linijką kodu ruszyliście stronę. To pierwszy zwiastun tego, co będziemy robić w drugim semestrze.</p>
+              <p>I ostatnie narzędzie na dziś: device toolbar, włączam go skrótem Control, Shift, M. Strona szkoły pokazuje się w ramce jako podgląd telefonu — przeciągam za brzeg i patrzę, jak przestawia się na mniejszy ekran; mogę też wybrać z listy konkretny model. Podgląd responsywności bez wyciągania telefonu z kieszeni — zapamiętajcie skrót, bo przy CSS będzie on Waszym najlepszym przyjacielem.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Kolejny panel — Console, konsola. Wyobraźcie sobie miejsce, w którym strona „mówi": wypisuje swoje komunikaty i błędy. Gdy coś na stronie nie działa, pierwsze, co robi webdeveloper, to zagląda właśnie tu — konsola zwykle mówi, co się posypało i w której linijce. Będziecie z tego korzystać od pierwszej lekcji z JavaScriptem.</p>
+              <p>Ale konsola działa też w drugą stronę: Wy możecie w niej pisać. Klikam w panel Console, wpisuję dwa plus dwa, Enter — cztery. Brawo — właśnie wykonaliście swój pierwszy kod w JavaScriptie, dokładnie pół roku przed tym, jak zaczniemy go uczyć na poważnie. Bo tak to działa: Console to pełnoprawne środowisko JavaScriptu, kalkulator na sterydach — przyjmie każde polecenie języka. W domu wpisujcie śmiało: spróbujcie na przykład 2**8 — dwie gwiazdki to potęga — albo „ala".length i zobaczcie, co się stanie.</p>
+              <p>Zrobimy teraz coś odrobinę szalonego. Wpisuję: document kropka title — i Enter. Pokazało się: tytuł naszej karty. To polecenie „czyta" tytuł strony. A teraz to samo ze znakiem równości: document.title, równa się, cudzysłów, Zajęcia 0101, cudzysłów, Enter. Spójrzcie na kartę przeglądarki u góry — tytuł karty właśnie się zmienił. Wpisaliście jedną linijkę kodu i zmieniliście stronę. To pierwszy zwiastun tego, że JavaScript potrafi ruszać każdą częścią strony — w drugim semestrze będziecie to robić na potęgę.</p>
+              <p>Ostatnie narzędzie na dziś: device toolbar. Włączam go skrótem Control, Shift, M. Strona szkoły pokazuje się w ramce jako podgląd telefonu — mogę przeciągać za brzeg i patrzeć, jak strona przestawia się na coraz mniejszy ekran, mogę też wybrać z listy konkretny model telefonu albo tabletu. Czyli: macie podgląd responsywności bez wyciągania telefonu z kieszeni. Na spotkaniu o CSS, przy responsywności, to narzędzie będzie Waszym najlepszym przyjacielem — zapamiętajcie skrót: Control, Shift, M.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 16 · VS Code + Live Server -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Warsztat: <span class="text-zolty">VS Code + Live Server</span></h2>
+            <ul class="space-y-5 text-2xl text-slate-200 text-left mb-10">
+              <li><strong class="text-niebieski">VS Code</strong> — darmowy edytor kodu, standard w branży</li>
+              <li><strong class="text-niebieski">Live Server</strong> = mały serwer HTTP na Twoim komputerze — strona odświeża się sama po każdym zapisie</li>
+              <li>alternatywa bez instalacji: <strong class="text-niebieski">StackBlitz</strong> lub <strong class="text-niebieski">CodeSandbox</strong> — edytor z podglądem strony w przeglądarce</li>
+              <li><code class="text-zolty">file://</code> (dwuklik na pliku) = bez serwera — dziś też zadziała, ale ma ograniczenia</li>
+              <li><code class="text-zolty">127.0.0.1</code> = localhost = „ten komputer" — Twój laptop jest jednocześnie klientem i serwerem</li>
+              <li>struktura projektu: katalog (np. <code class="text-zolty">moja-strona</code>) + plik <code class="text-zolty">index.html</code> — strona startowa katalogu</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO</p>
+              <p class="text-xl text-slate-200 text-left">Utwórz katalog <code class="text-zolty">moja-strona</code> i plik <code class="text-zolty">index.html</code>; pokaż oba adresy — najpierw dwuklik na pliku (<code class="text-zolty">file:///…</code>), potem „Open with Live Server" (<code class="text-zolty">http://127.0.0.1:5500</code>); zwróć uwagę klasy na początek adresu w pasku.</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>DevTools służył nam do patrzenia na czyjeś strony. A jak pisać własne? Do tego potrzebujemy warsztatu — dwóch narzędzi. Pierwsze: VS Code, darmowy edytor kodu od Microsoftu, absolutny standard w branży — na szkolnych komputerach jest już zainstalowany, w domu pobieracie go za darmo. Drugie: wtyczka Live Server. To mały serwer HTTP działający na Waszym komputerze — i przypomnijcie sobie slajd o restauracji: Wasz laptop staje się jednocześnie klientem i serwerem, stolik i kuchnia w jednym.</p>
+              <p>Co to Wam daje? Magię zwaną auto-odświeżaniem: zapisujecie plik skrótem Control S, a strona w przeglądarce odświeża się sama, natychmiast. Zero klikania F5, zero przełączania okien: piszecie, zapisujecie, patrzycie. Tak pracuje się cały dzień — i tak będziemy pracować na każdym spotkaniu.</p>
+              <p>Po co w ogóle serwer, skoro plik HTML można otworzyć podwójnym kliknięciem? Można i dziś to zadziała — ale patrzcie na pasek adresu. Dwuklik: adres zaczyna się od file i trzech ukośników, to tryb bez serwera. Live Server: http, potem 127.0.0.1 i port 5500 — prawdziwy serwer, tylko na Waszym komputerze. Różnica dziś niewidoczna, ale ważna później: niektóre rzeczy przeglądarki pozwalają robić tylko przez serwer. Dlatego od razu uczymy się porządnego trybu.</p>
+              <p>127.0.0.1 — zapamiętajcie ten numer, bo będzie wracał: to localhost, dosłownie „ten komputer". Na każdym komputerze na świecie znaczy to samo: maszyna, przy której siedzicie. A 5500 to numer portu, jak numer mieszkania w bloku. Kto woli w domu nie instalować niczego: StackBlitz i CodeSandbox to edytory działające w przeglądarce, z podglądem strony obok kodu.</p>
+              <p>I struktura projektu, zawsze ta sama: jeden katalog na stronę — u nas moja-strona — a w nim plik index.html. Index to umowna, magiczna nazwa: strona startowa katalogu. Robimy to razem: nowy katalog, nowy plik, otwieram dwuklikiem — file, trzy ukośniki — a potem przez Open with Live Server: http, 127.0.0.1, port 5500. Widzicie różnicę w pasku adresu? To jest różnica między „otworzyłem plik" a „uruchomiłem stronę".</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>DevTools służył nam do patrzenia na cudze strony. A jak się pisze własne? Do tego potrzebujemy warsztatu — dwóch narzędzi, które od dziś są Waszym domem.</p>
+              <p>Pierwsze: VS Code, Visual Studio Code — darmowy edytor kodu od Microsoftu. Dlaczego akurat on? Bo to standard branżowy: ogromna większość webdeveloperów świata pisze właśnie w VS Code. Na szkolnych komputerach jest już zainstalowany; w domu pobieracie go za darmo z sieci. Krótki spacer po interfejsie: po lewej eksplorator — drzewo Waszych plików; po środku edytor — tu piszecie; na dole pasek stanu. Na razie tyle wystarczy.</p>
+              <p>Drugie narzędzie: wtyczka Live Server. Nazwa nieprzypadkowa — przypomnijcie sobie slajd o restauracji. Live Server odpala na Waszym komputerze malutki serwer HTTP — i nagle Wasz laptop jest jednocześnie klientem i serwerem: siedzicie przy stoliku i sami gotujecie w kuchni. Co Wam to daje? Magię zwaną auto-odświeżaniem: zapisujecie plik skrótem Control S, a strona w przeglądarce odświeża się sama, natychmiast. Zero klikania F5, zero przełączania okien: piszecie, zapisujecie, patrzycie. Tak pracuje się cały dzień — i tak pracujemy na każdym spotkaniu.</p>
+              <p>Ważne pytanie: po co w ogóle serwer, skoro plik HTML można otworzyć podwójnym kliknięciem? Można — i dziś to nawet zadziała. Ale patrzcie na pasek adresu w obu przypadkach, bo tu jest sedno. Dwuklik: adres zaczyna się od file i trzech ukośników — to tryb bez serwera; przeglądarka czyta plik prosto z dysku. Live Server: adres zaczyna się od http, potem 127.0.0.1 i port 5500 — to prawdziwy serwer, tylko że działający na Waszym komputerze. Różnica dziś niewidoczna, ale ważna później: niektóre rzeczy — jak ładowanie danych — przeglądarki pozwalają robić tylko przez serwer, nie z pliku. Dlatego od razu uczymy się porządnego trybu.</p>
+              <p>A skoro już przy adresach: 127.0.0.1 — zapamiętajcie ten numer, bo będzie wracał. To tak zwany localhost, dosłownie „lokalny host" — adres, który znaczy zawsze i wszędzie to samo: ten komputer. Niezależnie, czy pracujesz w szkole, w domu, na laptopie kolegi — 127.0.0.1 to zawsze maszyna, przy której siedzisz. A 5500 to numer portu — jak numer mieszkania w bloku: budynek ten sam, mieszkanie inne.</p>
+              <p>Dla tych, którzy w domu nie chcą nic instalować: StackBlitz i CodeSandbox — edytory działające w całości w przeglądarce, z podglądem strony obok kodu. Do treningu w domu — idealne.</p>
+              <p>I ostatnia rzecz, najważniejsza organizacyjnie: struktura projektu. Zasada, której trzymamy się zawsze: jeden katalog na stronę — u nas będzie się nazywał moja-strona — a w nim plik index.html. Dlaczego index? To umowna, magiczna nazwa: strona startowa katalogu. Gdy podacie komuś sam adres katalogu, serwer automatycznie pokaże index.html. Tak działa internet od pierwszej strony świata z CERN.</p>
+              <p>Robimy to razem: otwieram VS Code, tworzę katalog moja-strona, w nim plik index.html — i pokazuję Wam oba adresy: najpierw dwuklik na pliku — file, trzy ukośniki; potem „Open with Live Server" — http, 127.0.0.1, port 5500. Widzicie różnicę w pasku adresu? Zapamiętajcie ją — to jest właśnie różnica między „otworzyłem plik" a „uruchomiłem stronę".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 17 · AI jako tutor — porównanie promptów -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">AI jako Twój tutor — <span class="text-zolty">porównanie promptów</span></h2>
+            <div class="grid gap-4 mb-8">
+              <div class="bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <p class="text-lg font-bold text-slate-400 mb-3">prompt „na lenia"</p>
+                <p class="text-lg text-slate-300 italic">„utwórz mi stronę internetową wizytówkę i daj linka"</p>
+              </div>
+              <div class="bg-niebieski/15 border border-niebieski rounded-xl p-5">
+                <p class="text-lg font-bold text-niebieski mb-3">prompt ekspercki</p>
+                <p class="text-lg text-slate-200 italic">„zaprojektuj stronę-wizytówkę zgodnie ze standardami, z a11y, SEO, systemem kontroli wersji Git, deploymentem na Netlify oraz najnowszym Astro.js"</p>
+              </div>
+            </div>
+            <ul class="space-y-4 text-2xl text-slate-200 text-left">
+              <li>różnica: <strong class="text-zolty">dostajesz to, co konkretnie zamówisz</strong> — jak u dobrego wykonawcy</li>
+              <li>żeby tak zamawiać, musisz znać fundamenty — a11y, SEO, Git i deployment poznasz w tym kursie</li>
+              <li>84% programistów używa lub planuje używać narzędzi AI <span class="text-slate-500 text-base">(Stack Overflow 2025)</span> — AI to standardowe narzędzie pracy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Wracamy do ankiety z początku zajęć — porozmawiajmy o AI. Pamiętacie liczbę: osiemdziesiąt cztery procent programistów używa lub planuje używać narzędzi AI, Stack Overflow 2025. To codzienność tego zawodu. Ale różnica jest taka, że jedni dzięki AI idą szybciej, a inni dzięki AI przestają rozumieć, co robią. Dziś pokażę Wam, jak być tymi pierwszymi: AI jako narzędzie do nauki, nie do odsuwania pracy.</p>
+              <p>Zobaczcie różnicę dwóch podejść. Prompt „na lenia": „utwórz mi stronę internetową wizytówkę i daj linka". Co dostajecie? Coś przypadkowego — jak w restauracji powiedzieć kelnerowi „poproszę jedzenie": zjesz coś, nie wiadomo co. Nie rozumiecie, co dostaliście, i nie umiecie tego poprawić.</p>
+              <p>A teraz prompt ekspercki: „zaprojektuj stronę-wizytówkę zgodnie ze standardami, z a11y, SEO, systemem kontroli wersji Git, deploymentem na Netlify oraz najnowszym Astro.js". Krótki słownik: a11y to dostępność, SEO to widzialność w wyszukiwarce, Git to kontrola wersji — coś jak zapisy gry, deployment to wystawienie strony do internetu. Dostajecie dokładnie to, co zamówiliście — bo AI jest jak naprawdę dobry wykonawca: nie zgaduje, tylko realizuje zamówienie.</p>
+              <p>I sedno: żeby tak zamawiać, trzeba znać słowa zamówienia. Nie da się poprosić o a11y, nie wiedząc, czym jest a11y. Dokładnie tego nauczycie się w tym kursie — a11y już na 0102, deployment na 0104 — a wtedy AI stanie się Waszym wzmacniaczem, nie wykonawcą.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Wracamy do Waszych ankiet z początku zajęć — czas spełnić obietnicę: pokażę Wam, jak używać AI mądrze. Najpierw liczba, żeby ustawić kontekst: osiemdziesiąt cztery procent programistów używa lub planuje używać narzędzi AI — Stack Overflow, 2025. To nie jest już żadna przyszłość — to codzienność tego zawodu. Ale — i to jest cała różnica — jedni dzięki AI idą szybciej, a inni dzięki AI przestają rozumieć, co robią. Dziś pokażę Wam, jak być tymi pierwszymi.</p>
+              <p>Spójrzcie na dwa prompty ze slajdu — czyli dwa sposoby, w jakie można „zamówić" stronę u AI. Lewy: „utwórz mi stronę internetową wizytówkę i daj linka". Co dostajecie? Coś całkiem losowego: losowy wygląd, losowe technologie — a najbardziej losowe jest to, że nie wiecie, co dostaliście, i nie umiecie tego poprawić. To jak w restauracji powiedzieć kelnerowi „poproszę jedzenie". Zjesz coś. Nie wiadomo co.</p>
+              <p>Prawy prompt, ekspercki: „zaprojektuj stronę-wizytówkę zgodnie ze standardami, z a11y, SEO, systemem kontroli wersji Git, deploymentem na Netlify oraz najnowszym Astro.js". Rozbierzmy go słowo po słowie, bo każde z nich to pojęcie z prawdziwej pracy: standardy — czyli porządne, zgodne z regułami webu; a11y — dostępność, o której słyszeliście dziś; SEO — optymalizacja pod wyszukiwarki, żeby Google Was znalazł; Git — system kontroli wersji, coś jak zapisy gry: wracasz do dowolnego momentu pracy; deployment — wystawienie strony do internetu; Netlify — darmowa platforma, na której się to robi; Astro — nowoczesny szkielet do budowy stron. Dostajecie dokładnie to, co zamówiliście — bo AI jest jak naprawdę dobry wykonawca: nie zgaduje, tylko realizuje zamówienie.</p>
+              <p>I sedno całej sprawy, proszę, zapamiętajcie: żeby tak zamawiać, trzeba znać słowa zamówienia. Nie da się poprosić o a11y, jeśli nie wiesz, czym jest a11y. I dokładnie dlatego uczymy się najpierw fundamentów, a AI traktujemy jak wzmacniacz — nie za wykonawcę Waszych zadań. W tym kursie a11y poznacie na 0102, deployment i publikację na 0104, a Git wkrótce potem. A wtedy te słowa z prawego promptu przestaną być magią, a staną się Waszym językiem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 18 · Jak uczyć się z AI -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Jak uczyć się z AI — <span class="text-zolty">i zasady uczciwości</span></h2>
+            <ul class="space-y-4 text-2xl text-slate-200 mb-6 text-left">
+              <li>metody: <strong class="text-niebieski">ELI5</strong> („wyjaśnij, jakbym miał 5 lat") · rozwinięcie tematu · „wyjaśnij ten kod linia po linii" · pytania kontrolne z oceną · „znajdź błąd w moim kodzie"</li>
+              <li>dostajesz dziś <strong class="text-zolty">mini-ścięgę z 6 gotowymi promptami</strong> do skopiowania</li>
+            </ul>
+            <div class="space-y-3 text-left">
+              <div class="bg-slate-900 border-l-4 border-zolty rounded-r-xl p-4 text-xl text-slate-200">zasada 1: <strong class="text-zolty">AI się myli</strong> — każdy fakt i kod zweryfikuj (dokumentacja, MDN, prowadzący)</div>
+              <div class="bg-slate-900 border-l-4 border-zolty rounded-r-xl p-4 text-xl text-slate-200">zasada 2: <strong class="text-zolty">kartkówki, sprawdziany i egzamin bez AI</strong></div>
+              <div class="bg-slate-900 border-l-4 border-zolty rounded-r-xl p-4 text-xl text-slate-200">zasada 3: używaj AI <strong class="text-zolty">do zrozumienia, nie do kopiowania</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Jak konkretnie używać AI do nauki? Pięć sprawdzonych metod. ELI5 — „wyjaśnij, jakbym miał pięć lat" — gdy temat kompletnie Was przerasta. Rozwinięcie tematu, gdy chcecie pogłębić coś z zajęć. „Wyjaśnij ten kod linia po linii" — gdy coś działa, a nie wiecie dlaczego; moja ulubiona. Pytania kontrolne z oceną — AI robi Wam quiz i sprawdza: domowe kartkówki na zamówienie. I „znajdź błąd w moim kodzie" — gdy strona nie działa, a nie widzicie powodu. Wszystkie dostaniecie dziś na mini-ściece: sześć gotowych promptów do skopiowania, ułożonych pod ten kurs.</p>
+              <p>Ale trzy zasady, bez wyjątków. Pierwsza: AI się myli — i to śmiało, pewnym siebie tonem; to się nazywa halucynacje. AI potrafi wymyślić funkcję, która nie istnieje. Każdy fakt i każdą linijkę kodu weryfikujecie: w dokumentacji, na MDN — encyklopedii świata webowego — albo u mnie.</p>
+              <p>Druga: kartkówki, sprawdziany i egzamin piszemy bez AI. Egzamin zawodowy też będzie bez — więc sprawiedliwie jest ćwiczyć w warunkach egzaminu.</p>
+              <p>Trzecia: używajcie AI do zrozumienia, nie do kopiowania. Prosty test: skończyliście pracę — umiesz wytłumaczyć, co robi ten kod, nie patrząc na ekran? Jeśli tak, nauczyłeś się i brawo. Jeśli nie — zaliczyłeś zadanie, ale nie nauczycie się niczego, a na kartkówce za dwa tygodnie i na egzaminie to się zemści. Kopiujący dziś płacą za to za dwa tygodnie; rozumiejący zbierają przez cały rok.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Dobra, wiemy już, że AI zamawia się jak u wykonawcy. Teraz konkret: jak używać go do nauki? Przez rok będziecie to robić często, więc poznajcie pięć sprawdzonych metod. Metoda pierwsza, ELI5 — „explain like I'm five", wyjaśnij, jakbym miał pięć lat: używacie, gdy temat kompletnie Was przerasta i potrzeba najprostszego możliwego tłumaczenia. Metoda druga: „rozwiń temat" — gdy chcecie pogłębić coś z zajęć, czego nie zdążyliśmy. Metoda trzecia, moja ulubiona: „wyjaśnij ten kod linia po linii" — wklejacie kod i dostajecie objaśnienie każdego wiersza; genialne, gdy coś działa, a nie wiecie dlaczego. Metoda czwarta: pytania kontrolne z oceną — każecie AI zrobić Wam quiz z materiału i sprawdzić odpowiedzi; to domowe kartkówki na zamówienie. I piąta: „znajdź błąd w moim kodzie" — gdy strona nie działa, a nie widzicie powodu. Wszystkie pięć — plus szósta bonusowa — dostajecie dziś na mini-ściece: sześć gotowych promptów do skopiowania, ułożyłem je specjalnie pod ten kurs.</p>
+              <p>Ale zanim ich użyjecie — trzy zasady uczciwości, bez wyjątków i bez dyskusji. Zasada pierwsza: AI się myli. I nie „czasem się myli", tylko śmiało, pewnym siebie tonem podaje rzeczy, które są nieprawdą — to się nazywa halucynacje. AI potrafi wymyślić funkcję, która nie istnieje, i poda ją Wam z pełnym spokojem. Dlatego każdy fakt i każdą linijkę kodu weryfikujemy: w oficjalnej dokumentacji, na MDN — to jest encyklopedia świata webowego, zapamiętajcie ten skrót — albo u mnie. Zasada druga: oceny piszemy bez AI. Kartkówki, sprawdziany, egzamin zawodowy — bez wyjątków. To nie jest moja zachcianka: egzamin INF.03 również będzie bez AI, więc sprawiedliwie jest ćwiczyć w warunkach egzaminu. I zasada trzecia: AI do zrozumienia, nie do kopiowania.</p>
+              <p>Tę trzecią rozwińmy, bo to sedno. Prosty test na uczciwość wobec samych siebie: skończyliście pracę z AI — umiesz teraz wytłumaczyć, co robi ten kod, nie patrząc na ekran? Jeśli tak — nauczyliście się, AI było tutorem i brawo. Jeśli nie — zaliczyliście zadanie, ale nie nauczycie się niczego. I uwaga: to nie jest moralizowanie, tylko czysta strategia: na kartkówce za dwa tygodnie AI przy Was nie będzie, na egzaminie zawodowym tym bardziej, a w pracy pracodawca płaci za to, że rozumiesz. Kopiujący dziś — zapłacą za to za dwa tygodnie. Rozumiejący dziś — zbierają przez cały rok.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 19 · Pierwsza strona -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Twoja pierwsza strona — <span class="text-zolty">piszemy razem</span></h2>
+            <div class="font-mono text-lg bg-slate-900 border border-slate-700 rounded-xl p-5 mb-8 text-slate-300 text-left">
+              <p>&lt;!DOCTYPE html&gt;</p>
+              <p>→ &lt;html <span class="text-niebieski">lang="pl"</span>&gt;</p>
+              <p>→ &lt;head&gt; (meta charset, viewport, title)</p>
+              <p>→ &lt;body&gt;: nagłówek <span class="text-zolty">h1</span>, akapity <span class="text-zolty">p</span>, lista <span class="text-zolty">ul/li</span>, link <span class="text-zolty">a</span>, obrazek <span class="text-zolty">img</span></p>
+            </div>
+            <ul class="space-y-4 text-2xl text-slate-200 mb-8">
+              <li>prowadzący pisze na projektorze — <strong class="text-zolty">Ty piszesz u siebie</strong>, krok w krok</li>
+              <li>każdy zapis (<kbd>Ctrl+S</kbd>) = strona odświeża się sama w Live Server</li>
+            </ul>
+            <div class="bg-zolty/10 border border-zolty rounded-xl p-5">
+              <p class="inline-block bg-zolty text-slate-950 font-bold text-sm px-3 py-1 rounded mb-2">NA ŻYWO — LIVE CODING</p>
+              <p class="text-xl text-slate-200">Przejdź do VS Code i prowadź live coding według konspektu (etapy 1–5).</p>
+            </div>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>No dobra, koniec teorii na dziś — czas napisać Waszą pierwszą stronę. Zasady wspólnej pracy są trzy. Po pierwsze: ja piszę na projektorze, Wy piszecie u siebie, krok w krok — nic przodem, nic tyłem. Po drugie: nie kopiujcie. Wiem, że kopiowanie jest szybsze — i właśnie dlatego nie chcę go widzieć: ręczne przeliterowanie każdego znacznika buduje pamięć, jak ortografię własnoręczne pisanie wyrazów. Po trzecie: gdy stracicie wątek — ręka w górę, czekam.</p>
+              <p>Każda strona w HTML5 zaczyna się tak samo. Pierwsza linia: wykrzyknik, DOCTYPE html — deklaracja dla przeglądarki, że to nowoczesny HTML. Potem znacznik html z lang="pl" — po to, żeby czytniki dla niewidomych i tłumacze wiedziały, że treść jest po polsku. W head trzy rzeczy: meta charset UTF-8 — bez niego zamiast ą i ę byłyby krzaczki; viewport — dopasowanie strony do ekranu telefonu; i title, tytuł karty. A w body — cała widoczna treść: nagłówek h1, jeden na stronę, bo to tytuł całej strony; akapity p; listy ul i li; linki a; obrazki img z opisem alt.</p>
+              <p>Piszemy. Będzie to strona „Kim jestem": nagłówek, dwa akapity o Was, lista rzeczy, które lubicie, link do ulubionej strony i obrazek — zróbcie z niej coś swojego. I patrzcie na przeglądarkę: za każdym razem, gdy naciśniecie Control i S, Live Server sam odświeża stronę. Zapis, spojrzenie, efekt — tak pracujemy do końca zajęć.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>No i doszliśmy do najlepszego momentu dnia: koniec teorii, piszemy Waszą pierwszą stronę. Zasady wspólnej pracy są trzy. Po pierwsze: ja piszę na projektorze, Wy piszecie u siebie — krok w krok, nic przodem, nic tyłem. Po drugie: nie kopiujcie. Wiem, że kopiowanie jest szybsze — i właśnie dlatego nie chcę go widzieć. Ręczne przeliterowanie każdego znacznika buduje pamięć, tak jak ortografię buduje własnoręczne pisanie wyrazów. Po trzecie: kiedy stracicie wątek — ręka w górę, czekam. Wolę zatrzymać się trzy razy, niż stracić pół klasy na trzy linijki.</p>
+              <p>Przejdźmy przez szkielet, który widzicie na slajdzie — to jest układ każdej strony HTML5 na świecie i zawsze wygląda tak samo. Linia pierwsza: wykrzyknik, DOCTYPE html. To deklaracja dla przeglądarki: „czytam nowoczesny HTML, traktuj mnie po nowemu". Bez niej przeglądarka włącza stary tryb i mogą dziać się dziwne rzeczy — zawsze piszemy. Linia druga: otwieramy html i deklarujemy lang="pl" — po co? Żeby czytniki dla niewidomych wiedziały, że treść jest po polsku, a tłumacze wiedziały, z czego tłumaczyć. Potem head — zaplecze strony, niewidoczne dla czytelnika: meta charset UTF-8 — bez tego nie byłoby polskich znaków, zamiast ą i ę mielibyście krzaczki; viewport — instrukcja „skaluj stronę pod ekran telefonu"; i title — tytuł karty przeglądarki, ten sam, który przed chwilą zmienialiście z poziomu Console. I wreszcie body — scena, wszystko, co człowiek widzi: nagłówek pierwszego poziomu h1 — powinien być jeden na stronę, to tytuł całej strony; akapity p; listy ul z elementami li; linki a; obrazki img.</p>
+              <p>Dobra, palce na klawiatury. Zaczynamy od szkieletu — piszę pierwszą linię, Wy piszecie pierwszą linię... Od tej chwili prowadzi konspekt: etap po etapie — nagłówek, dwa akapity o Was, lista rzeczy, które lubicie, link do ulubionej strony i obrazek. To będzie strona „Kim jestem" — Wasza pierwsza w życiu strona internetowa, więc zróbcie z niej coś swojego.</p>
+              <p>I patrzcie, jak pracuje Live Server: naciskam Control S — spojrzenie w przeglądarkę — strona już się odświeżyła. Zapis, spojrzenie, efekt. Tak pracuje się w tej branży — i tak pracujemy do końca zajęć. Do dzieła.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAJD 20 · Podsumowanie -->
+    <section class="slajd">
+      <div class="grid w-full min-h-full md:h-full md:grid-cols-2">
+        <div class="kolumna flex flex-col items-center text-center px-8 md:px-10 pt-16 pb-24">
+          <div class="my-auto w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Podsumowanie i <span class="text-zolty">zadanie domowe</span></h2>
+            <ul class="space-y-4 text-2xl text-slate-200 text-left">
+              <li>✅ dziś wiesz: po co web, jak działa internet, co to DevTools, jak uczyć się z AI — i masz swoją pierwszą stronę</li>
+              <li>🏠 zadanie domowe (30–40 min): dokończ stronę „Kim jestem" · podejrzyj w DevTools 2–3 ulubione strony · wypróbuj 2 prompty ze ściągi AI</li>
+              <li>📅 następne spotkanie: <strong class="text-niebieski">0102 — HTML5: semantyka, formularze, dostępność (a11y)</strong></li>
+              <li class="bg-zolty/10 border border-zolty rounded-xl p-4">⚠️ <strong class="text-zolty">0102 zaczyna się kartkówką</strong> — zakres: historia WWW · klient–serwer (DNS, HTTP(S), URL, 127.0.0.1/localhost) · DevTools · szkielet HTML</li>
+              <li>pamiętaj o mapie: 0103 — CSS3, 0104 — pierwszy JavaScript i <strong>sprawdzian semestralny zamiast kartkówki</strong> (zakres 0101–0104)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kolumna md:border-l md:border-slate-800 px-8 md:px-10 pt-16 pb-24">
+          <div class="czytane p-6 text-left w-full">
+            <p class="inline-block bg-niebieski text-white font-bold text-sm px-3 py-1 rounded mb-3">TEKST DO PRZECZYTANIA · <span class="w-etykieta">PODSTAWOWA</span></p>
+            <div class="w-podst space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Podsumujmy, co dziś zyskaliście. Wiecie, dlaczego web jest tego wart — i macie liczby, które to potwierdzają. Rozumiecie, jak działa internet: klient, serwer, DNS, HTTP, adres URL. Potraficie otworzyć DevTools, podejrzeć i przerobić każdą stronę. Wiecie, jak uczciwie używać AI do nauki. I — co najważniejsze — macie swoją pierwszą stronę internetową, którą sami napisaliście. Ona jest w Waszych komputerach i będzie działać zawsze.</p>
+              <p>Zadanie domowe, około trzydzieści do czterdziestu minut, trzy części. Pierwsza: dokończ stronę „Kim jestem" — wszystko, czego nie skończyliśmy: kolejne akapity, lista zainteresowań, link, obrazek. Druga: wejdźcie w DevTools na dwóch, trzech ulubionych stronach — podejrzyjcie nagłówki, zmieńcie tekst, poklikajcie w style, odświeżcie. To trening obserwacji: zaczniesz widzieć strony jako kod. Trzecia: wypróbujcie dwa dowolne prompty ze ściągi i przynieście jedną odpowiedź, która Was zaskoczyła — dobrą albo złą.</p>
+              <p>Następne spotkanie: 0102, HTML na poważnie — semantyka, formularze i dostępność. I najważniejsze zdanie dnia: zaczynamy kartkówką, dziesięć minut, zakres dokładnie dzisiejszy — historia WWW, klient i serwer z całym słowniczkiem: DNS, HTTP, HTTPS, URL, localhost; DevTools: Elements, Console, device toolbar; i szkielet strony HTML od DOCTYPE do body. Format znany: pytania zamknięte A–D i krótkie otwarte. Powtórka: dzisiejsza prezentacja i notatki.</p>
+              <p>I trzymajcie się mapy: 0103 — CSS, 0104 — publikacja strony, pierwszy JavaScript i sprawdzian semestralny na cały materiał; w drugim semestrze aplikacja i projekt zespołowy. Dziękuję za dziś — do zobaczenia za dwa tygodnie.</p>
+            </div>
+            <div class="w-rozsz space-y-3 text-xl text-slate-200 leading-relaxed">
+              <p>Zrobiliśmy dziś razem całkiem sporo — sprawdźmy. Po pierwsze: wiecie, po co web, i macie liczby ze źródłami, które to potwierdzają. Po drugie: rozumiecie, jak działa internet — klienta, serwer, DNS jako książkę telefoniczną, HTTP jako kelnera, HTTPS z kłódką, adres URL rozebrany na części. Po trzecie: potraficie otworzyć DevTools i podejrzeć oraz przerobić każdą stronę w internecie — i wiecie, dlaczego to bezpieczne. Po czwarte: wiecie, jak uczciwie i sprytnie używać AI do nauki. I po piąte, najważniejsze: napisaliście dziś własną pierwszą stronę internetową. Ona jest w Waszych komputerach i będzie działać zawsze.</p>
+              <p>Zadanie domowe — około trzydzieści, czterdzieści minut, trzy części. Część pierwsza: dokończcie stronę „Kim jestem" — wszystko, czego nie skończyliśmy na zajęciach: kolejne akapity, lista zainteresowań, link do ulubionej strony, obrazek. Część druga: wejdźcie w DevTools na dwóch, trzech swoich ulubionych stronach — YouTube, sklep, cokolwiek — podejrzyjcie nagłówki, zmieńcie jakiś tekst, poklikajcie w style, odświeżcie. To trening obserwacji: zaczniesz widzieć strony jako kod. Część trzecia: wypróbujcie dwa dowolne prompty ze ściągi, którą dziś dostaliście — i przynieście na następne zajęcia jedną odpowiedź, która Was zaskoczyła, dobrą albo złą.</p>
+              <p>Następne spotkanie: 0102, HTML na poważnie — semantyka, formularze i dostępność, czyli a11y. A teraz słuchajcie uważnie, bo to jest najważniejsze zdanie dnia: 0102 zaczyna się kartkówką. Dziesięć minut, zakres dokładnie dzisiejszy, a więc: historia WWW — cztery daty; klient i serwer z całym słowniczkiem — DNS, HTTP, HTTPS, URL, 127.0.0.1 i localhost; DevTools — jak otworzyć, do czego służą Elements, Console i device toolbar; oraz szkielet HTML — od DOCTYPE do body. Format znany: pytania zamknięte A–D i krótkie otwarte. Materiały do powtórki: dzisiejsza prezentacja i notatki.</p>
+              <p>I mapa na dalej, żeby nic nie zaskoczyło: 0103 — CSS, czyli Wasze strony zaczną ładnieć; 0104 — publikacja strony w internecie, pierwszy JavaScript i zamiast kartkówki sprawdzian semestralny na cały materiał. A w drugim semestrze — aplikacja, projekt zespołowy i trening egzaminacyjny. Dziękuję za dziś. Do zobaczenia za dwa tygodnie!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nawigacja -->
+    <footer class="absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 py-3 text-slate-500 text-sm select-none">
+      <span>0101 · Dlaczego web? — wersja czytana — Akademia Tarnowska × ZST Tarnów</span>
+      <span class="flex items-center gap-4">
+        <button id="przelacz-wersje" class="hover:text-slate-200 transition-colors font-semibold" aria-label="Przełącz wersję tekstu czytanego">📖 Wersja: <span id="wersja-label">podstawowa</span> (W)</button>
+        <span id="licznik" class="font-mono">1 / 20</span>
+        <button id="poprzedni" class="hover:text-slate-200 transition-colors" aria-label="Poprzedni slajd">←</button>
+        <button id="nastepny" class="hover:text-slate-200 transition-colors" aria-label="Następny slajd">→</button>
+      </span>
+    </footer>
+  </main>
+
+  <script>
+    // Nawigacja slajdami: strzałki, PgUp/PgDn, klawiszami A/D oraz przyciskami.
+    // Spacja NIE przewija slajdów — w wersji czytanej przewija dłuższy tekst w kolumnie.
+    // Numer slajdu trafia do hasha URL (np. prezentacja-czytana.html#7) — po odświeżeniu
+    // strony wracasz na ten sam slajd; link do konkretnego slajdu można też wysłać dalej.
+    const slajdy = document.querySelectorAll('.slajd');
+    const licznik = document.getElementById('licznik');
+    let indeks = 0;
+
+    // Start zajęć i pomocnicze formatowanie godzin (używane też przez zegar na dole skryptu)
+    const START_MIN = 7 * 60 + 30;
+    const dwieCyfry = (n) => String(n).padStart(2, '0');
+    const naGodzine = (min) => dwieCyfry(Math.floor(min / 60)) + ':' + dwieCyfry(min % 60);
+
+    // Spis treści: grupy slajdów — [pierwszy slajd grupy, ostatni, etykieta, minuta startu od 7:30]
+    const AGENDA = [
+      [1, 3, 'Start i zasady', START_MIN],
+      [4, 4, 'Historia WWW', START_MIN + 15],
+      [5, 6, 'Web w liczbach', START_MIN + 20],
+      [7, 7, 'PWA', START_MIN + 27],
+      [8, 11, 'Jak działa internet', START_MIN + 32],
+      [12, 12, 'Mapa semestru', START_MIN + 55],
+      [13, 15, 'DevTools', START_MIN + 75],
+      [16, 16, 'Warsztat', START_MIN + 93],
+      [17, 18, 'AI jako tutor', START_MIN + 100],
+      [19, 19, 'Pierwsza strona', START_MIN + 108],
+      [20, 20, 'Podsumowanie', START_MIN + 128],
+    ];
+    const agendaEl = document.getElementById('agenda');
+    AGENDA.forEach(([od, doZakresu, etykieta, startMin]) => {
+      const poz = document.createElement('button');
+      poz.type = 'button';
+      poz.dataset.od = od;
+      poz.dataset.do = doZakresu;
+      const czas = document.createElement('span');
+      czas.className = 'czas font-mono text-xs shrink-0 w-10 text-slate-600';
+      czas.textContent = naGodzine(startMin);
+      const lab = document.createElement('span');
+      lab.textContent = etykieta;
+      poz.appendChild(czas);
+      poz.appendChild(lab);
+      poz.className = 'flex items-baseline gap-2 text-left transition-colors border-l-2 border-transparent pl-3 text-slate-500 hover:text-slate-200 leading-snug';
+      poz.addEventListener('click', () => pokaz(od - 1));
+      agendaEl.appendChild(poz);
+    });
+
+    function aktualizujAgende(indeks) {
+      const numer = indeks + 1;
+      agendaEl.querySelectorAll('button').forEach((el) => {
+        const wGrupie = numer >= +el.dataset.od && numer <= +el.dataset.do;
+        el.className = (wGrupie
+          ? 'flex items-baseline gap-2 text-left transition-colors border-l-2 border-zolty pl-3 text-zolty font-bold leading-snug'
+          : 'flex items-baseline gap-2 text-left transition-colors border-l-2 border-transparent pl-3 text-slate-500 hover:text-slate-200 leading-snug');
+        el.querySelector('.czas').className = wGrupie
+          ? 'czas font-mono text-xs shrink-0 w-10 text-zolty/80'
+          : 'czas font-mono text-xs shrink-0 w-10 text-slate-600';
+      });
+    }
+
+    function pokaz(nowyIndeks) {
+      indeks = Math.max(0, Math.min(slajdy.length - 1, nowyIndeks));
+      slajdy.forEach((s, i) => {
+        s.classList.toggle('aktywny', i === indeks);
+        // slajd i jego kolumny zaczynają od góry, żeby długi tekst czytany nie zostawał przewinięty
+        if (i === indeks) {
+          s.scrollTop = 0;
+          s.querySelectorAll('.kolumna').forEach((k) => { k.scrollTop = 0; });
+        }
+      });
+      licznik.textContent = (indeks + 1) + ' / ' + slajdy.length;
+      aktualizujAgende(indeks);
+      // aktualizacja hasha bez przewijania strony i bez wpisywania do historii
+      history.replaceState(null, '', '#' + (indeks + 1));
+    }
+
+    // na starcie: slajd z hasha (jeśli jest poprawny), inaczej slajd 1
+    const zHasza = parseInt(location.hash.slice(1), 10);
+    pokaz(Number.isInteger(zHasza) && zHasza >= 1 && zHasza <= slajdy.length ? zHasza - 1 : 0);
+
+    // reakcja na ręczną zmianę hasha (np. wstecz/naprzód w historii)
+    window.addEventListener('hashchange', () => {
+      const n = parseInt(location.hash.slice(1), 10);
+      if (Number.isInteger(n) && n >= 1 && n <= slajdy.length && n - 1 !== indeks) pokaz(n - 1);
+    });
+
+    document.getElementById('nastepny').addEventListener('click', () => pokaz(indeks + 1));
+    document.getElementById('poprzedni').addEventListener('click', () => pokaz(indeks - 1));
+
+    // Dwie wersje tekstu czytanego: PODSTAWOWA (rozwinięta) i ROZSZERZONA (najdłuższa,
+    // najbardziej szczegółowa). Przełącza klawisz W lub przycisk w stopce; wybór pamiętany lokalnie.
+    const WERSJA_KLUCZ = '0101-czytana-wersja';
+    const etykiety = document.querySelectorAll('.w-etykieta');
+    const wersjaLabel = document.getElementById('wersja-label');
+
+    function ustawWersje(rozszerzona) {
+      document.body.classList.toggle('wersja-rozszerzona', rozszerzona);
+      document.body.classList.toggle('wersja-podstawowa', !rozszerzona);
+      etykiety.forEach((el) => { el.textContent = rozszerzona ? 'ROZSZERZONA' : 'PODSTAWOWA'; });
+      wersjaLabel.textContent = rozszerzona ? 'rozszerzona' : 'podstawowa';
+      try { localStorage.setItem(WERSJA_KLUCZ, rozszerzona ? 'rozszerzona' : 'podstawowa'); } catch (e) { /* tryb prywatny: pomiń */ }
+    }
+
+    let zapisanaWersja = null;
+    try { zapisanaWersja = localStorage.getItem(WERSJA_KLUCZ); } catch (e) { /* tryb prywatny: pomiń */ }
+    ustawWersje(zapisanaWersja === 'rozszerzona');
+
+    document.getElementById('przelacz-wersje').addEventListener('click', () => {
+      ustawWersje(!document.body.classList.contains('wersja-rozszerzona'));
+    });
+
+    // Zegar zajęć: aktualna godzina + numer godziny lekcyjnej i bieżąca sekcja konspektu.
+    // Założenie: start 7:30 (START_MIN u góry), blok 135 min liczony jako 3 godziny lekcyjne
+    // po 45 min (7:30–8:15, 8:15–9:00, 9:00–9:45); sekcje: ankieta 10' + 50' + przerwa 15' + 35' + 25'.
+    // Wystarczy zmienić START_MIN i granice w LEKCJE/SEKCJE, jeśli dzwonki szkoły biją inaczej.
+    const LEKCJE = [
+      [START_MIN, START_MIN + 45, '1. godzina lekcyjna'],
+      [START_MIN + 45, START_MIN + 90, '2. godzina lekcyjna'],
+      [START_MIN + 90, START_MIN + 135, '3. godzina lekcyjna'],
+    ];
+    const SEKCJE = [
+      [START_MIN, START_MIN + 10, 'ankieta na start'],
+      [START_MIN + 10, START_MIN + 60, 'sekcja 1 · nowy materiał'],
+      [START_MIN + 60, START_MIN + 75, 'przerwa'],
+      [START_MIN + 75, START_MIN + 110, 'sekcja 2 · praktyka'],
+      [START_MIN + 110, START_MIN + 135, 'sekcja 3 · domknięcie'],
+    ];
+
+    function aktualizujZegar() {
+      const teraz = new Date();
+      const min = teraz.getHours() * 60 + teraz.getMinutes();
+      const elCzas = document.getElementById('zegar-czas');
+      const elInfo = document.getElementById('zegar-info');
+      elCzas.textContent = dwieCyfry(teraz.getHours()) + ':' + dwieCyfry(teraz.getMinutes());
+      if (min < START_MIN) { elInfo.textContent = 'przed zajęciami — start 7:30'; return; }
+      if (min >= START_MIN + 135) { elInfo.textContent = 'koniec zajęć — 9:45'; return; }
+      const lekcja = LEKCJE.find(([od, doZ]) => min >= od && min < doZ);
+      const sekcja = SEKCJE.find(([od, doZ]) => min >= od && min < doZ);
+      const przerwa = sekcja[2] === 'przerwa';
+      elInfo.textContent = lekcja[2] + ' · ' + sekcja[2] + ' (do ' + naGodzine(sekcja[1]) + ')';
+      elInfo.classList.toggle('text-niebieski', przerwa);
+      elInfo.classList.toggle('text-slate-400', !przerwa);
+    }
+    aktualizujZegar();
+    setInterval(aktualizujZegar, 1000);
+
+    document.addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', 'd'].includes(e.key)) { e.preventDefault(); pokaz(indeks + 1); }
+      if (['ArrowLeft', 'PageUp', 'a'].includes(e.key)) { e.preventDefault(); pokaz(indeks - 1); }
+      if (e.key === 'Home') { e.preventDefault(); pokaz(0); }
+      if (e.key === 'End') { e.preventDefault(); pokaz(slajdy.length - 1); }
+      if (e.key === 'w' || e.key === 'W') { ustawWersje(!document.body.classList.contains('wersja-rozszerzona')); }
+    });
+  </script>
+</body>
+</html>

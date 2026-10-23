@@ -1,12 +1,13 @@
 # Technologie webowe — zajęcia klas patronackich ZST × Akademia Tarnowska
 
-Materiały dydaktyczne do zajęć z podstaw webdevelopmentu (**HTML5, CSS3, JavaScript**) prowadzonych dla uczniów **Zespołu Szkół Technicznych w Tarnowie** w ramach **klas patronackich Akademii Tarnowskiej**.
+Materiały dydaktyczne do zajęć z podstaw webdevelopmentu (**HTML5, CSS3, JavaScript**) prowadzonych dla uczniów **Zespołu Szkół Technicznych w Tarnowie** w ramach **klas patronackich Akademii Tarnowskiej**. Przedmiot szkolny — **„Zagadnienia programowania”** — prowadzony jest wspólnie z mgr. inż. Tomaszem Gądkiem (tematy backendowe, materiały poza tym repozytorium); to repozytorium obejmuje **blok frontendowy** mgr. inż. Dominika Aksamita.
 
 | | |
 |---|---|
-| **Prowadzący** | mgr inż. Dominik Aksamit — Akademia Tarnowska |
+| **Przedmiot** | „Zagadnienia programowania” · 54 h w sem. zimowym + 66 h w sem. letnim |
+| **Prowadzący** | mgr inż. Dominik Aksamit — Akademia Tarnowska (blok frontendowy — to repozytorium) · mgr inż. Tomasz Gądek (blok backendowy — poza tym repozytorium) |
 | **Odbiorcy** | uczniowie czwartej klasy technikum ZST w Tarnowie |
-| **Cykl** | semestr zimowy: 9 spotkań · semestr letni: 11 spotkań · grupy **A** i **B** na przemian |
+| **Cykl** | semestr zimowy: 9 terminów (07 X – 16 XII 2026) · semestr letni: 11 terminów (03 III – 02 VI 2027) + rezerwowe 09 VI i 16 VI · środy 7:30–9:45 · grupy **A** i **B** równolegle |
 | **Jednostka zajęć** | **135 minut** (z 15-minutową przerwą) |
 
 ---
@@ -19,62 +20,108 @@ Materiały dydaktyczne do zajęć z podstaw webdevelopmentu (**HTML5, CSS3, Java
 
 ## Format zajęć
 
-Spotkanie trwa **135 minut** wg stałego schematu:
+Spotkanie trwa **135 minut** wg stałego schematu **trzech sekcji**:
 
 | Element | Czas | Uwagi |
 |---|---|---|
-| Kartkówka | 10 min | **od drugiego spotkania (Z2)**; zakres: poprzednie spotkanie; min. 2 pytania zamknięte w formacie INF.03 |
-| Blok 1 | 50 min | teoria + live coding + ćwiczenia |
+| Kartkówka | 10 min | **od drugiego spotkania (0102)**; zakres: poprzednie spotkanie; min. 2 pytania zamknięte w formacie INF.03; oceny cząstkowe |
+| Sekcja 1 — start i nowy materiał | 50 min | omówienie kartkówki, krótkie wprowadzenie, live coding |
 | Przerwa | 15 min | |
-| Blok 2 | 60 min | praktyka, ćwiczenia, projekt |
+| Sekcja 2 — praktyka | 35 min | ćwiczenie samodzielne (wariant A i start B), pomoc indywidualna |
+| Sekcja 3 — domknięcie | 25 min | warianty B/C, 5 pytań INF.03, podsumowanie, zadanie domowe, zapowiedź kartkówki |
 | **Razem** | **135 min** | |
 
-*Spotkanie Z1 rozpoczyna kurs, więc nie zaczyna się kartkówką — ma wtedy 60 + 15 + 60 minut.*
+Wyjątki od schematu:
+
+- **0101** rozpoczyna kurs: zamiast kartkówki **nieoceniana ankieta zapoznawcza (10 min, pisemna)** o wiedzy i doświadczeniu z AI — dalej jak w schemacie: 10 + 50 + 15 + 35 + 25 minut.
+- **0104** zamyka semestr zimowy: sekcja 60 + przerwa 15 + **sprawdzian semestralny 60** (pisemny, zakres 0101–0104) — zamiast kartkówki i sekcji 2–3.
+
+**Ocenianie:** z kartkówek (od 0102) i sprawdzianu semestralnego uczniowie zbierają **oceny cząstkowe**, z których wystawiana jest **ocena na koniec roku**. Ankieta z 0101 jest nieoceniana — pełni wyłącznie funkcję diagnostyczną.
 
 Zasady metodyczne:
 
 - **min. 60% czasu to praktyka uczniowska** i live coding prowadzącego,
-- wzorzec każdego zagadnienia: *krótkie wprowadzenie → demo na żywo → uczeń robi sam*,
+- wzorzec każdego zagadnienia: *krótkie wprowadzenie → demo na żywo → uczeń robi sam* (wprowadzenie i demo w Sekcji 1, praca samodzielna w Sekcji 2, utrwalenie w Sekcji 3),
 - ćwiczenia w trzech wariantach: **A** (podstawowy), **B** (rozszerzający), **C** (gwiazdka dla szybkich),
 - każde spotkanie kończy się zadaniem domowym i podaniem zakresu najbliższej kartkówki.
 
 ## Organizacja roku — grupy A i B
 
-Zajęcia odbywają się na przemian dla dwóch grup, dlatego liczba spotkań wypada nieparzyście:
+Klasa pracuje w dwóch grupach, **A i B**, które mają zajęcia **równolegle**: w każdym terminie każda grupa spotyka się z innym prowadzącym, a prowadzący **zamieniają się grupami co spotkanie**. Materiał każdego bloku jest realizowany **dwukrotnie** — najpierw z jedną grupą, a na następnym spotkaniu powtórzony z drugą (w semestrze zimowym blok Aksamita zaczyna grupa B, w letnim — grupa A).
 
-| Semestr | Spotkań łącznie | Grupa A | Grupa B |
+Rozkład spotkań bloku frontendowego (Aksamit):
+
+| Semestr | Terminy | Grupa A | Grupa B |
 |---|---|---|---|
-| zimowy | 9 | 5 | 4 |
-| letni | 11 | 6 | 5 |
+| zimowy 2026 | 9 (07 X – 16 XII) | 4 — 0101–0104 | 5 — 0101–0104 + warsztaty (16 XII) |
+| letni 2027 | 11 (03 III – 02 VI) | 6 — 0201–0205 + warsztaty (02 VI) | 5 — 0201–0205 |
 
-Repozytorium zawiera **9 bazowych scenariuszy** (4 zimowy + 5 letnich) wspólnych dla obu grup. **Nadwyżkowe spotkania grupy A** (piąte zimą i szóste latem) pełnią rolę **warsztatów utrwalających**: powtórka materiału, ćwiczenia dodatkowe, dokańczanie projektów i indywidualna praca z uczniami — bez osobnych scenariuszy.
+Repozytorium zawiera **9 bazowych scenariuszy** (4 zimowe + 5 letnich) wspólnych dla obu grup — każdy realizowany z grupą A i z grupą B. **Dziesiąte spotkanie każdej grupy** (16 XII — grupa B, 02 VI — grupa A) to **warsztaty utrwalające**: powtórka materiału, ćwiczenia dodatkowe, dokańczanie projektów i indywidualna praca z uczniami — bez osobnego scenariusza. Blok backendowy Gądka realizowany jest w tych samych terminach z drugą grupą (materiały poza tym repozytorium).
+
+## Harmonogram zajęć
+
+Zajęcia odbywają się w **środy 7:30–9:45** (135 minut = 3 godziny lekcyjne); w każdym terminie grupy A i B pracują **równolegle**, każda z innym prowadzącym. Etykiety grup przyjęto wg kolejności z harmonogramów ZST: **pierwsze nazwisko w wierszu = prowadzący grupy A**.
+
+### Semestr zimowy 2026 — 54 h (mgr inż. T. Gądek 27 h · mgr inż. D. Aksamit 27 h)
+
+| # | Data (śr) | Grupa A | Grupa B | Blok Aksamita |
+|---|---|---|---|---|
+| 1 | 07 X 2026 | Gądek | **Aksamit** | [0101](0101/scenariusz.md) |
+| 2 | 21 X 2026 | **Aksamit** | Gądek | 0101 — powtórka z grupą A |
+| 3 | 28 X 2026 | Gądek | **Aksamit** | [0102](0102/scenariusz.md) |
+| 4 | 04 XI 2026 | **Aksamit** | Gądek | 0102 — powtórka z grupą A |
+| 5 | 18 XI 2026 | Gądek | **Aksamit** | [0103](0103/scenariusz.md) |
+| 6 | 25 XI 2026 | **Aksamit** | Gądek | 0103 — powtórka z grupą A |
+| 7 | 02 XII 2026 | Gądek | **Aksamit** | [0104](0104/scenariusz.md) |
+| 8 | 09 XII 2026 | **Aksamit** | Gądek | 0104 — powtórka z grupą A |
+| 9 | 16 XII 2026 | Gądek | **Aksamit** | warsztaty utrwalające — grupa B |
+
+Środy 14 X i 11 XI (Święto Niepodległości) nie występują w harmonogramie; po 16 XII blok webowy wznowi się 03 III 2027.
+
+### Semestr letni 2027 — 66 h (mgr inż. T. Gądek 33 h · mgr inż. D. Aksamit 33 h)
+
+| # | Data (śr) | Grupa A | Grupa B | Blok Aksamita |
+|---|---|---|---|---|
+| 1 | 03 III 2027 | **Aksamit** | Gądek | [0201](0201/scenariusz.md) |
+| 2 | 10 III 2027 | Gądek | **Aksamit** | 0201 — powtórka z grupą B |
+| 3 | 17 III 2027 | **Aksamit** | Gądek | [0202](0202/scenariusz.md) |
+| 4 | 07 IV 2027 | Gądek | **Aksamit** | 0202 — powtórka z grupą B |
+| 5 | 14 IV 2027 | **Aksamit** | Gądek | [0203](0203/scenariusz.md) |
+| 6 | 21 IV 2027 | Gądek | **Aksamit** | 0203 — powtórka z grupą B |
+| 7 | 28 IV 2027 | **Aksamit** | Gądek | [0204](0204/scenariusz.md) |
+| 8 | 12 V 2027 | Gądek | **Aksamit** | 0204 — powtórka z grupą B |
+| 9 | 19 V 2027 | **Aksamit** | Gądek | [0205](0205/scenariusz.md) |
+| 10 | 26 V 2027 | Gądek | **Aksamit** | 0205 — powtórka z grupą B |
+| 11 | 02 VI 2027 | **Aksamit** | Gądek | warsztaty utrwalające — grupa A |
+
+Terminy **rezerwowe**: 09 VI i 16 VI 2027. W harmonogramie nie występują środy 24 i 31 III (Wielkanoc — 28 III 2027) oraz 05 V.
 
 ## Ramowy program
 
-### Semestr zimowy
+### Semestr zimowy (X–XII 2026)
 
 | # | Spotkanie | Główne tematy | Kartkówka z |
 |---|---|---|---|
-| Z1 | [Dlaczego web? Wstęp, przeglądarki i DevTools](spotkania/z01-wstep-przegladarki-devtools.md) | przedstawienie się i mapa semestru; technologie webowe w liczbach; PWA — strona może być „natywna”; jak działa internet; przeglądarki i silniki; **Chrome DevTools**; VS Code + Live Server; **AI jako tutor** (po co znać fundamenty, gotowe prompty); pierwsza strona HTML na żywo | — |
-| Z2 | [HTML5 — fundamenty i semantyka](spotkania/z02-html5-fundamenty.md) | semantyczny szkielet strony; tekst, listy, linki, obrazy; tabele; multimedia; formularze i walidacja HTML5; **dostępność (a11y)**: alt, nagłówki, `label`, klawiatura, ARIA/WCAG w pigułce; ćwiczenie: fanpage z checklistą dostępności | Z1 |
-| Z3 | [CSS3 — stylowanie i responsywność](spotkania/z03-css3-stylowanie.md) | selektory i kaskada; box model; kolory i jednostki; typografia; flexbox; media queries i responsywność; a11y cd.: kontrast i czytelność; stylowanie fanpage'a z Z2 | Z2 |
-| Z4 | [CSS w praktyce + pierwsze kroki w JavaScript](spotkania/z04-js-pierwsze-kroki.md) | mini-powtórka CSS z Z3; grid, animacje, pozycjonowanie sticky; publikacja strony (GitHub Pages); dodatek „Jak w branży”: **Tailwind CSS i atomic CSS**; **wprowadzenie do JS**: „moment wow”, konsola, zmienne, pierwszy skrypt, reakcja na kliknięcie | Z3 |
+| 0101 | [Dlaczego web? Wstęp, przeglądarki i DevTools](0101/scenariusz.md) | przedstawienie się i mapa semestru; technologie webowe w liczbach; PWA — strona może być „natywna”; jak działa internet; przeglądarki i silniki; **Chrome DevTools**; VS Code + Live Server; **AI jako tutor** (po co znać fundamenty, gotowe prompty); pierwsza strona HTML na żywo | — |
+| 0102 | [HTML5 — fundamenty i semantyka](0102/scenariusz.md) | semantyczny szkielet strony; tekst, listy, linki, obrazy; tabele; multimedia; formularze i walidacja HTML5; **dostępność (a11y)**: alt, nagłówki, `label`, klawiatura, ARIA/WCAG w pigułce; ćwiczenie: fanpage z checklistą dostępności | 0101 |
+| 0103 | [CSS3 — stylowanie i responsywność](0103/scenariusz.md) | selektory i kaskada; box model; kolory i jednostki; typografia; flexbox; media queries i responsywność; a11y cd.: kontrast i czytelność; stylowanie fanpage'a z 0102 | 0102 |
+| 0104 | [CSS w praktyce + pierwsze kroki w JavaScript](0104/scenariusz.md) | mini-powtórka CSS z 0103; grid, animacje, pozycjonowanie sticky; publikacja strony; dodatek „Jak w branży”: **Tailwind CSS i atomic CSS**; **wprowadzenie do JS**: „moment wow”, konsola, zmienne, pierwszy skrypt, reakcja na kliknięcie | 0103 |
 
-### Semestr letni
+### Semestr letni (III–VI 2027)
 
 | # | Spotkanie | Główne tematy | Kartkówka z |
 |---|---|---|---|
-| L1 | [JavaScript — solidne podstawy języka](spotkania/l01-js-podstawy.md) | operatory; warunki; pętle; funkcje (także arrow); `alert`/`prompt`/`confirm`; debugowanie w DevTools (breakpointy) | Z4 |
-| L2 | [DOM i zdarzenia — strona żyje](spotkania/l02-js-dom-zdarzenia.md) | drzewo DOM; wybieranie i zmiana elementów; zdarzenia; formularz z walidacją JS; projekty: licznik, galeria, quiz | L1 |
-| L3 | [Tablice, obiekty i dane](spotkania/l03-js-dane.md) | tablice i metody; obiekty; JSON; localStorage (lista zadań); `setTimeout`/`setInterval`; wprowadzenie do `fetch` i API; wzmianka o PWA: service worker i manifest w pigułce | L2 |
-| L4 | [Projekt zintegrowany HTML + CSS + JS](spotkania/l04-projekt-calkowity.md) | warsztaty projektowe w zespołach; podstawy Git/GitHub; publikacja; prezentacje projektów; projekt w portfolio i CV | L3 |
-| L5 | [INF.03 — trening egzaminacyjny i co dalej](spotkania/l05-inf03-trening.md) | strategia części pisemnej i praktycznej; test próbny; mini-arkusz praktyczny wg schematu CKE z kryteriami punktowania; ścieżki rozwoju i rekrutacja na Akademię Tarnowską; ankieta podsumowująca | L4 |
+| 0201 | [JavaScript — solidne podstawy języka](0201/scenariusz.md) | operatory; warunki; pętle; funkcje (także arrow); `alert`/`prompt`/`confirm`; debugowanie w DevTools (breakpointy) | 0104 |
+| 0202 | [DOM i zdarzenia — strona żyje](0202/scenariusz.md) | drzewo DOM; wybieranie i zmiana elementów; zdarzenia; formularz z walidacją JS; projekty: licznik, galeria, quiz | 0201 |
+| 0203 | [Tablice, obiekty i dane](0203/scenariusz.md) | tablice i metody; obiekty; JSON; localStorage (lista zadań); `setTimeout`/`setInterval`; wprowadzenie do `fetch` i API; wzmianka o PWA: service worker i manifest w pigułce | 0202 |
+| 0204 | [Projekt zintegrowany HTML + CSS + JS](0204/scenariusz.md) | warsztaty projektowe w zespołach; podstawy Git/GitHub; publikacja; prezentacje projektów; projekt w portfolio i CV | 0203 |
+| 0205 | [INF.03 — trening egzaminacyjny i co dalej](0205/scenariusz.md) | strategia części pisemnej i praktycznej; test próbny; mini-arkusz praktyczny wg schematu CKE z kryteriami punktowania; ścieżki rozwoju i rekrutacja na Akademię Tarnowską; ankieta podsumowująca | 0204 |
 
 ## Efekty kształcenia — po kursie uczeń potrafi:
 
 - zbudować semantyczną, dostępną i responsywną stronę internetową w HTML5 i CSS3 (flexbox, grid, media queries),
 - dodać interaktywność w czystym JavaScriptcie: obsługa zdarzeń, manipulacja DOM, formularze z walidacją, localStorage,
-- opublikować stronę w internecie (GitHub Pages) i pracować z podstawami Gita,
+- opublikować stronę w internecie i pracować z podstawami Gita,
 - korzystać z Chrome DevTools do analizy, stylowania i debugowania stron,
 - świadomie korzystać z AI jako tutora: rozwijać tematy, dopytywać o niezrozumiałe rzeczy (ELI5), precyzyjnie zamawiać rozwiązania i krytycznie oceniać wynik,
 - rozwiązywać zadania w formacie egzaminu INF.03 i znać strategię rozkładu czasu na egzaminie.
@@ -96,30 +143,29 @@ Kwalifikacja **INF.03 — „Tworzenie i administrowanie stronami i aplikacjami 
 .
 ├── README.md          # ten plik — przegląd kursu
 ├── AGENTS.md          # instrukcje dla asystentów AI pracujących w repo
-└── spotkania/         # 9 scenariuszy: overview + meta prompt
-    ├── z01-wstep-przegladarki-devtools.md
-    ├── z02-html5-fundamenty.md
-    ├── z03-css3-stylowanie.md
-    ├── z04-js-pierwsze-kroki.md
-    ├── l01-js-podstawy.md
-    ├── l02-js-dom-zdarzenia.md
-    ├── l03-js-dane.md
-    ├── l04-projekt-calkowity.md
-    └── l05-inf03-trening.md
+├── 0101/              # spotkanie 1 (semestr zimowy) — wzór pakietu
+│   ├── scenariusz.md      # scenariusz bazowy (overview + meta prompt)
+│   ├── scenariusz-adept.md # wariant scenariusza wg metody ADEPT
+│   ├── konspekt.md        # konspekt z rozpiską czasową
+│   ├── prezentacja.md     # outline prezentacji
+│   ├── cwiczenia/         # materiały dla uczniów
+│   └── rozwiazania/       # klucze odpowiedzi i rozwiązania (tylko prowadzący)
+├── 0102/ … 0104/      # kolejne spotkania semestru zimowego (scenariusz + materiały)
+└── 0201/ … 0205/      # spotkania semestru letniego (scenariusz + materiały)
 ```
 
-Planowane katalogi na wygenerowane materiały: `prezentacje/` (outline'y slajdów), `cwiczenia/` (materiały dla uczniów), `rozwiazania/` (klucze odpowiedzi i rozwiązania) — konwencje opisane w [AGENTS.md](AGENTS.md).
+Każde spotkanie ma swój katalog `{id}/` z kompletem materiałów: `scenariusz.md` (bazowy, z meta promptem), `konspekt.md`, `prezentacja.md`, `cwiczenia/` (materiały dla uczniów, bez rozwiązań) i `rozwiazania/` (klucze i rozwiązania — wyłącznie dla prowadzącego). Konwencje opisane w [AGENTS.md](AGENTS.md).
 
 ## Jak korzystać z meta promptów
 
-Każdy scenariusz w `spotkania/` zawiera sekcję **Meta prompt** — gotowe do skopiowania polecenie dla asystenta AI (ZCode, Claude, ChatGPT…), które generuje **pełny pakiet materiałów** na dane spotkanie: kartkówkę z kluczem, konspekt z rozpiską czasową, outline prezentacji, kod do live codingu, ćwiczenia w 3 wariantach z rozwiązaniami, zadanie domowe i pytania w stylu INF.03.
+Każdy scenariusz (`{id}/scenariusz.md`) zawiera sekcję **Meta prompt** — gotowe do skopiowania polecenie dla asystenta AI (ZCode, Claude, ChatGPT…), które generuje **pełny pakiet materiałów** na dane spotkanie: kartkówkę z kluczem, konspekt z rozpiską czasową, outline prezentacji, kod do live codingu, ćwiczenia w 3 wariantach z rozwiązaniami, zadanie domowe i pytania w stylu INF.03.
 
-1. Otwórz plik spotkania, np. [spotkania/z02-html5-fundamenty.md](spotkania/z02-html5-fundamenty.md).
+1. Otwórz plik spotkania, np. [scenariusz.md](0102/scenariusz.md).
 2. Skopiuj całą zawartość bloku **Meta prompt**.
 3. Wklej do nowej rozmowy z asystentem AI i wyślij.
 4. Wynik zapisz w repozytorium zgodnie z konwencjami z [AGENTS.md](AGENTS.md).
 
-## Technologie webowe w liczbach (dane na Z1)
+## Technologie webowe w liczbach (dane na 0101)
 
 Zweryfikowane statystyki używane na pierwszym spotkaniu — z podaniem źródeł (stan: październik 2026):
 

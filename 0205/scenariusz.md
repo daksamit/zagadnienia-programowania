@@ -1,10 +1,10 @@
-# L5 · INF.03 — trening egzaminacyjny i co dalej
+# 0205 · INF.03 — trening egzaminacyjny i co dalej
 
 | | |
 |---|---|
 | **Semestr** | letni — spotkanie 5 z 11 (grupy A/B) |
-| **Czas** | 135 min = **kartkówka 10** + blok 50 + przerwa 15 + blok 60 |
-| **Poprzednie** | [L4 · Projekt zintegrowany HTML + CSS + JS](l04-projekt-calkowity.md) |
+| **Czas** | 135 min = **kartkówka 10** + sekcja 50 + przerwa 15 + sekcja 35 + sekcja 25 |
+| **Poprzednie** | [0204 · Projekt zintegrowany HTML + CSS + JS](../0204/scenariusz.md) |
 | **Następne** | spotkania tematyczne (warsztaty utrwalające) + dalsze losy uczniów 😉 |
 
 ## Overview
@@ -17,12 +17,12 @@
 - Wie, **co dalej**: dalsza nauka (frameworki, kursy), praca (junior frontend) i **studia na Akademii Tarnowskiej** (kierunki, rekrutacja, praktyki).
 - Kończy kurs **ankietą** i podsumowaniem roku.
 
-### Kartkówka (10 min) — zakres: L4
+### Kartkówka (10 min) — zakres: 0204
 
-- Kroki publikacji GitHub Pages; komendy `add`/`commit`/`push` i ich sens; po co system kontroli wersji; role w zespole projektowym; MUST/MAYBE projektu.
+- Kroki publikacji strony; komendy `add`/`commit`/`push` i ich sens; po co system kontroli wersji; role w zespole projektowym; MUST/MAYBE projektu.
 - Format: 4–5 pytań, w tym min. 2 zamknięte (A–D) w stylu INF.03; klucz + punktacja.
 
-### Blok 1 (50 min) — część pisemna: strategia i trening
+### Sekcja 1 (50 min) — część pisemna: strategia i trening
 
 | Czas | Temat | Uwagi |
 |---|---|---|
@@ -33,14 +33,19 @@
 
 ### Przerwa (15 min)
 
-### Blok 2 (60 min) — część praktyczna: mini-arkusz i co dalej
+### Sekcja 2 (35 min) — mini-arkusz praktyczny i ocena koleżeńska
 
 | Czas | Temat | Uwagi |
 |---|---|---|
-| 30' | **Mini-arkusz praktyczny** — skrócona praca egzaminacyjna (specyfikacja + opis makiety): jednopage’owa witryna „Firma/Organizacja X”: szkielet semantyczny, nagłówek z logo i menu, artykuł ze zdjęciem, tabela danych, formularz z walidacją, stylowanie wg specyfikacji (kolory, font, układ flex/grid), skrypt (przycisk zmienia treść/tryb) | robimy **pod zegar** — symulacja stresu egzaminacyjnego |
+| 25' | **Mini-arkusz praktyczny** — skrócona praca egzaminacyjna (specyfikacja + opis makiety): jednopage’owa witryna „Firma/Organizacja X”: szkielet semantyczny, nagłówek z logo i menu, artykuł ze zdjęciem, tabela danych, formularz z walidacją, stylowanie wg specyfikacji (kolory, font, układ flex/grid), skrypt (przycisk zmienia treść/tryb) | robimy **pod zegar** — symulacja stresu egzaminacyjnego |
 | 10' | **Ocena wg kryteriów** — uczniowie wymieniają się pracami i punktują według arkusza kryteriów (0–20 pkt skali); omówienie najczęstszych powodów utraty punktów: brak `alt`, brak walidacji, niedokładne style, walidacja bez komunikatów | „myślenie jak egzaminator = więcej punktów” |
+
+### Sekcja 3 (25 min) — domknięcie: co dalej, finał kursu
+
+| Czas | Temat | Uwagi |
+|---|---|---|
 | 10' | **Co dalej? — ścieżki** — (a) nauka: kursy online, dokumentacja MDN, pierwsze kroki z frameworkami (React/Vue — nazwy do rozpoznania); (b) praca: junior frontend — czego oczekują oferty; (c) **studia na Akademii Tarnowskiej**: kierunki pokrewne, praktyki, projekty, życie studenckie, terminy rekrutacji | tu promocja AT może być pełniejsza — ale konkretnie, merytorycznie |
-| 10' | **Finał kursu** — podsumowanie roku (przypomnienie drogi: Z1 „dlaczego web” → dziś: działający projekt i strategia egzaminu); **prezentacje finalne projektów** (wolne wręczenie — pokazanie na ekranie); ankieta anonimowa (co zostało, co poprawić); podziękowania | ciepłe, konkretne zakończenie |
+| 15' | **Finał kursu** — podsumowanie roku (przypomnienie drogi: 0101 „dlaczego web” → dziś: działający projekt i strategia egzaminu); **prezentacje finalne projektów** (wolne wręczenie — pokazanie na ekranie); **zadanie domowe**: plan powtórek (pkt niżej); ankieta anonimowa (co zostało, co poprawić); podziękowania | ciepłe, konkretne zakończenie |
 
 ### Ćwiczenia
 
@@ -52,7 +57,7 @@
 
 1. Dokończ mini-arkusz i sprawdź się kryteriami (samoocena).
 2. Zaplanuj powtórki przed sesją: 3 działy z mapy mocnych/słabych stron — konkretna data na każdy.
-3. **Projekt finalny opublikowany na GitHub Pages** — niech żyje w portfolio.
+3. **Projekt finalny opublikowany w internecie** — niech żyje w portfolio.
 4. (Dla chętnych) zapoznaj się z informatorem INF.03 na cke.gov.pl — ważne przykłady zadań.
 
 ### Powiązanie z INF.03
@@ -72,10 +77,10 @@ Jesteś doświadczonym metodykiem nauczania, praktykującym programistą webowym
 
 ### Kontekst
 - Kurs: „Technologie webowe — HTML5, CSS3, JavaScript” dla uczniów czwartej klasy technikum ZST w Tarnowie (klasa patronacka Akademii Tarnowskiej, 18–19 lat).
-- Uczniowie znają już: cały materiał roku — HTML5 + a11y, CSS3 (flexbox, grid, responsywność, animacje), JavaScript (podstawy, DOM, zdarzenia, formularze, tablice/obiekty/JSON, localStorage, fetch), Git/GitHub, publikację, projekt zespołowy na GitHub Pages.
+- Uczniowie znają już: cały materiał roku — HTML5 + a11y, CSS3 (flexbox, grid, responsywność, animacje), JavaScript (podstawy, DOM, zdarzenia, formularze, tablice/obiekty/JSON, localStorage, fetch), Git/GitHub, publikację, projekt zespołowy.
 - Temat TEGO spotkania: trening egzaminacyjny INF.03 (strategia + test próbny + mini-arkusz praktyczny z kryteriami) + „co dalej” (nauka/praca/studia na Akademii Tarnowskiej) + finał kursu z Ankietą.
 - To ostatnie bazowe spotkanie — następne to już tylko warsztaty utrwalające (grupa A ma ich więcej).
-- Czas: 135 minut = kartkówka (10 min) + blok 1 (50 min) + przerwa (15 min) + blok 2 (60 min).
+- Czas: 135 minut = kartkówka (10 min) + sekcja 1 (50 min) + przerwa (15 min) + sekcja 2 (35 min) + sekcja 3 (25 min).
 
 ### Zasady metodyczne (niezmiennie)
 - Język polski; ton konkretny; odbiorca: technikum przed egzaminem — buduj pewność siebie na konkretach, nie na straszeniu.
@@ -90,11 +95,11 @@ Jesteś doświadczonym metodykiem nauczania, praktykującym programistą webowym
 4. Mini-arkusz praktyczny: skrócona praca egzaminacyjna — witryna jednopage’owa „Firma/Organizacja X” wg specyfikacji i opisu makiety: nagłówek z logo i menu, artykuł ze zdjęciem, tabela danych, formularz z walidacją, style wg specyfikacji (kolory, font, układ), skrypt (przycisk zmienia tryb/treść).
 5. Kryteria oceny mini-arkusza: tabela punktów 0–20 proporcjonalna do pracy egzaminacyjnej + lista najczęstszych powodów utraty punktów (brak alt, brak walidacji, style niedokładne do specyfikacji...).
 6. „Co dalej”: kursy i dokumentacja (MDN), rozpoznanie frameworków (React/Vue — tylko nazwy), oferty junior frontend, studia na Akademii Tarnowskiej (kierunki pokrewne, praktyki, projekty, rekrutacja).
-7. Finał: podsumowanie drogi (Z1 → L5), prezentacje finalne projektów, ankieta anonimowa, podziękowania.
+7. Finał: podsumowanie drogi (0101 → 0205), prezentacje finalne projektów, ankieta anonimowa, podziękowania.
 
 ### Do przygotowania (kolejność, format: Markdown, kod w blokach z językiem)
-1. Kartkówka (10 min) z zakresu L4 (GitHub Pages, add/commit/push, po co Git, role zespołu, MUST/MAYBE): 4–5 pytań, min. 2 zamknięte A–D w formacie INF.03 + 1–2 otwarte; klucz, punktacja 0–5, skala ocen.
-2. Konspekt z rozpiską czasową (10 + 50 + 15 + 60) co 5–10 minut, z wyraźnymi momentami: start testu, omówienie, mini-arkusz pod zegar, ocena koleżeńska, „co dalej”, finał z Ankietą.
+1. Kartkówka (10 min) z zakresu 0204 (publikacja strony, add/commit/push, po co Git, role zespołu, MUST/MAYBE): 4–5 pytań, min. 2 zamknięte A–D w formacie INF.03 + 1–2 otwarte; klucz, punktacja 0–5, skala ocen.
+2. Konspekt z rozpiską czasową (10 + 50 + 15 + 35 + 25) co 5–10 minut, z wyraźnymi momentami: start testu, omówienie, mini-arkusz pod zegar, ocena koleżeńska, „co dalej”, finał z Ankietą.
 3. Prezentacja (12–16 slajdów): anatomia egzaminu (tabela), strategia 3 przebiegów, przykładowe pułapki testowe, kryteria punktowania, „co dalej” (ścieżki + AT), finał roku.
 4. Test próbny: 20 pytań zamkniętych A–D (rozkład tematów: HTML 5, CSS 5, JS 5, sieć/WWW 3, grafika 1, bazy 1) + klucz + jednozdaniowe uzasadnienia + tabela samooceny dziedzin.
 5. Mini-arkusz praktyczny: kompletna specyfikacja (tekstowa makieta + wymagania + paleta/font) + tabela kryteriów 0–20 pkt + przykładowe pełne rozwiązanie.
