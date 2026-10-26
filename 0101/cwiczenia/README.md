@@ -87,4 +87,11 @@ Będą pytania zamknięte (A–D, jak na egzaminie INF.03) i krótkie otwarte.
 
 ---
 
+## Materiały do powtórki
+
+- [Ściąga 0101](sciaga-0101.md) — wszystko z zajęć na jednej stronie: historia, klient–serwer, DevTools, szkielet HTML.
+- [Poradnik 0101](poradnik-0101.md) — wersja rozszerzona: kompletne wyjaśnienia wszystkich terminów i pojęć oraz słowniczek A–Z.
+
+---
+
 Masz pytania albo coś nie działa? Pierwsza zasada z dzisiejszych zajęć: **pytaj na bieżąco** — na zajęciach lub mailowo. A jak wolisz najpierw spróbować samodzielnie — sięgnij po mini-ścięgę AI.

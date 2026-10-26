@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!-- FINALNY PLIK LIVE CODINGU 0102 — efekt wszystkich etapów z konspektu:
+     ściana divów → szkielet semantyczny → tekst i listy → linki → obrazy → a11y → tabela → multimedia → formularz.
+     Start („ściana divów"): cwiczenia/live-coding-start.html.
+     Obrazki są poglądowe (placehold.co) — podmień na własne pliki z katalogu obrazy/. -->
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bity z Podwórka — fanpage</title>
+</head>
+<body>
+
+  <!-- header = nagłówek strony: logo, nazwa, hasło -->
+  <header>
+    <h1>Bity z Podwórka</h1>
+    <p>Fanpage zespołu — prowadzony przez fanów, z miłości do bitów.</p>
+  </header>
+
+  <!-- nav = blok nawigacji: lista linków do sekcji strony (zakotwiczenia #id) -->
+  <nav>
+    <ul>
+      <li><a href="#o-zespole">O zespole</a></li>
+      <li><a href="#aktualnosci">Aktualności</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#koncerty">Koncerty</a></li>
+      <li><a href="#zapis">Zapisz się</a></li>
+    </ul>
+  </nav>
+
+  <!-- main = główna treść strony (dokładnie jeden na stronę) -->
+  <main>
+
+    <!-- section = wydzielona część tematyczna; id pozwala skoczyć tu z menu (#o-zespole) -->
+    <section id="o-zespole">
+      <h2>O zespole</h2>
+
+      <p>
+        Bity z Podwórka to trzyosobowy zespół z Tarnowa, który łączy elektronikę
+        z gitarą i tekstami o codziennym życiu. Grali w sali gimnastycznej,
+        na festynie i w klubie — i wszędzie wracali z nowym pomysłem na piosenkę.
+      </p>
+
+      <!-- strong = ważność, em = nacisk (czytnik ekranu zmienia intonację) -->
+      <p>
+        Nazwa wzięła się z miejsca pierwszych prób: <strong>podwórko</strong>
+        przy ulicy Miodowej, <em>pralka</em> jako perkusja i sąsiadka Grażyna
+        jako pierwszy recenzent.
+      </p>
+
+      <h3>Skład</h3>
+      <!-- ul = lista bez ważnej kolejności -->
+      <ul>
+        <li>Kuba — wokal i teksty</li>
+        <li>Zosia — klawisze i bity</li>
+        <li>Igor — perkusja (i garnek w „Kuchni")</li>
+      </ul>
+
+      <h3>Jak do tego doszło</h3>
+      <!-- ol = lista numerowana: kolejność ma znaczenie -->
+      <ol>
+        <li>2022 — pierwszy koncert na szkolnym festynie (11 minut, owacje)</li>
+        <li>2024 — wygrana w przeglądzie kapel podwórkowych Małopolski</li>
+        <li>2026 — album „Mgła i Bit" i ten fanpage</li>
+      </ol>
+
+      <h3>Mini-słowniczek fana</h3>
+      <!-- dl = lista definicyjna: termin (dt) + opis (dd) -->
+      <dl>
+        <dt>Bit</dt>
+        <dd>Powtarzalny szkic rytmiczny, na którym stoi utwór.</dd>
+        <dt>Podwórko</dt>
+        <dd>Miejsce pierwszych prób — i stan ducha zespołu.</dd>
+        <dt>Klub Fana</dt>
+        <dd>Lista mailingowa: członkowie dowiadują się o biletach pierwsi.</dd>
+      </dl>
+
+      <!-- blockquote = dłuższy cytat; footer w środku = podanie autora -->
+      <blockquote>
+        <p>„Mgła i Bit" brzmi, jakby Daft Punk wynajął mieszkanie przy Miodowej — i to działa.</p>
+        <footer>— fragment przykładowej recenzji portalu „Brzmienia"</footer>
+      </blockquote>
+    </section>
+
+    <!-- hr = tematyczna przerwa między blokami treści (używaj rzadko!) -->
+    <hr>
+
+    <section id="aktualnosci">
+      <h2>Aktualności</h2>
+
+      <!-- article = samodzielna, powtarzalna całość treści: news, post, wpis -->
+      <article>
+        <h3>Wychodzi singiel „Kuchnia"</h3>
+        <p>
+          Nowy utwór o tym, że najlepsze pomysły przychodzą przy gotowaniu.
+          Premiera 30 października — najpierw na koncercie, potem w serwisach.
+        </p>
+      </article>
+
+      <article>
+        <h3>Konkurs na okładkę albumu</h3>
+        <p>
+          Zespół szuka projektu okładki płyty „Mgła i Bit". Wyślij pomysł
+          przez formularz niżej — zwycięzca pojedzie z zespołem na koncert do Krakowa.
+        </p>
+      </article>
+    </section>
+
+    <section id="galeria">
+      <h2>Galeria</h2>
+
+      <!-- figure + figcaption = obrazek z widocznym podpisem;
+           alt opisuje treść obrazka (dla czytników ekranu i gdy plik się nie wczyta);
+           width/height rezerwują miejsce — strona nie „skacze" przy ładowaniu -->
+      <figure>
+        <img
+          src="https://placehold.co/600x400/1d2941/f8b913?text=Koncert+w+Tarnowie"
+          alt="Zdjęcie poglądowe: zespół gra na koncercie w Tarnowie"
+          width="600"
+          height="400"
+        >
+        <figcaption>Koncert w Tarnowie, maj 2026 (zdjęcie poglądowe)</figcaption>
+      </figure>
+
+      <figure>
+        <img
+          src="https://placehold.co/600x400/0d6efd/ffffff?text=Sesja+w+studiu"
+          alt="Zdjęcie poglądowe: zespół podczas sesji nagraniowej w studiu"
+          width="600"
+          height="400"
+        >
+        <figcaption>Sesja nagraniowa albumu „Mgła i Bit" (zdjęcie poglądowe)</figcaption>
+      </figure>
+
+      <figure>
+        <img
+          src="https://placehold.co/600x600/212529/f8b913?text=Okladka+Mgla+i+Bit"
+          alt="Projekt okładki albumu „Mgła i Bit" — grafika poglądowa"
+          width="600"
+          height="600"
+        >
+        <figcaption>Okładka albumu — propozycja nr 1 (grafika poglądowa)</figcaption>
+      </figure>
+
+      <h3>Zwiastun trasy jesiennej</h3>
+      <!-- video: controls = wbudowane przyciski odtwarzacza; source = plik; tekst w środku = fallback -->
+      <video controls width="600">
+        <source
+          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          type="video/mp4"
+        >
+        Twoja przeglądarka nie obsługuje wideo.
+      </video>
+    </section>
+
+    <section id="koncerty">
+      <h2>Koncerty</h2>
+
+      <!-- tabela = dane w wierszach i kolumnach (NIE do układania strony!);
+           caption = tytuł tabeli; thead z th = nagłówki, tbody z td = dane;
+           scope="col" mówi czytnikom ekranu, że th opisuje kolumnę -->
+      <table>
+        <caption>Trasa jesienna 2026 — planowane koncerty</caption>
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Miasto</th>
+            <th scope="col">Miejsce</th>
+            <th scope="col">Bilet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12.11.2026</td>
+            <td>Tarnów</td>
+            <td>Klub Pod Dachem</td>
+            <td>60 zł</td>
+          </tr>
+          <tr>
+            <td>27.11.2026</td>
+            <td>Kraków</td>
+            <td>Scena Boczna</td>
+            <td>75 zł</td>
+          </tr>
+          <tr>
+            <td>10.12.2026</td>
+            <td>Rzeszów</td>
+            <td>Hala Pod Wiaduktem</td>
+            <td>70 zł</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="zapis">
+      <h2>Zapisz się do Klubu Fana</h2>
+      <p>Członkowie Klubu dowiadują się o biletach pierwsi. Pola z gwiazdką (*) są wymagane.</p>
+
+      <!-- action="#": dane na razie nigdzie nie idą (nie mamy jeszcze serwera);
+           method="post" = standard przy wysyłaniu danych z formularza -->
+      <form action="#" method="post">
+
+        <!-- każde pole MA label powiązany atrybutem for ↔ id (klik w etykietę uaktywnia pole) -->
+        <label for="imie">Imię *</label>
+        <input type="text" id="imie" name="imie" required minlength="2">
+
+        <!-- type="email": przeglądarka sama sprawdza format adresu przed wysłaniem -->
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- type="date": przeglądarka rysuje kalendarz — zero JavaScriptu -->
+        <label for="koncert">Koncert, na który chcesz przyjść</label>
+        <input type="date" id="koncert" name="koncert">
+
+        <!-- min/max: zakres sprawdzany przy wysyłaniu -->
+        <label for="bilety">Liczba biletów (1–6)</label>
+        <input type="number" id="bilety" name="bilety" min="1" max="6">
+
+        <!-- pattern = wyrażenie regularne; title = podpowiedź pokazywana przy błędzie -->
+        <label for="kod">Kod promocyjny (format: BP-2026)</label>
+        <input
+          type="text"
+          id="kod"
+          name="kod"
+          pattern="[A-Z]{2}-[0-9]{4}"
+          title="Dwie wielkie litery, myślnik i cztery cyfry, np. BP-2026"
+        >
+
+        <label for="skad">Skąd znasz zespół?</label>
+        <select id="skad" name="skad">
+          <option value="koncert">byłem/byłam na koncercie</option>
+          <option value="instagram">Instagram</option>
+          <option value="znajomi">polecają znajomi</option>
+          <option value="inne">inne</option>
+        </select>
+
+        <label for="utwor">Twój ulubiony utwór — i dlaczego?</label>
+        <textarea id="utwor" name="utwor" rows="3"></textarea>
+
+        <!-- przy checkboxie label idzie ZA polem; required = zgoda wymagana -->
+        <input type="checkbox" id="zgoda" name="zgoda" required>
+        <label for="zgoda">Zgadzam się dostawać newsletter *</label>
+
+        <button type="submit">Zapisz mnie do Klubu Fana</button>
+      </form>
+    </section>
+
+    <!-- aside = treść poboczna: luźno związana z resztą strony -->
+    <aside>
+      <h2>Ciekawostka</h2>
+      <p>Pierwszy koncert trwał 11 minut — tyle, ile trwała rozładowana pralka na baterie.</p>
+
+      <h2>Posłuchaj i obejrzyj</h2>
+      <!-- audio: controls = odtwarzacz przeglądarki (utwór przykładowy) -->
+      <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+        Twoja przeglądarka nie obsługuje elementu audio.
+      </audio>
+
+      <!-- iframe = wstawka innej strony w naszą (tu: film z YouTube);
+           title opisuje zawartość ramki — ważne dla czytników ekranu -->
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        width="560"
+        height="315"
+        title="Teledysk polecany przez zespół"
+        allowfullscreen
+      >
+      </iframe>
+    </aside>
+  </main>
+
+  <!-- footer = stopka: informacje o stronie, kontakt, linki -->
+  <footer>
+    <p>
+      Fanpage nieoficjalny — tworzony na zajęciach „Zagadnienia programowania"
+      w ZST w Tarnowie.
+    </p>
+
+    <!-- br = nowa linia wewnątrz akapitu (np. adres); nie używaj do robienia odstępów! -->
+    <p>
+      Pytania o fanpage?<br>
+      Napisz: <a href="mailto:klubfana@bity-z-podworka.example">klubfana@bity-z-podworka.example</a>
+    </p>
+
+    <!-- link bezwzględny (pełny adres) + nowa karta z rel="noopener" -->
+    <p>
+      Dokładnie te znaczniki opisuje
+      <a href="https://developer.mozilla.org/pl/docs/Web/HTML" target="_blank" rel="noopener">
+        MDN Web Docs
+      </a>
+      — darmowa encyklopedia HTML.
+    </p>
+  </footer>
+
+</body>
+</html>
