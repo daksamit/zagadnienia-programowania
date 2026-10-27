@@ -9,6 +9,7 @@ Materiały **wyłącznie dla prowadzącego** - nie przekazuj uczniom. Dotyczą �
 | [cwiczenie-a/index.html](cwiczenie-a/index.html) | pełne rozwiązanie wariantu A (przykład: fanpage gry „Orbita: Ostatnia Stacja") |
 | [cwiczenie-b/index.html](cwiczenie-b/index.html) | pełne rozwiązanie wariantu B (A + tabela + `select`/`radio` w `fieldset` + multimedia) |
 | [cwiczenie-c-fanpage-instrukcja.md](cwiczenie-c-fanpage-instrukcja.md) | wariant C: wzorcowy przebieg (zakotwiczenia + audyt Tabem), oczekiwany efekt, typowe problemy |
+| [bonus-cyber-phishing-klucz.md](bonus-cyber-phishing-klucz.md) | klucz bonusu ⭐ „detektyw phishingu" (8 czerwonych flag, eksperyment GET vs POST, scenariusz omówienia) - dobrowolny, bez oceny |
 | [pytania-inf03-z-kluczem.md](pytania-inf03-z-kluczem.md) | 5 pytań w stylu INF.03 (+2 zamienne) z kluczem i uzasadnieniami - **baza kartkówki na 0103** |
 
 ## Ocena ćwiczeń - minimum, o które pytamy

