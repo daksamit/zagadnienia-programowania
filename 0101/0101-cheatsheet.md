@@ -96,4 +96,4 @@ Znaczniki z tej planszy: `h1` (nagłówek), `p` (akapit), `ul`/`li` (lista), `a`
 
 ---
 
-Więcej wyjaśnień znajdziesz w [poradniku 0101](poradnik-0101.md), prompty do nauki z AI - w [mini-śnie AI jako tutor](ai-jako-tutor-sciega.md).
+Więcej wyjaśnień znajdziesz w [poradniku 0101](0101-materialy-dydaktyczne.md), prompty do nauki z AI - w [mini-śnie AI jako tutor](ai-jako-tutor-sciega.md).

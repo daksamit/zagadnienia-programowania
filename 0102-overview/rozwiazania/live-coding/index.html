@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<!-- FINALNY PLIK LIVE CODINGU 0102 — efekt wszystkich etapów z konspektu:
+<!-- FINALNY PLIK LIVE CODINGU 0102 - efekt wszystkich etapów z konspektu:
      ściana divów → szkielet semantyczny → tekst i listy → linki → obrazy → a11y → tabela → multimedia → formularz.
-     Start („ściana divów"): cwiczenia/live-coding-start.html.
-     Obrazki są poglądowe (placehold.co) — podmień na własne pliki z katalogu obrazy/. -->
+     Start („ściana divów"): live-coding/index.html z pakietu ucznia (0102/).
+     Obrazki są poglądowe (placehold.co) - podmień na własne pliki z katalogu obrazy/.
+     Bonus: w head czeka zakomentowany skrypt Tailwind - odkomentuj, a strona
+     delikatnie się ostyluje. -->
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bity z Podwórka — fanpage</title>
+  <title>Bity z Podwórka - fanpage</title>
+
+  <!-- LEKKIE STYLOWANIE (opcja): skrypt poniżej jest celowo zakomentowany.
+       Usuń znaczniki otwierający i zamykający komentarz (każdy w osobnej linii),
+       a strona delikatnie się ostyluje - to Tailwind CSS ładowany z CDN (wymaga internetu).
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  -->
 </head>
-<body>
+<body class="max-w-3xl mx-auto px-4 py-8 leading-relaxed">
 
   <!-- header = nagłówek strony: logo, nazwa, hasło -->
-  <header>
-    <h1>Bity z Podwórka</h1>
-    <p>Fanpage zespołu — prowadzony przez fanów, z miłości do bitów.</p>
+  <header class="mb-8 space-y-1">
+    <h1 class="text-3xl font-bold">Bity z Podwórka</h1>
+    <p>Fanpage zespołu - prowadzony przez fanów, z miłości do bitów.</p>
   </header>
 
   <!-- nav = blok nawigacji: lista linków do sekcji strony (zakotwiczenia #id) -->
-  <nav>
-    <ul>
+  <nav class="mb-8">
+    <ul class="flex flex-wrap gap-x-6">
       <li><a href="#o-zespole">O zespole</a></li>
       <li><a href="#aktualnosci">Aktualności</a></li>
       <li><a href="#galeria">Galeria</a></li>
@@ -29,16 +37,16 @@
   </nav>
 
   <!-- main = główna treść strony (dokładnie jeden na stronę) -->
-  <main>
+  <main class="space-y-8">
 
     <!-- section = wydzielona część tematyczna; id pozwala skoczyć tu z menu (#o-zespole) -->
-    <section id="o-zespole">
-      <h2>O zespole</h2>
+    <section class="space-y-3" id="o-zespole">
+      <h2 class="text-xl font-bold">O zespole</h2>
 
       <p>
         Bity z Podwórka to trzyosobowy zespół z Tarnowa, który łączy elektronikę
         z gitarą i tekstami o codziennym życiu. Grali w sali gimnastycznej,
-        na festynie i w klubie — i wszędzie wracali z nowym pomysłem na piosenkę.
+        na festynie i w klubie - i wszędzie wracali z nowym pomysłem na piosenkę.
       </p>
 
       <!-- strong = ważność, em = nacisk (czytnik ekranu zmienia intonację) -->
@@ -48,70 +56,70 @@
         jako pierwszy recenzent.
       </p>
 
-      <h3>Skład</h3>
+      <h3 class="font-bold">Skład</h3>
       <!-- ul = lista bez ważnej kolejności -->
-      <ul>
-        <li>Kuba — wokal i teksty</li>
-        <li>Zosia — klawisze i bity</li>
-        <li>Igor — perkusja (i garnek w „Kuchni")</li>
+      <ul class="list-disc pl-5">
+        <li>Kuba - wokal i teksty</li>
+        <li>Zosia - klawisze i bity</li>
+        <li>Igor - perkusja (i garnek w „Kuchni")</li>
       </ul>
 
-      <h3>Jak do tego doszło</h3>
+      <h3 class="font-bold">Jak do tego doszło</h3>
       <!-- ol = lista numerowana: kolejność ma znaczenie -->
-      <ol>
-        <li>2022 — pierwszy koncert na szkolnym festynie (11 minut, owacje)</li>
-        <li>2024 — wygrana w przeglądzie kapel podwórkowych Małopolski</li>
-        <li>2026 — album „Mgła i Bit" i ten fanpage</li>
+      <ol class="list-decimal pl-5">
+        <li>2022 - pierwszy koncert na szkolnym festynie (11 minut, owacje)</li>
+        <li>2024 - wygrana w przeglądzie kapel podwórkowych Małopolski</li>
+        <li>2026 - album „Mgła i Bit" i ten fanpage</li>
       </ol>
 
-      <h3>Mini-słowniczek fana</h3>
+      <h3 class="font-bold">Mini-słowniczek fana</h3>
       <!-- dl = lista definicyjna: termin (dt) + opis (dd) -->
       <dl>
         <dt>Bit</dt>
         <dd>Powtarzalny szkic rytmiczny, na którym stoi utwór.</dd>
         <dt>Podwórko</dt>
-        <dd>Miejsce pierwszych prób — i stan ducha zespołu.</dd>
+        <dd>Miejsce pierwszych prób - i stan ducha zespołu.</dd>
         <dt>Klub Fana</dt>
         <dd>Lista mailingowa: członkowie dowiadują się o biletach pierwsi.</dd>
       </dl>
 
       <!-- blockquote = dłuższy cytat; footer w środku = podanie autora -->
       <blockquote>
-        <p>„Mgła i Bit" brzmi, jakby Daft Punk wynajął mieszkanie przy Miodowej — i to działa.</p>
-        <footer>— fragment przykładowej recenzji portalu „Brzmienia"</footer>
+        <p>„Mgła i Bit" brzmi, jakby Daft Punk wynajął mieszkanie przy Miodowej - i to działa.</p>
+        <footer>- fragment przykładowej recenzji portalu „Brzmienia"</footer>
       </blockquote>
     </section>
 
     <!-- hr = tematyczna przerwa między blokami treści (używaj rzadko!) -->
     <hr>
 
-    <section id="aktualnosci">
-      <h2>Aktualności</h2>
+    <section class="space-y-3" id="aktualnosci">
+      <h2 class="text-xl font-bold">Aktualności</h2>
 
       <!-- article = samodzielna, powtarzalna całość treści: news, post, wpis -->
-      <article>
-        <h3>Wychodzi singiel „Kuchnia"</h3>
+      <article class="space-y-1">
+        <h3 class="font-bold">Wychodzi singiel „Kuchnia"</h3>
         <p>
           Nowy utwór o tym, że najlepsze pomysły przychodzą przy gotowaniu.
-          Premiera 30 października — najpierw na koncercie, potem w serwisach.
+          Premiera 30 października - najpierw na koncercie, potem w serwisach.
         </p>
       </article>
 
-      <article>
-        <h3>Konkurs na okładkę albumu</h3>
+      <article class="space-y-1">
+        <h3 class="font-bold">Konkurs na okładkę albumu</h3>
         <p>
           Zespół szuka projektu okładki płyty „Mgła i Bit". Wyślij pomysł
-          przez formularz niżej — zwycięzca pojedzie z zespołem na koncert do Krakowa.
+          przez formularz niżej - zwycięzca pojedzie z zespołem na koncert do Krakowa.
         </p>
       </article>
     </section>
 
-    <section id="galeria">
-      <h2>Galeria</h2>
+    <section class="space-y-3" id="galeria">
+      <h2 class="text-xl font-bold">Galeria</h2>
 
       <!-- figure + figcaption = obrazek z widocznym podpisem;
            alt opisuje treść obrazka (dla czytników ekranu i gdy plik się nie wczyta);
-           width/height rezerwują miejsce — strona nie „skacze" przy ładowaniu -->
+           width/height rezerwują miejsce - strona nie „skacze" przy ładowaniu -->
       <figure>
         <img
           src="https://placehold.co/600x400/1d2941/f8b913?text=Koncert+w+Tarnowie"
@@ -135,14 +143,14 @@
       <figure>
         <img
           src="https://placehold.co/600x600/212529/f8b913?text=Okladka+Mgla+i+Bit"
-          alt="Projekt okładki albumu „Mgła i Bit" — grafika poglądowa"
+          alt="Projekt okładki albumu „Mgła i Bit" - grafika poglądowa"
           width="600"
           height="600"
         >
-        <figcaption>Okładka albumu — propozycja nr 1 (grafika poglądowa)</figcaption>
+        <figcaption>Okładka albumu - propozycja nr 1 (grafika poglądowa)</figcaption>
       </figure>
 
-      <h3>Zwiastun trasy jesiennej</h3>
+      <h3 class="font-bold">Zwiastun trasy jesiennej</h3>
       <!-- video: controls = wbudowane przyciski odtwarzacza; source = plik; tekst w środku = fallback -->
       <video controls width="600">
         <source
@@ -153,14 +161,14 @@
       </video>
     </section>
 
-    <section id="koncerty">
-      <h2>Koncerty</h2>
+    <section class="space-y-3" id="koncerty">
+      <h2 class="text-xl font-bold">Koncerty</h2>
 
       <!-- tabela = dane w wierszach i kolumnach (NIE do układania strony!);
            caption = tytuł tabeli; thead z th = nagłówki, tbody z td = dane;
            scope="col" mówi czytnikom ekranu, że th opisuje kolumnę -->
       <table>
-        <caption>Trasa jesienna 2026 — planowane koncerty</caption>
+        <caption>Trasa jesienna 2026 - planowane koncerty</caption>
         <thead>
           <tr>
             <th scope="col">Data</th>
@@ -192,13 +200,13 @@
       </table>
     </section>
 
-    <section id="zapis">
-      <h2>Zapisz się do Klubu Fana</h2>
+    <section class="space-y-3" id="zapis">
+      <h2 class="text-xl font-bold">Zapisz się do Klubu Fana</h2>
       <p>Członkowie Klubu dowiadują się o biletach pierwsi. Pola z gwiazdką (*) są wymagane.</p>
 
       <!-- action="#": dane na razie nigdzie nie idą (nie mamy jeszcze serwera);
            method="post" = standard przy wysyłaniu danych z formularza -->
-      <form action="#" method="post">
+      <form action="#" method="post" class="space-y-2">
 
         <!-- każde pole MA label powiązany atrybutem for ↔ id (klik w etykietę uaktywnia pole) -->
         <label for="imie">Imię *</label>
@@ -208,7 +216,7 @@
         <label for="email">E-mail *</label>
         <input type="email" id="email" name="email" required>
 
-        <!-- type="date": przeglądarka rysuje kalendarz — zero JavaScriptu -->
+        <!-- type="date": przeglądarka rysuje kalendarz - zero JavaScriptu -->
         <label for="koncert">Koncert, na który chcesz przyjść</label>
         <input type="date" id="koncert" name="koncert">
 
@@ -234,30 +242,30 @@
           <option value="inne">inne</option>
         </select>
 
-        <label for="utwor">Twój ulubiony utwór — i dlaczego?</label>
+        <label for="utwor">Twój ulubiony utwór - i dlaczego?</label>
         <textarea id="utwor" name="utwor" rows="3"></textarea>
 
         <!-- przy checkboxie label idzie ZA polem; required = zgoda wymagana -->
         <input type="checkbox" id="zgoda" name="zgoda" required>
         <label for="zgoda">Zgadzam się dostawać newsletter *</label>
 
-        <button type="submit">Zapisz mnie do Klubu Fana</button>
+        <button type="submit" class="rounded border px-4 py-2">Zapisz mnie do Klubu Fana</button>
       </form>
     </section>
 
-    <!-- aside = treść poboczna: luźno związana z resztą strony -->
-    <aside>
-      <h2>Ciekawostka</h2>
-      <p>Pierwszy koncert trwał 11 minut — tyle, ile trwała rozładowana pralka na baterie.</p>
+  <!-- aside = treść poboczna: luźno związana z resztą strony -->
+  <aside class="space-y-3">
+      <h2 class="text-xl font-bold">Ciekawostka</h2>
+      <p>Pierwszy koncert trwał 11 minut - tyle, ile trwała rozładowana pralka na baterie.</p>
 
-      <h2>Posłuchaj i obejrzyj</h2>
+      <h2 class="text-xl font-bold">Posłuchaj i obejrzyj</h2>
       <!-- audio: controls = odtwarzacz przeglądarki (utwór przykładowy) -->
       <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
         Twoja przeglądarka nie obsługuje elementu audio.
       </audio>
 
       <!-- iframe = wstawka innej strony w naszą (tu: film z YouTube);
-           title opisuje zawartość ramki — ważne dla czytników ekranu -->
+           title opisuje zawartość ramki - ważne dla czytników ekranu -->
       <iframe
         src="https://www.youtube.com/embed/dQw4w9WgXcQ"
         width="560"
@@ -270,9 +278,9 @@
   </main>
 
   <!-- footer = stopka: informacje o stronie, kontakt, linki -->
-  <footer>
+  <footer class="mt-8 space-y-2 border-t border-slate-300 pt-4">
     <p>
-      Fanpage nieoficjalny — tworzony na zajęciach „Zagadnienia programowania"
+      Fanpage nieoficjalny - tworzony na zajęciach „Zagadnienia programowania"
       w ZST w Tarnowie.
     </p>
 
@@ -288,7 +296,7 @@
       <a href="https://developer.mozilla.org/pl/docs/Web/HTML" target="_blank" rel="noopener">
         MDN Web Docs
       </a>
-      — darmowa encyklopedia HTML.
+      - darmowa encyklopedia HTML.
     </p>
   </footer>
 

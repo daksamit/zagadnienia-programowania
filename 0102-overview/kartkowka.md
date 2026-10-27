@@ -1,14 +1,14 @@
-# Kartkówka nr 1 — zakres: 0101 · Dlaczego web?
+# Kartkówka nr 1 - zakres: 0101 · Dlaczego web?
 
-> **Dla prowadzącego:** wydrukuj 1 stronę na ucznia. Klucz odpowiedzi, punktacja i skala ocen są w osobnym pliku: [rozwiazania/kartkowka-klucz.md](rozwiazania/kartkowka-klucz.md) — nie dołączaj go do wydruku. Czas pisania: 8 minut (rozdanie i zbiór kartek: po 1 minucie). Omówienie najczęstszych pułapek: na początku Sekcji 1.
+> **Dla prowadzącego:** wydrukuj 1 stronę na ucznia. Klucz odpowiedzi, punktacja i skala ocen są w osobnym pliku: [rozwiazania/kartkowka-klucz.md](rozwiazania/kartkowka-klucz.md) - nie dołączaj go do wydruku. Czas pisania: 8 minut (rozdanie i zbiór kartek: po 1 minucie). Omówienie najczęstszych pułapek: na początku Sekcji 1.
 
 ---
 
 **Zagadnienia programowania · ZST w Tarnowie × Akademia Tarnowska**
 
-# Kartkówka nr 1 — „Dlaczego web?" (spotkanie 0101)
+# Kartkówka nr 1 - „Dlaczego web?" (spotkanie 0101)
 
-**Zasady:** 5 pytań, razem max. **5 pkt**. Pytania 1–3 zamknięte — dokładnie **jedna** odpowiedź. Pytania 4–5 otwarte — odpowiadaj pełnymi zdaniami lub kodem. Czas: 8 minut. Ocena cząstkowa trafi do dziennika.
+**Zasady:** 5 pytań, razem max. **5 pkt**. Pytania 1–3 zamknięte - dokładnie **jedna** odpowiedź. Pytania 4–5 otwarte - odpowiadaj pełnymi zdaniami lub kodem. Czas: 8 minut. Ocena cząstkowa trafi do dziennika.
 
 Imię i nazwisko: ..................................................  Klasa/grupa: ..............
 
@@ -56,7 +56,7 @@ Odpowiedź: ......
 
 ---
 
-**5.** W panelu **Elements** Chrome DevTools zmieniłeś/aś tekst nagłówka cudzej strony. Wyjaśnij jednym zdaniem, co stanie się z tą zmianą po naciśnięciu **F5** — i dlaczego. *(1 pkt)*
+**5.** W panelu **Elements** Chrome DevTools zmieniłeś/aś tekst nagłówka cudzej strony. Wyjaśnij jednym zdaniem, co stanie się z tą zmianą po naciśnięciu **F5** - i dlaczego. *(1 pkt)*
 
 ............................................................................................
 

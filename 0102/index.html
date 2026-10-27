@@ -2,23 +2,32 @@
 <!-- START LIVE CODINGU 0102 - „ściana divów": strona DZIAŁA i wygląda, ale kod nic nie znaczy.
      W Sekcji 1 zamienimy divy na znaczniki semantyczne (header, nav, main, section, article, aside, footer)
      i dodamy nagłówki, listy, linki, obrazy - krok po kroku, razem z prowadzącym.
-     Docelowy (koncowy) plik: rozwiazania/live-coding/index.html - u prowadzącego. -->
+     Docelowy (koncowy) plik: rozwiazania/live-coding/index.html - u prowadzącego.
+     Bonus: w head czeka zakomentowany skrypt Tailwind - odkomentuj, a strona
+     delikatnie się ostyluje. -->
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bity z Podwórka - fanpage</title>
+
+  <!-- LEKKIE STYLOWANIE (opcja): skrypt poniżej jest celowo zakomentowany.
+       Usuń znaczniki otwierający i zamykający komentarz (każdy w osobnej linii),
+       a strona delikatnie się ostyluje - to Tailwind CSS ładowany z CDN (wymaga internetu).
+       Skąd te klasy przy divach i jak to działa? Wyjaśnimy na 0103 (CSS3).
+       -->
+       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="max-w-3xl mx-auto px-4 py-8 leading-relaxed">
 
   <!-- nad główną treścią: logo i hasło zespołu -->
-  <div class="naglowek">
+  <div class="naglowek mb-8 space-y-1">
     <div class="tytul">Bity z Podwórka</div>
     <div class="podtytul">Fanpage zespołu - prowadzony przez fanów, z miłości do bitów.</div>
   </div>
 
   <!-- menu: O zespole / Aktualności / Galeria / Koncerty / Zapisz się -->
-  <div class="menu">
+  <div class="menu flex flex-wrap gap-x-6 mb-8">
     <div>O zespole</div>
     <div>Aktualności</div>
     <div>Galeria</div>
@@ -27,7 +36,7 @@
   </div>
 
   <!-- główna treść strony -->
-  <div class="glowna">
+  <div class="glowna space-y-8">
 
     <!-- część „o zespole" -->
     <div class="czesc">
@@ -90,7 +99,7 @@
   </div>
 
   <!-- stopka -->
-  <div class="stopka">
+  <div class="stopka mt-8 border-t border-slate-300 pt-4">
     <div class="akapit">
       Fanpage nieoficjalny - tworzony na zajęciach „Zagadnienia programowania" w ZST w Tarnowie.
     </div>

@@ -2,7 +2,7 @@
 
 0101 · Technologie webowe · ZST w Tarnowie × Akademia Tarnowska · kompletny przewodnik po pierwszym spotkaniu
 
-To rozbudowana wersja materiałów z zajęć 0101: wszystko wyjaśnione od podstaw, z pełnym słowniczkiem pojęć na końcu. Szybka powtórka przed kartkówką? Sięgnij po [ściągę](sciaga-0101.md).
+To rozbudowana wersja materiałów z zajęć 0101: wszystko wyjaśnione od podstaw, z pełnym słowniczkiem pojęć na końcu. Szybka powtórka przed kartkówką? Sięgnij po [ściągę](0101-cheatsheet.md).
 
 **Spis treści**
 
@@ -203,7 +203,7 @@ AI (np. asystent w przeglądarce) świetnie sprawdza się jako **korepetytor dos
 
 ## 9. Twoja pierwsza strona HTML
 
-Szkielet HTML5 znak po znaku (pełny listing z live codingu jest w [rozwiazaniach/live-coding-index.html](../rozwiazania/live-coding-index.html)):
+Szkielet HTML5 znak po znaku (dokładnie ten sam powstaje w live codingu; finalną wersję pliku prześle prowadzący):
 
 ```html
 <!DOCTYPE html>
@@ -294,7 +294,7 @@ Sprawdź się - jeśli któreś pytanie sprawia trudność, wróć do odpowiedni
 5. Jak otworzyć DevTools i co robi panel Elements? Dlaczego zmiany zrobione w Elements znikają po odświeżeniu strony?
 6. Napisz z pamięci (lub sprawdź i wyjaśnij) szkielet HTML5: `<!DOCTYPE html>`, `<html lang="pl">`, `<head>` z meta charset, viewport i title, `<body>` z nagłówkiem, akapitem i listą.
 
-Kartkówka będzie zawierać min. 2 pytania zamknięte (jednokrotny wybór A–D) w formacie egzaminu INF.03 - poćwicz z [ściągi](sciaga-0101.md).
+Kartkówka będzie zawierać min. 2 pytania zamknięte (jednokrotny wybór A–D) w formacie egzaminu INF.03 - poćwicz z [ściągi](0101-cheatsheet.md).
 
 ---
 

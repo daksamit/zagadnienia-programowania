@@ -1,14 +1,14 @@
-# Ankieta zapoznawcza — 0101 · Dlaczego web?
+# Ankieta zapoznawcza - 0101 · Dlaczego web?
 
-> **Dla prowadzącego:** wydrukuj 1 stronę na ucznia. Ankieta jest **nieoceniana** — pełni wyłącznie funkcję diagnostyczną: po lekturze odpowiedzi skalibruj głębokość bloku „AI jako tutor" w Sekcji 2. Przypomnij uczniom na głos: „to nie test — nie ma złych odpowiedzi".
+> **Dla prowadzącego:** wydrukuj 1 stronę na ucznia. Ankieta jest **nieoceniana** - pełni wyłącznie funkcję diagnostyczną: po lekturze odpowiedzi skalibruj głębokość bloku „AI jako tutor" w Sekcji 2. Przypomnij uczniom na głos: „to nie test - nie ma złych odpowiedzi".
 
 ---
 
 **Zagadnienia programowania · ZST × Akademia Tarnowska**
 
-# Ankieta na start — Twoje spotkanie z AI
+# Ankieta na start - Twoje spotkanie z AI
 
-**To nie test.** Nie ma złych odpowiedzi i **ta ankieta nie jest oceniana** — chcę tylko wiedzieć, od czego zaczynamy. Odpowiadaj szczerze, własnymi słowami. Jeśli czegoś nie wiesz, napisz „nie wiem" — to też dobra odpowiedź.
+**To nie test.** Nie ma złych odpowiedzi i **ta ankieta nie jest oceniana** - chcę tylko wiedzieć, od czego zaczynamy. Odpowiadaj szczerze, własnymi słowami. Jeśli czegoś nie wiesz, napisz „nie wiem" - to też dobra odpowiedź.
 
 Imię i nazwisko (opcjonalnie): .................................................
 
