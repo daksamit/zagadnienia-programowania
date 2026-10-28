@@ -1,9 +1,0 @@
-# Artefakty lokalnego agenta (ZCode)
-.zcode/
-
-# macOS
-.DS_Store
-
-# Edytory
-.vscode/
-.idea/

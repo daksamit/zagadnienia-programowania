@@ -1,181 +1,226 @@
-# Technologie webowe - zajęcia klas patronackich ZST × Akademia Tarnowska
+# 0102 · Materiały dla ucznia - „HTML5: fundamenty i semantyka + dostępność (a11y)"
 
-Materiały dydaktyczne do zajęć z podstaw webdevelopmentu (**HTML5, CSS3, JavaScript**) prowadzonych dla uczniów **Zespołu Szkół Technicznych w Tarnowie** w ramach **klas patronackich Akademii Tarnowskiej**. Przedmiot szkolny - **„Zagadnienia programowania”** - prowadzony jest wspólnie z mgr. inż. Tomaszem Gądkiem (tematy backendowe, materiały poza tym repozytorium); to repozytorium obejmuje **blok frontendowy** mgr. inż. Dominika Aksamita.
+Technologie webowe · ZST w Tarnowie × Akademia Tarnowska
 
-| | |
-|---|---|
-| **Przedmiot** | „Zagadnienia programowania” · 54 h w sem. zimowym + 66 h w sem. letnim |
-| **Prowadzący** | mgr inż. Dominik Aksamit - Akademia Tarnowska (blok frontendowy - to repozytorium) · mgr inż. Tomasz Gądek (blok backendowy - poza tym repozytorium) |
-| **Odbiorcy** | uczniowie czwartej klasy technikum ZST w Tarnowie |
-| **Cykl** | semestr zimowy: 9 terminów (07 X – 16 XII 2026) · semestr letni: 11 terminów (03 III – 02 VI 2027) + rezerwowe 09 VI i 16 VI · środy 7:30–9:45 · grupy **A** i **B** równolegle |
-| **Jednostka zajęć** | **135 minut** (z 15-minutową przerwą) |
+Dziś budujesz **własny fanpage**: ulubiony zespół, gracz, gra albo youtuber - wybierz temat, o którym umiesz napisać trzy zdania bez zaglądania do internetu. Fanpage będzie Twoim projektem na kolejne spotkania: na **0103 ostylujesz go w CSS3**, żeby wyglądał jak prawdziwa strona. Dziś tylko szkielet i treść - i to dobrze: najpierw fundamenty, potem wygląd.
 
----
+## Plan spotkania - 3 bloki
 
-## Cel zajęć
-
-1. **Praktyczne opanowanie podstaw HTML5, CSS3 i JavaScript** - od pierwszej strony po działającą interaktywną aplikację webową.
-2. **Przygotowanie do egzaminu zawodowego INF.03** - kartkówki, zadania i ćwiczenia w formacie zbliżonym do egzaminu, na finał trening na arkuszu próbnym.
-3. **Zachęcenie uczniów do podjęcia studiów na Akademii Tarnowskiej** - merytorycznie: ścieżka „technikum → studia → praca w IT”, praktyki, projekty i życie uczelniane.
-
-## Format zajęć
-
-Spotkanie trwa **135 minut** wg stałego schematu **trzech sekcji**:
-
-| Element | Czas | Uwagi |
+| Blok | Czas | Co się dzieje |
 |---|---|---|
-| Kartkówka | 10 min | **od drugiego spotkania (0102)**; zakres: poprzednie spotkanie; min. 2 pytania zamknięte w formacie INF.03; oceny cząstkowe |
-| Sekcja 1 - start i nowy materiał | 50 min | omówienie kartkówki, krótkie wprowadzenie, live coding |
-| Przerwa | 15 min | |
-| Sekcja 2 - praktyka | 35 min | ćwiczenie samodzielne (wariant A i start B), pomoc indywidualna |
-| Sekcja 3 - domknięcie | 25 min | warianty B/C, 5 pytań INF.03, podsumowanie, zadanie domowe, zapowiedź kartkówki |
-| **Razem** | **135 min** | |
+| 1 | 7:30–8:15 | kartkówka z 0101 (10 min) · „ściana divów" → **szkielet semantyczny** · tekst i listy · linki i zakotwiczenia · obrazy: `img`, `src`, `alt` |
+| 2 | 8:15–9:00 | obrazy cd.: formaty i `figure` · **dostępność (a11y)** i 4 zasady WCAG · *przerwa 15 min* · tabele danych · multimedia: `video`, `audio`, `iframe` |
+| 3 | 9:00–9:45 | **Twój fanpage** - warianty A/B/C · mini-quiz, podsumowanie, zapowiedź 0103 |
 
-Wyjątki od schematu:
+## Jak o tym myśleć - zanim zaczniesz pisać znaczniki
 
-- **0101** rozpoczyna kurs: zamiast kartkówki **nieoceniana ankieta zapoznawcza (10 min, pisemna)** o wiedzy i doświadczeniu z AI - dalej jak w schemacie: 10 + 50 + 15 + 35 + 25 minut.
-- **0104** zamyka semestr zimowy: sekcja 60 + przerwa 15 + **sprawdzian semestralny 60** (pisemny, zakres 0101–0104) - zamiast kartkówki i sekcji 2–3.
+Cały dzisiejszy dzień sprowadza się do czterech modeli myślowych. Są ważniejsze niż zapamiętanie listy znaczników - działają też przy elementach, których jeszcze nie znasz.
 
-**Ocenianie:** z kartkówek (od 0102) i sprawdzianu semestralnego uczniowie zbierają **oceny cząstkowe**, z których wystawiana jest **ocena na koniec roku**. Ankieta z 0101 jest nieoceniana - pełni wyłącznie funkcję diagnostyczną.
+### Semantyka: HTML opisuje znaczenie, nie wygląd
 
-Zasady metodyczne:
+Stronę czytają dwaj czytelnicy: **człowiek** (widzi układ i obrazy) i **maszyna** (czytnik ekranu, robot wyszukiwarki, przeglądarka). Wygląd załatwia CSS - na 0103. HTML odpowiada na jedno pytanie: **czym ta treść jest?**
 
-- **min. 60% czasu to praktyka uczniowska** i live coding prowadzącego,
-- wzorzec każdego zagadnienia: *krótkie wprowadzenie → demo na żywo → uczeń robi sam* (wprowadzenie i demo w Sekcji 1, praca samodzielna w Sekcji 2, utrwalenie w Sekcji 3),
-- ćwiczenia w trzech wariantach: **A** (podstawowy), **B** (rozszerzający), **C** (gwiazdka dla szybkich),
-- każde spotkanie kończy się zadaniem domowym i podaniem zakresu najbliższej kartkówki.
+Zadawaj je kaskadowo, dla każdego kawałka strony:
 
-## Organizacja roku - grupy A i B
+1. **Jaka to część strony?** - nagłówek strony (`header`), nawigacja (`nav`), główna treść (`main`), treść poboczna (`aside`), stopka (`footer`).
+2. **Jeśli to treść: czym ona jest?** - samodzielna całość, która ma sens nawet wyrwana z kontekstu (`article`)? sekcja z własnym nagłówkiem (`section`)? zwykły akapit (`p`)?
+3. **Jeśli fragment wewnątrz zdania: niesie znaczenie?** - waga (`strong`), akcent (`em`), cytat (`blockquote`) - czy tylko grupuje bez znaczenia (`span`)?
 
-Klasa pracuje w dwóch grupach, **A i B**, które mają zajęcia **równolegle**: w każdym terminie każda grupa spotyka się z innym prowadzącym, a prowadzący **zamieniają się grupami co spotkanie**. Materiał każdego bloku jest realizowany **dwukrotnie** - najpierw z jedną grupą, a na następnym spotkaniu powtórzony z drugą (w semestrze zimowym blok Aksamita zaczyna grupa B, w letnim - grupa A).
+`div` nie jest zły - to uczciwe pudełko bez znaczenia, do grupowania. Problem zaczyna się, gdy `div` stoi tam, gdzie znaczenie istnieje: „ściana divów" wygląda identycznie dla człowieka, ale dla maszyny to pusta kartka.
 
-Rozkład spotkań bloku frontendowego (Aksamit):
+Obszary semantyki, które dziś ćwiczysz - i w każdym obowiązuje to samo pytanie „czym to jest?": **struktura dokumentu** (szkielet strony), **semantyka tekstu** (`strong`, `em`, listy, cytaty), **media** (`alt`, `figure`), **dane** (`table`), **interakcja** (formularze).
 
-| Semestr | Terminy | Grupa A | Grupa B |
-|---|---|---|---|
-| zimowy 2026 | 9 (07 X – 16 XII) | 4 - 0101–0104 | 5 - 0101–0104 + warsztaty (16 XII) |
-| letni 2027 | 11 (03 III – 02 VI) | 6 - 0201–0205 + warsztaty (02 VI) | 5 - 0201–0205 |
+### a11y: nie dodatek, tylko funkcja HTML
 
-Repozytorium zawiera **9 bazowych scenariuszy** (4 zimowe + 5 letnich) wspólnych dla obu grup - każdy realizowany z grupą A i z grupą B. **Dziesiąte spotkanie każdej grupy** (16 XII - grupa B, 02 VI - grupa A) to **warsztaty utrwalające**: powtórka materiału, ćwiczenia dodatkowe, dokańczanie projektów i indywidualna praca z uczniami - bez osobnego scenariusza. Blok backendowy Gądka realizowany jest w tych samych terminach z drugą grupą (materiały poza tym repozytorium).
+Dlaczego w ogóle o tym mówimy - trzy powody, każdy innego rodzaju:
 
-## Harmonogram zajęć
+- **ludzki**: 1 na 6 ludzi na świecie żyje z niepełnosprawnością (WHO, 2023) - to realni użytkownicy Twoich stron,
+- **prawny**: unijne wymogi dostępności usług online (European Accessibility Act) obowiązują od 28 czerwca 2025,
+- **praktyczny**: dostępność jest punktowana w arkuszach INF.03, a strona dostępna jest po prostu lepsza dla wszystkich - `alt` czyta też wyszukiwarka obrazów, a porządek nagłówków pomaga każdemu, kto skanuje stronę wzrokiem.
 
-Zajęcia odbywają się w **środy 7:30–9:45** (135 minut = 3 godziny lekcyjne); w każdym terminie grupy A i B pracują **równolegle**, każda z innym prowadzącym. Etykiety grup przyjęto wg kolejności z harmonogramów ZST: **pierwsze nazwisko w wierszu = prowadzący grupy A**.
+### a11y w praktyce: trzy filtry zamiast regułek
 
-### Semestr zimowy 2026 - 54 h (mgr inż. T. Gądek 27 h · mgr inż. D. Aksamit 27 h)
+Nie ucz się zasad na pamięć - przepuść stronę przez trzy pytania kontrolne:
 
-| # | Data (śr) | Grupa A | Grupa B | Blok Aksamita |
-|---|---|---|---|---|
-| 1 | 07 X 2026 | Gądek | **Aksamit** | [0101](0101-overview/scenariusz.md) |
-| 2 | 21 X 2026 | **Aksamit** | Gądek | 0101 - powtórka z grupą A |
-| 3 | 28 X 2026 | Gądek | **Aksamit** | [0102](0102-overview/scenariusz.md) |
-| 4 | 04 XI 2026 | **Aksamit** | Gądek | 0102 - powtórka z grupą A |
-| 5 | 18 XI 2026 | Gądek | **Aksamit** | [0103](0103/scenariusz.md) |
-| 6 | 25 XI 2026 | **Aksamit** | Gądek | 0103 - powtórka z grupą A |
-| 7 | 02 XII 2026 | Gądek | **Aksamit** | [0104](0104/scenariusz.md) |
-| 8 | 09 XII 2026 | **Aksamit** | Gądek | 0104 - powtórka z grupą A |
-| 9 | 16 XII 2026 | Gądek | **Aksamit** | warsztaty utrwalające - grupa B |
+1. **Co usłyszę zamiast zobaczyć?** Czytnik ekranu czyta `alt` zamiast obrazu, po nagłówkach nawiguje jak po spisie treści, a przy polu formularza odczytuje jego `label`. Stąd: `alt` opisujący treść, dokładnie jeden `h1` i nagłówki po kolei, `label` przy każdym polu, `lang="pl"`.
+2. **Czy strona działa bez myszy?** Nie każdy używa myszy. Sprawdź: całą stronę da się przejść Tabem, widać obwódkę fokusu, link mówi, dokąd prowadzi (bo bez myszy nie „celujesz wzrokiem").
+3. **Co z tego zrozumie robot?** W uproszczeniu: to samo, co czytnik ekranu. Strona bez semantyki to dla robota ściana tekstu - dlatego semantyka i a11y to jedna bajka, nie dwa osobne tematy.
 
-Środy 14 X i 11 XI (Święto Niepodległości) nie występują w harmonogramie; po 16 XII blok webowy wznowi się 03 III 2027.
+Cała checklista a11y (niżej w tym pliku) to właśnie te trzy filtry, wypisane punkt po punkcie.
 
-### Semestr letni 2027 - 66 h (mgr inż. T. Gądek 33 h · mgr inż. D. Aksamit 33 h)
+### Formularze: rozmowa, którą pilnuje przeglądarka
 
-| # | Data (śr) | Grupa A | Grupa B | Blok Aksamita |
-|---|---|---|---|---|
-| 1 | 03 III 2027 | **Aksamit** | Gądek | [0201](0201/scenariusz.md) |
-| 2 | 10 III 2027 | Gądek | **Aksamit** | 0201 - powtórka z grupą B |
-| 3 | 17 III 2027 | **Aksamit** | Gądek | [0202](0202/scenariusz.md) |
-| 4 | 07 IV 2027 | Gądek | **Aksamit** | 0202 - powtórka z grupą B |
-| 5 | 14 IV 2027 | **Aksamit** | Gądek | [0203](0203/scenariusz.md) |
-| 6 | 21 IV 2027 | Gądek | **Aksamit** | 0203 - powtórka z grupą B |
-| 7 | 28 IV 2027 | **Aksamit** | Gądek | [0204](0204/scenariusz.md) |
-| 8 | 12 V 2027 | Gądek | **Aksamit** | 0204 - powtórka z grupą B |
-| 9 | 19 V 2027 | **Aksamit** | Gądek | [0205](0205/scenariusz.md) |
-| 10 | 26 V 2027 | Gądek | **Aksamit** | 0205 - powtórka z grupą B |
-| 11 | 02 VI 2027 | **Aksamit** | Gądek | warsztaty utrwalające - grupa A |
+Formularz to rozmowa z użytkownikiem, nie zbiór pudełek. Każde pole zaprojektuj czterema krokami:
 
-Terminy **rezerwowe**: 09 VI i 16 VI 2027. W harmonogramie nie występują środy 24 i 31 III (Wielkanoc - 28 III 2027) oraz 05 V.
+1. **Jakie dane zbieram?** - e-mail, liczba, data, jedna opcja z wielu, zgoda…
+2. **Który typ to opisze?** - `email`, `number`, `date`, `radio`, `checkbox`… typ to nie ozdoba: przeglądarka daje za darmo właściwą klawiaturę na telefonie (np. `@` pod palcem przy e-mailu) i sprawdzanie formatu. `text` do wszystkiego marnuje te prezenty - ściąga z typami jest niżej.
+3. **Jak pole się nazywa?** - `label` powiązany `for`/`id`: klik w etykietę fokusuje pole, czytnik ekranu odczyta nazwę. Pole bez etykiety to pytanie, którego nie słychać.
+4. **Kto pilnuje reguł?** - `required`, `min`/`max`, `minlength`, `pattern` (+ `title` z podpowiedzią). Walidacja HTML5 działa bez ani linijki JavaScriptu - JS przyjdzie na 0104.
 
-## Ramowy program
+I koperta na koniec: `form` z `action` (adresat rozmowy) i `method` (sposób wysyłki). Co serwer robi z wysłanymi danymi - to backend, patrz mapa „poza zakresem" niżej.
 
-### Semestr zimowy (X–XII 2026)
+## Zanim zaczniesz - projekt i obrazy
 
-| # | Spotkanie | Główne tematy | Kartkówka z |
-|---|---|---|---|
-| 0101 | [Dlaczego web? Wstęp, przeglądarki i DevTools](0101-overview/scenariusz.md) | przedstawienie się i mapa semestru; technologie webowe w liczbach; PWA - strona może być „natywna”; jak działa internet; przeglądarki i silniki; **Chrome DevTools**; VS Code + Live Server; **AI jako tutor** (po co znać fundamenty, gotowe prompty); pierwsza strona HTML na żywo | - |
-| 0102 | [HTML5 - fundamenty i semantyka](0102-overview/scenariusz.md) | semantyczny szkielet strony; tekst, listy, linki, obrazy; tabele; multimedia; formularze i walidacja HTML5; **dostępność (a11y)**: alt, nagłówki, `label`, klawiatura, ARIA/WCAG w pigułce; ćwiczenie: fanpage z checklistą dostępności | 0101 |
-| 0103 | [CSS3 - stylowanie i responsywność](0103/scenariusz.md) | selektory i kaskada; box model; kolory i jednostki; typografia; flexbox; media queries i responsywność; a11y cd.: kontrast i czytelność; stylowanie fanpage'a z 0102 | 0102 |
-| 0104 | [CSS w praktyce + pierwsze kroki w JavaScript](0104/scenariusz.md) | mini-powtórka CSS z 0103; grid, animacje, pozycjonowanie sticky; publikacja strony; dodatek „Jak w branży”: **Tailwind CSS i atomic CSS**; **wprowadzenie do JS**: „moment wow”, konsola, zmienne, pierwszy skrypt, reakcja na kliknięcie | 0103 |
+1. Utwórz katalog projektu, np. `fanpage`, otwórz w VS Code, utwórz w nim `index.html`. Nazwa i miejsce katalogu są dowolne - równie dobrze może to być `public` albo `public_html` (nazwa, którą spotkasz na hostingach); ważne, żeby wszystko (HTML + katalog `images/`) trzymać w jednym miejscu.
+2. **Obrazy do galerii** - przygotuj 3–5 plików w katalogu `images/` obok `index.html` (po angielsku - konwencja, którą spotkasz w każdym projekcie webowym); wtedy w `src` wpisujesz **ścieżkę względną**, np. `images/koncert.jpg`. Skąd wziąć zdjęcia? Po kolei:
+   - **własne albo z oficjalnych profili Twojego tematu** - najlepsze, bo autorskie,
+   - [unsplash.com](https://unsplash.com) - darmowe zdjęcia dobrej jakości: wpisz temat fanpage'a w wyszukiwarkę („concert", „esports", „guitar"…), pobierz 2–3 pliki, ściśnij je w [TinyPNG](https://tinypng.com/) i wrzuć do `images/`. Zrób to **szybko** (max 5 minut) - doskonałe zdjęcia dopiejesz na 0103, dziś liczy się szkielet. Licencja Unsplash pozwala używać zdjęć za darmo, nawet komercyjnie, bez podawania autora,
+   - nie chcesz pobierać? obrazki poglądowe: `https://placehold.co/600x400?text=Opis` albo `https://picsum.photos/seed/twoj-temat/600/400` - spójrz, co się wyświetliło, i **właśnie to opisz w `alt`**.
 
-### Semestr letni (III–VI 2027)
+Podgląd: prawy przycisk na `index.html` → **Open with Live Server**; po każdej zmianie Ctrl+S (Cmd+S).
 
-| # | Spotkanie | Główne tematy | Kartkówka z |
-|---|---|---|---|
-| 0201 | [JavaScript - solidne podstawy języka](0201/scenariusz.md) | operatory; warunki; pętle; funkcje (także arrow); `alert`/`prompt`/`confirm`; debugowanie w DevTools (breakpointy) | 0104 |
-| 0202 | [DOM i zdarzenia - strona żyje](0202/scenariusz.md) | drzewo DOM; wybieranie i zmiana elementów; zdarzenia; formularz z walidacją JS; projekty: licznik, galeria, quiz | 0201 |
-| 0203 | [Tablice, obiekty i dane](0203/scenariusz.md) | tablice i metody; obiekty; JSON; localStorage (lista zadań); `setTimeout`/`setInterval`; wprowadzenie do `fetch` i API; wzmianka o PWA: service worker i manifest w pigułce | 0202 |
-| 0204 | [Projekt zintegrowany HTML + CSS + JS](0204/scenariusz.md) | warsztaty projektowe w zespołach; podstawy Git/GitHub; publikacja; prezentacje projektów; projekt w portfolio i CV | 0203 |
-| 0205 | [INF.03 - trening egzaminacyjny i co dalej](0205/scenariusz.md) | strategia części pisemnej i praktycznej; test próbny; mini-arkusz praktyczny wg schematu CKE z kryteriami punktowania; ścieżki rozwoju i rekrutacja na Akademię Tarnowską; ankieta podsumowująca | 0204 |
+## Ściąga: typy pola `<input>` - które do czego
 
-## Efekty kształcenia - po kursie uczeń potrafi:
+| Typ | Co robi / kiedy użyć | Co sam pilnuje przeglądarka |
+|---|---|---|
+| `text` | krótki tekst: imię, nazwa | nic - sam dodajesz `required`, `minlength` |
+| `email` | adres e-mail | format adresu (`@`, domena) |
+| `number` | liczba: wiek, ilość | cyfry + zakres z `min`/`max` |
+| `date` | data | kalendarz do kliknięcia |
+| `password` | hasło | znaki zamaskowane kropkami |
+| `radio` | wybór **jednej** opcji z pary/kilku (ta sama nazwa `name`!) | zaznaczenie max. 1 z grupy |
+| `checkbox` | zgody, tak/nie | przełącznik |
+| `file` | wybór pliku z dysku | okno wyboru pliku |
+| `color` | wybór koloru | próbnik kolorów |
+| `range` | suwak (np. skala 1–10) | suwak z `min`/`max` |
 
-- zbudować semantyczną, dostępną i responsywną stronę internetową w HTML5 i CSS3 (flexbox, grid, media queries),
-- dodać interaktywność w czystym JavaScriptcie: obsługa zdarzeń, manipulacja DOM, formularze z walidacją, localStorage,
-- opublikować stronę w internecie i pracować z podstawami Gita,
-- korzystać z Chrome DevTools do analizy, stylowania i debugowania stron,
-- świadomie korzystać z AI jako tutora: rozwijać tematy, dopytywać o niezrozumiałe rzeczy (ELI5), precyzyjnie zamawiać rozwiązania i krytycznie oceniać wynik,
-- rozwiązywać zadania w formacie egzaminu INF.03 i znać strategię rozkładu czasu na egzaminie.
+Do dłuższego tekstu: `<textarea>`; wybór z listy: `<select>` + `<option>`.
 
-## Egzamin INF.03 w pigułce
+## Wariant A (podstawowy) - szkielet fanpage'u
 
-Kwalifikacja **INF.03 - „Tworzenie i administrowanie stronami i aplikacjami internetowymi oraz bazami danych”** (m.in. technik programista, technik informatyk).
+Zbuduj kompletną stronę (sam szkielet - bez CSS, wygląd przyjdzie na 0103). **Twoja strona nie musi być 1:1 fanpage'em wg propozycji z zajęć - to tylko szkielet punktów kontrolnych, a nie przepis do przekopiowania. Inwencja twórcza (własne sekcje, pomysły na treść i układ) jest lepiej oceniana niż wierna kopia propozycji** - wymagania z checklisty poniżej muszą być spełnione, ale ich forma należy do Ciebie:
 
-| Część | Forma | Czas | Punkty | Próg zdawalności |
-|---|---|---|---|---|
-| pisemna | test - 40 zadań zamkniętych | 60 min | 40 | 20 pkt (50%) |
-| praktyczna | praca egzaminacyjna - wykonanie witryny internetowej (HTML/CSS/JS, bywa PHP) oraz bazy danych (SQL) | 240 min | 100 | 50 pkt (50%) |
+- [ ] szkielet dokumentu z 0101: `<!DOCTYPE html>`, `html lang="pl"`, `head` z `meta charset`, `viewport` i `title`,
+- [ ] **`header`**: `h1` z nazwą tematu + jedno zdanie-hasło w `p`,
+- [ ] **`nav`**: lista `ul` z 3–5 linkami do sekcji strony (`href="#id"` - sekcje muszą mieć te `id`),
+- [ ] **`main`** z co najmniej **dwoma sekcjami**: „O …" (2–3 akapity `p` + lista `ul` lub `ol`) i **galeria**,
+- [ ] galeria: **minimum 3 obrazy** `img`, każdy z `alt` opisującym, co widać, i z `width`/`height` (podpisane obrazy? bonus: `figure` + `figcaption`),
+- [ ] **`footer`**: info, że to fanpage szkolny + link zewnętrzny do oficjalnej strony tematu (`target="_blank"` + `rel="noopener"`),
+- [ ] **formularz zapisu** w osobnej sekcji: imię (`type="text"`, `required`), e-mail (`type="email"`, `required`), zgoda (`checkbox`, `required`), przycisk `button` - każde pole z `label` powiązanym `for`/`id`.
 
-Źródło: informator o egzaminie zawodowym CKE (cke.gov.pl → Egzaminy zawodowe → Informatory). Przed sesją warto zweryfikować aktualną wersję informatora.
+Sprawdź przed oddaniem: linki w `nav` skaczą do sekcji; wszystkie obrazy się wyświetlają; wysłanie pustego formularza blokuje przeglądarka.
 
-## Struktura repozytorium
+## Wariant B (rozszerzający) - dla tych, którzy skończyli A
 
-```text
-.
-├── README.md          # ten plik - przegląd kursu
-├── AGENTS.md          # instrukcje dla asystentów AI pracujących w repo
-├── 0101/              # spotkanie 1 - pakiet ucznia (instrukcja ćwiczeń z planem spotkania, ściąga, poradnik, ściąga AI) - do wręczenia klasie
-├── 0101-overview/     # spotkanie 1 - pakiet prowadzącego (PLAN.md, scenariusz + wariant ADEPT, konspekt, prezentacja .md/.html, ankieta, rozwiazania/)
-├── 0102/              # spotkanie 2 - pakiet ucznia (instrukcja ćwiczeń z planem spotkania + plik startowy) - do wręczenia klasie
-├── 0102-overview/     # spotkanie 2 - pakiet prowadzącego (PLAN.md, scenariusz, konspekt, prezentacja, kartkówka, rozwiazania/)
-├── 0103/ … 0104/      # kolejne spotkania semestru zimowego (scenariusz + materiały)
-└── 0201/ … 0205/      # spotkania semestru letniego (scenariusz + materiały)
-```
+- [ ] **tabela danych** związana z tematem (np. dyskografia, wyniki/statystyki gracza, wymagania gry): `table` + `caption` + `thead` z `th` + `tbody` z `td`, minimum 3 wiersze danych,
+- [ ] rozszerz formularz: **`select`** (np. „skąd znasz…") i **`radio` w `fieldset` z `legend`** (np. wybór jednej opcji) + po jednym polu `number` (z `min`/`max`) i `date`,
+- [ ] **multimedia**: wstaw `iframe` z filmem powiązanym z tematem (pamiętaj o `title` ramki!) albo `audio`/`video` z `controls`.
 
-Każde spotkanie ma swój katalog `{id}/` z kompletem materiałów: `scenariusz.md` (bazowy, z meta promptem), `konspekt.md`, `prezentacja.md`, `cwiczenia/` (materiały dla uczniów, bez rozwiązań) i `rozwiazania/` (klucze i rozwiązania - wyłącznie dla prowadzącego). **Spotkania 0101 i 0102** mają materiały podzielone na dwa katalogi: `{id}/` - pakiet ucznia, do wręczenia klasie (instrukcja ćwiczeń, plan spotkania, pliki startowe) - oraz `{id}-overview/` - pakiet prowadzącego (PLAN.md, scenariusz, konspekt, prezentacja, ankieta/kartkówka, rozwiazania/). Konwencje opisane w [AGENTS.md](AGENTS.md).
+Sprawdź przed oddaniem: tabela ma nagłówki `th` i tytuł `caption`; radio pozwala wybrać tylko jedną opcję; walidacja pól `number`/`date` działa.
 
-## Jak korzystać z meta promptów
+## Wariant C ⭐ (gwiazdka, dla najszybszych) - fanpage bez myszy
 
-Każdy scenariusz (`{id}/scenariusz.md`) zawiera sekcję **Meta prompt** - gotowe do skopiowania polecenie dla asystenta AI (ZCode, Claude, ChatGPT…), które generuje **pełny pakiet materiałów** na dane spotkanie: kartkówkę z kluczem, konspekt z rozpiską czasową, outline prezentacji, kod do live codingu, ćwiczenia w 3 wariantach z rozwiązaniami, zadanie domowe i pytania w stylu INF.03.
+1. Dokoncz/porządkuj **menu wewnętrzne**: każda sekcja ma `id`, `nav` linkuje do każdej z nich; na końcu każdej sekcji dodaj link „↑ wróć na górę" prowadzący do `#` nagłówka strony.
+2. **Odłóż mysz.** Kliknij pasek adresu, a potem przechodź całą stronę samym **Tabem**: link po linku, pole po polu, aż do przycisku formularza. Odhaczaj: czy da się dotrzeć wszędzie? Czy kolejność ma sens? Czy widać, co jest zaznaczone (obwódka fokusu)?
+3. Napraw znalezione problemy (np. link „czytaj dalej" - czy poza kontekstem wiadomo, dokąd prowadzi?).
+4. **Dla bohaterów:** dodaj na samej górze strony link „Przejdź do treści" prowadzący do `main` (`id="tresc"`) - pierwszy prawdziwy trik dostępności, zanim w ogóle poznasz ARIA.
 
-1. Otwórz plik spotkania, np. [scenariusz.md](0102-overview/scenariusz.md).
-2. Skopiuj całą zawartość bloku **Meta prompt**.
-3. Wklej do nowej rozmowy z asystentem AI i wyślij.
-4. Wynik zapisz w repozytorium zgodnie z konwencjami z [AGENTS.md](AGENTS.md).
+## Checklista dostępności (a11y) - samokontrola fanpage'a
 
-## Technologie webowe w liczbach (dane na 0101)
+Przejdź przed oddaniem; to samo będzie na liście kontrolnej arkusza praktycznego (część praktyczna egzaminu zawodowego INF.03 - budowa witryny):
 
-Zweryfikowane statystyki używane na pierwszym spotkaniu - z podaniem źródeł (stan: październik 2026):
+- [ ] każdy `img` ma `alt`, który **opisuje treść** (nie „obrazek", nie „foto"),
+- [ ] `html lang="pl"` jest ustawiony,
+- [ ] dokładnie **jeden `h1`**, a dalej nagłówki **po kolei** (`h2` → `h3`, bez przeskoku h2 → h5),
+- [ ] każde pole formularza ma `label` powiązany `for`/`id`,
+- [ ] całą stronę da się przejść **samym Tabem** (mysz pod biurko!),
+- [ ] teksty linków mówią, dokąd prowadzą (unikaj samego „tutaj"),
+- [ ] `iframe` ma `title`,
+- [ ] tabela danych ma `caption` i `th` w nagłówkach.
 
-| Liczba | Źródło |
-|---|---|
-| JavaScript - najczęściej używany język wśród programistów **13. rok z rzędu** (~66% respondentów; kolejne miejsca: HTML/CSS, SQL, Python); 49 000+ odpowiedzi ze 177 krajów | [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/technology) |
-| JavaScript działa po stronie klienta na **98,9% wszystkich stron internetowych** | [W3Techs - Usage Statistics of JavaScript](https://w3techs.com/technologies/details/cp-javascript) |
-| Ponad **1,2 mld stron internetowych** na świecie (w 2000 r. tylko 17 mln; aktywnych ok. 15%) | [Internet Live Stats](https://www.internetlivestats.com/total-number-of-websites/) |
-| **Chrome ~70–72%** globalnego udziału w rynku przeglądarek (rekord w historii pomiarów; Safari, Edge i Firefox daleko w tyle) | [StatCounter Global Stats](https://gs.statcounter.com/browser-market-share/all/worldwide/2025) |
-| **84% programistów** używa lub planuje używać narzędzi AI do kodowania | [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025) |
+## Zadanie domowe (30–45 min)
 
-> Przed każdym użyciem na zajęciach odśwież dane u źródła - statystyki przedawniają się szybko.
+1. **Dokończ fanpage** (wariant A; jeśli zdążyłeś/aś - dopracuj B) i przelicz go przez checklistę a11y wyżej - każdą odhaczoną pozycję zostaw w kodzie świadomie. Pamiętaj: **wyjście poza propozycję z zajęć i własne, twórcze podejście jest lepiej oceniane niż kopia 1:1**.
+2. **Detektyw dostępności**: znajdź w internecie stronę z oczywistym błędem dostępności (brak `alt` przy obrazkach, „ściana divów", nagłówki pomieszane). Zapisz **adres strony** i **co jest nie tak** - pierwsze znaleziska omówimy na 0103.
+3. **Przygotuj się do kartkówki** - zakres niżej.
+4. **Wyślij projekt**: spakuj **cały katalog strony** (np. `fanpage`, `public` albo `public_html` - razem z `images/`) do archiwum ZIP i wyślij na **dominik.aksamit@zst.tarnow.pl**. W temacie maila podaj 0102 imię, nazwisko i grupę (A/B), np. "0102 Jan Kowalski B".
+
+**Nie kasuj projektu!** Na 0103 twój fanpage dostanie kolory, fonty i układ (flexbox). Trzymaj cały katalog (HTML + `images/`) w jednym kawałku. Gdzie? Gdzie Ci wygodnie - **jeśli znasz Gita, możesz trzymać projekt u siebie na GitHubie** (prywatne repozytorium jest darmowe), ale równie dobrze sprawdzi się pendrive, dysk chmurowy czy inny ulubiony sposób - Git nie jest dziś wymagany.
+
+## Kartkówka na 0103 - dokładny zakres
+
+Na następnym spotkaniu (**0103 - CSS3: stylowanie i responsywność**) zajęcia zaczną się **10-minutową kartkówką** z dzisiejszego materiału:
+
+- **semantyka**: czym się różni `article` od `section`, po co `nav`/`header`/`footer`, kiedy `div` wystarczy,
+- **typy `input`**: dobierz typ do danych (e-mail, liczba, data, jedna opcja z wielu, zgoda),
+- **formularze i walidacja HTML5**: `label` + `for`/`id`, `required`, `pattern`, `min`/`max`,
+- **tabele**: `th` vs `td`, `caption`, `thead`/`tbody`,
+- **a11y**: `alt`, kolejność nagłówków, nawigacja Tabem.
+
+Będą pytania zamknięte (A–D, jak na egzaminie INF.03) i krótkie otwarte - podobnie jak dzisiaj.
+
+## Zakres w pigułce: musisz umieć · warto wiedzieć · poza zakresem
+
+Nie wszystko z dzisiejszych zajęć jest równie wymagające - i dobrze, że to wiesz. Ta mapa mówi wprost, co jest fundamentem (sprawdzi Cię kartkówka na 0103, sprawdzian semestralny i egzamin INF.03), co wystarczy **rozumieć i umieć nazwać**, a co dziś świadomie pomijamy. Zasada kursu: **wiedzieć, czego się jeszcze nie wie, to połowa drogi**.
+
+### Musisz umieć - sam, bez podglądu
+
+- **Semantyczny szkielet**: `header`, `nav`, `main`, `section`, `article`, `aside`, `footer` - umieć dobrać właściwy znacznik i obronić wybór („dlaczego tu `article`, a nie `div`?"),
+- **tekst i listy**: dokładnie jeden `h1` i nagłówki po kolei; `strong` vs `em`; `ul`/`ol`/`dl` - kiedy które (`ol` = kolejność ma znaczenie),
+- **linki**: ścieżki względne vs bezwzględne; `target="_blank"` zawsze z `rel="noopener"`; zakotwiczenia `#id`; `mailto:`,
+- **obrazy**: `img` z `alt` opisującym treść + `width`/`height`; dobór formatu prostą regułą: zdjęcie - JPG/WebP, przeźroczystość - PNG, logo/ikona - SVG,
+- **tabela danych**: `table` + `caption` + `thead` z `th` + `tbody` z `td`,
+- **formularz z walidacją HTML5**: każde pole z `label` powiązanym `for`/`id`; typy z ściągi wyżej; walidacja: `required`, `min`/`max`, `minlength`, `pattern`,
+- **a11y w praktyce**: wszystkie 8 punktów checklisty wyżej - w tym `iframe` z `title` i przejście strony Tabem.
+
+Kartkówka na 0103 sięgnie do środka tej listy (dokładny zakres - sekcja wyżej), a obrazy i linki sprawdzą Twój fanpage oraz sprawdzian semestralny (0104).
+
+### Warto wiedzieć - umieć nazwać i wiedzieć, po co istnieje
+
+- **WCAG**: 4 zasady - spostrzegalna, funkcjonalna, zrozumiała, solidna. Tyle wystarczy; poziomy A/AA/AAA zostawiamy na później - zapamiętaj tylko, że unijne wymogi (European Accessibility Act i norma EN 301 549) wymagają poziomu **AA** według WCAG 2.1,
+- **ARIA**: zasada jest jedna - najpierw semantyczny HTML, ARIA tylko tam, gdzie HTML nie wystarcza,
+- **czytniki ekranu**: VoiceOver (Mac) i NVDA (Windows) „czytają" strony na głos - dlatego kolejność nagłówków naprawdę robi robotę,
+- **liczby, które uzasadniają a11y** (nie uczysz się ich na pamięć - odpowiadają na pytanie „po co?"): 1 na 6 ludzi na świecie, ok. 1,3 mld, żyje z niepełnosprawnością (WHO, 2023); unijne wymogi dostępności usług online (European Accessibility Act) obowiązują od 28 czerwca 2025; badanie WebAIM Million znajduje błędy dostępności na 95,9% z miliona sprawdzonych stron głównych,
+- **tabnabbing**: atak przez kartę otwartą w `target="_blank"` - dlatego `rel="noopener"` wpisujemy zawsze; szczegóły ataku nie są Ci dziś potrzebne,
+- **`type="color"` i `type="range"`**: 30 sekund zabawy - przetestuj sam w wariancie B,
+- **`figure` + `figcaption`**: bonus do galerii, gdy chcesz podpisać obrazy,
+- **link „Przejdź do treści"**: pierwszy prawdziwy trik dostępności, zanim w ogóle poznasz ARIA (wariant C),
+- **`meta viewport`**: wpisujesz już teraz w każdym projekcie, dokładnie zrozumiesz go na 0103.
+
+### Poza zakresem - mapa „wiem, czego nie wiem"
+
+O tym dziś tylko wspominamy albo świadomie pomijamy - z planem, kiedy wróci:
+
+- **CSS i responsywność** - całe stylowanie Twojego fanpage'a: **0103** (psst: w Twoim `index.html` czeka na to jedna zakomentowana linijka),
+- **JavaScript** - pierwszy skrypt, który „ożywi" stronę: **0104**,
+- **backend formularza** - co dzieje się z danymi po kliknięciu „Wyślij": `action` i `method` tylko wskazują cel, dane przyjmuje i przetwarza serwer; osobny blok zajęć backendowych, a na INF.03 część praktyczna bywa z PHP + SQL,
+- **szczegóły WCAG i ARIA** - ponad dziś poznaną świadomość nie wracają (wyjątek: kontrast - zmierzysz go na 0103 w Lighthouse),
+- **mechanika formatów graficznych** (kompresja stratna vs bezstratna, dlaczego WebP jest lżejszy) - wystarcza reguła doboru z listy „musisz umieć".
+
+## Przydatne linki
+
+### Dokumentacja HTML
+
+- [MDN Web Docs - HTML po polsku](https://developer.mozilla.org/pl/docs/Web/HTML) - encyklopedia znaczników od ludzi pilnujących webowych standardów; tu sprawdzisz każdy element z dzisiejszych zajęć. Pełna lista wszystkich znaczników (po angielsku): [HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+- [HTML5 Periodic Table](https://madebymike.github.io/html5-periodic-table/) - wszystkie elementy HTML ułożone jak tablica Mendelejewa, pogrupowane według roli (sekcje, semantyka tekstu, media, formularze…). Kliknięcie „atomu" pokazuje krótki opis i link do MDN - dobra ściąga, gdy zastanawiasz się, jakie znaczniki semantyczne w ogóle istnieją.
+
+### Narzędzia do samokontroli
+
+- [Walidator W3C](https://validator.w3.org/) - wklej adres swojej strony (albo wgraj plik) i dostaniesz listę błędów HTML. Przepuść nim fanpage przed oddaniem.
+- [WAVE - audyt dostępności](https://wave.webaim.org/) - pokazuje, gdzie brakuje `alt`, `label` albo porządku w nagłówkach. Fanpage na Live Serverze to localhost, więc zainstaluj [rozszerzenie WAVE do Chrome](https://wave.webaim.org/extension/) - działa też na stronach lokalnych.
+
+### Dostępność (a11y)
+
+- [WCAG 2.1 - autoryzowane tłumaczenie na polski (W3C)](https://www.w3.org/Translations/WCAG21-pl/) - oficjalna specyfikacja wytycznych dostępności przetłumaczona przez Fundację Instytut Rozwoju Regionalnego (2021). Dziś wystarczą Ci 4 zasady; wróć tu, gdy będziesz chciał/a zgłębić poziomy A/AA. Oryginał po angielsku: [WCAG 2.1 (W3C)](https://www.w3.org/TR/WCAG21/).
+
+### Formularze i walidacja
+
+- [MDN - formularze krok po kroku](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms) - samouczek o `form`, typach `input` i walidacji (po angielsku; ściąga z typami pól jest wyżej w tym pliku).
+- [regex101](https://regex101.com/) - do testowania wzorców do `pattern` (przyda się w wariancie B): piszesz wyrażenie i od razu widzisz, co łapie, a co nie.
+
+### Obrazy i multimedia
+
+- [TinyPNG](https://tinypng.com/) - kompresja JPG/PNG/WebP w przeglądarce, bez konta (do 20 plików naraz). Zdjęcie z Unsplash potrafi ważyć kilka MB - po TinyPNG to zwykle kilkaset KB, a galeria ładuje się natychmiast.
+- [SVGOMG](https://jakearchibald.github.io/svgomg/) - czyści i odchudza pliki SVG (usuwa zbędne metadane, zaokrągla współrzędne); przyda się, gdy do fanpage'a wstawisz ikonę lub logotyp SVG.
+
+### Chcesz więcej
+
+- [web.dev - Learn HTML](https://web.dev/learn/html/) - darmowy kurs HTML od zespołu Google; po angielsku, ale prostym - idealny, gdy chcesz pójść dalej niż materiały z zajęć.
 
 ---
 
-**Kontakt:** mgr inż. Dominik Aksamit · Akademia Tarnowska · [zst.tarnow.pl](https://www.zst.tarnow.pl/) · [akademia.tarnowska.pl](https://akademia.tarnowska.pl/)
+> Zgubiłeś/aś pliki albo pracujesz na innym komputerze? Pakiet zawsze pobierzesz ze strony [daksamit.pl/zp/0102](https://daksamit.pl/zp/0102).
+
+Masz pytania albo coś nie działa? Pytaj na bieżąco - na zajęciach lub mailowo. A jeśli wolisz najpierw spróbować samodzielnie: poproś AI o wyjaśnienie (ELI5: „wyjaśnij różnicę między article i section, jakbym miał 15 lat") i sprawdź odpowiedź w [MDN](https://developer.mozilla.org/pl/docs/Web/HTML).
+
+**Czym jest ELI5?** Skrót od angielskiego *explain like I'm five* - „wyjaśnij, jakbym miał pięć lat". To popularny sposób proszenia AI (albo czegokolwiek) o wyjaśnienie bardzo prostym językiem, bez żargonu - jak dziecku.
